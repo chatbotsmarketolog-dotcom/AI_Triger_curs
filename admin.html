@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель — Академия «Новые Горизонты Инфобизнеса»</title>
+    <style>
+        @import url('https://cdn.fontsource.com/fonts/inter.css');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cherry: #C41E3A;
+            --cherry-light: #E8435D;
+            --cherry-dark: #8B1528;
+            --gold: #D4AF37;
+            --gold-light: #F0D670;
+            --gold-dark: #A88B2C;
+            --cream: #FDF8F0;
+            --cream-dark: #F5EDE0;
+            --text-dark: #2A1A1A;
+            --text-light: #5A4A4A;
+            --white: #FFFFFF;
+            --shadow: 0 8px 32px rgba(196, 30, 58, 0.12);
+            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.2);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* Login Page */
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: linear-gradient(160deg, #1a0a0e 0%, #2d0f15 30%, #3d1520 60%, #2d0f15 100%);
+            position: relative;
+        }
+
+        .login-page::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 30%, rgba(196, 30, 58, 0.5) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 70%, rgba(212, 175, 55, 0.3) 0%, transparent 60%);
+        }
+
+        .login-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 24px;
+            padding: 48px 40px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .login-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: var(--gold-light);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .login-title {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+
+        .login-title .gold {
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+        }
+
+        .login-subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .login-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--cherry), var(--gold));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+            font-size: 13px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-sm);
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--cherry-dark);
+            width: 100%;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold-light);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .login-error {
+            background: rgba(196, 30, 58, 0.2);
+            border: 1px solid var(--cherry-light);
+            color: var(--gold-light);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        /* Admin Panel */
+        .admin-header {
+            background: linear-gradient(135deg, var(--cherry-dark) 0%, var(--cherry) 100%);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(196, 30, 58, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-logo {
+            color: var(--gold-light);
+            font-weight: 800;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .admin-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .admin-nav button {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--gold-light);
+            padding: 8px 18px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .admin-nav button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--gold);
+        }
+
+        .admin-nav button.active {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--cherry-dark);
+            border-color: var(--gold);
+        }
+
+        .admin-content {
+            padding: 32px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .admin-section {
+            display: none;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .admin-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            margin-bottom: 24px;
+        }
+
+        .admin-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .admin-card-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--cherry), var(--cherry-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .admin-card-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .admin-card-subtitle {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 16px;
+            align-items: flex-end;
+        }
+
+        .form-input-light {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--cream-dark);
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: var(--cream);
+        }
+
+        .form-input-light:focus {
+            outline: none;
+            border-color: var(--cherry);
+            box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--cherry), var(--cherry-light));
+            color: white;
+            box-shadow: 0 4px 16px rgba(196, 30, 58, 0.3);
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(196, 30, 58, 0.4);
+        }
+
+        .students-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .students-table th {
+            background: var(--cream);
+            color: var(--text-light);
+            font-weight: 700;
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--cream-dark);
+        }
+
+        .students-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--cream-dark);
+            vertical-align: middle;
+        }
+
+        .students-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .students-table tr:hover td {
+            background: var(--cream);
+        }
+
+        .student-name-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .student-avatar {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--cherry), var(--gold));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .student-name {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .student-date {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .progress-bar-mini {
+            width: 120px;
+            height: 8px;
+            background: var(--cream-dark);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .progress-bar-mini-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--cherry), var(--gold));
+            border-radius: 50px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-new {
+            background: var(--cream);
+            color: var(--text-light);
+        }
+
+        .badge-active {
+            background: #E8F8EE;
+            color: #2D8B4E;
+        }
+
+        .badge-done {
+            background: #FFF5E6;
+            color: var(--gold-dark);
+        }
+
+        .btn-delete {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: var(--text-light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .btn-delete:hover {
+            background: #FFF0F0;
+            color: var(--cherry);
+        }
+
+        .btn-copy {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--gold-dark);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .btn-copy:hover {
+            background: var(--gold);
+            color: var(--cherry-dark);
+        }
+
+        .app-item {
+            padding: 16px;
+            background: var(--cream);
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+            border-left: 3px solid var(--gold);
+        }
+
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .app-name {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .app-date {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .app-details {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .app-message {
+            margin-top: 8px;
+            padding: 10px;
+            background: var(--white);
+            border-radius: 6px;
+            font-size: 13px;
+            color: var(--text-dark);
+            font-style: italic;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-light);
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--white);
+            padding: 16px 24px;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            z-index: 2000;
+            display: none;
+            animation: fadeIn 0.3s ease;
+            border-left: 4px solid var(--gold);
+            max-width: 360px;
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        .toast-message {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius);
+            max-width: 480px;
+            width: 100%;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-light);
+            padding: 4px;
+        }
+
+        .modal-close:hover {
+            color: var(--cherry);
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .modal-text {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .modal-creds {
+            background: var(--cream);
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 20px;
+        }
+
+        .modal-creds-label {
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .modal-creds-value {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-dark);
+            font-family: monospace;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--cherry);
+        }
+
+        .stat-number.gold {
+            color: var(--gold-dark);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .students-table {
+                font-size: 12px;
+            }
+
+            .students-table th,
+            .students-table td {
+                padding: 10px 12px;
+            }
+
+            .admin-header {
+                padding: 12px 16px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .admin-nav {
+                flex-wrap: wrap;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--cherry-light);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Toast -->
+    <div id="toast" class="toast">
+        <div id="toastMessage" class="toast-message"></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div id="modalContent" class="modal"></div>
+    </div>
+
+    <!-- LOGIN PAGE -->
+    <div id="page-login" class="page active">
+        <div class="login-page">
+            <div class="login-card">
+                <div class="login-badge">🔐 Только для администратора</div>
+                <div class="login-icon">🍒</div>
+                <h1 class="login-title">Админ-панель</h1>
+                <p class="login-subtitle">Академия «Новые Горизонты Инфобизнеса»</p>
+
+                <div id="loginError" class="login-error">Неверный пароль</div>
+
+                <div class="form-group">
+                    <label class="form-label">Логин</label>
+                    <input id="loginUsername" type="text" class="form-input" placeholder="admin">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Пароль</label>
+                    <input id="loginPassword" type="password" class="form-input" placeholder="••••••••" onkeypress="if(event.key==='Enter')handleLogin()">
+                </div>
+                <button class="btn btn-gold" onclick="handleLogin()">Войти</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD -->
+    <div id="page-dashboard" class="page">
+        <header class="admin-header">
+            <div class="admin-logo">
+                <div class="admin-logo-icon">⚙️</div>
+                <div>
+                    <div style="font-size:15px;">Админ-панель</div>
+                    <div style="font-size:11px; opacity:0.7;">Новые Горизонты</div>
+                </div>
+            </div>
+            <div class="admin-nav">
+                <button id="tab-students" class="active" onclick="switchTab('students')">👥 Ученики</button>
+                <button id="tab-apps" onclick="switchTab('apps')">📝 Заявки</button>
+                <button id="tab-stats" onclick="switchTab('stats')">📊 Статистика</button>
+                <button class="btn-outline" onclick="handleLogout()" style="padding:8px 16px; border-radius:8px; font-size:14px;">Выйти</button>
+            </div>
+        </header>
+
+        <div class="admin-content">
+            <!-- STUDENTS TAB -->
+            <div id="section-students" class="admin-section active">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <div class="admin-card-icon">➕</div>
+                        <div>
+                            <div class="admin-card-title">Новый аккаунт ученика</div>
+                            <div class="admin-card-subtitle">Создай логин и пароль, которые передашь ученику</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group" style="margin-bottom:0">
+                            <label class="form-label" style="color:var(--text-dark)">Имя ученика (логин)</label>
+                            <input id="newStudentName" type="text" class="form-input-light" placeholder="Например: Анна">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0">
+                            <label class="form-label" style="color:var(--text-dark)">Пароль</label>
+                            <input id="newStudentPass" type="text" class="form-input-light" placeholder="Придумай пароль">
+                        </div>
+                        <button class="btn btn-primary" onclick="registerStudent()">Создать аккаунт</button>
+                    </div>
+                </div>
+
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <div class="admin-card-icon">👥</div>
+                        <div>
+                            <div class="admin-card-title">Список учеников</div>
+                            <div class="admin-card-subtitle" id="studentsCount">Всего: 0</div>
+                        </div>
+                    </div>
+                    <div id="studentsTableContainer">
+                        <div class="empty-state">
+                            <div class="empty-icon">📭</div>
+                            <p>Пока нет учеников. Создай первый аккаунт выше.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- APPLICATIONS TAB -->
+            <div id="section-apps" class="admin-section">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <div class="admin-card-icon">📝</div>
+                        <div>
+                            <div class="admin-card-title">Заявки на AgentFlow</div>
+                            <div class="admin-card-subtitle" id="appsCount">Всего заявок: 0</div>
+                        </div>
+                    </div>
+                    <div id="applicationsContainer">
+                        <div class="empty-state">
+                            <div class="empty-icon">📭</div>
+                            <p>Пока нет заявок</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STATS TAB -->
+            <div id="section-stats" class="admin-section">
+                <div class="stats-grid" id="statsGrid"></div>
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <div class="admin-card-icon">📊</div>
+                        <div>
+                            <div class="admin-card-title">Прогресс по модулям</div>
+                        </div>
+                    </div>
+                    <div id="progressDetails"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_LOGIN = 'admin';
+        const ADMIN_PASS = 'zaqqaz';
+
+        function getDB() {
+            const db = localStorage.getItem('courseDB');
+            return db ? JSON.parse(db) : { students: {}, applications: [] };
+        }
+
+        function saveDB(db) {
+            localStorage.setItem('courseDB', JSON.stringify(db));
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
+        }
+
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const page = document.getElementById(id);
+            if (page) {
+                page.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function handleLogin() {
+            const user = document.getElementById('loginUsername').value.trim();
+            const pass = document.getElementById('loginPassword').value.trim();
+            const err = document.getElementById('loginError');
+
+            if (user === ADMIN_LOGIN && pass === ADMIN_PASS) {
+                err.style.display = 'none';
+                sessionStorage.setItem('adminAuth', 'true');
+                showPage('page-dashboard');
+                initDashboard();
+                showToast('Добро пожаловать, Кристина! 👑');
+            } else {
+                err.style.display = 'block';
+                err.textContent = !user || !pass ? 'Заполните все поля' : 'Неверный логин или пароль';
+            }
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem('adminAuth');
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+            showPage('page-login');
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.admin-nav button:not(.btn-outline)').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(`tab-${tab}`).classList.add('active');
+            document.getElementById(`section-${tab}`).classList.add('active');
+            if (tab === 'stats') initStats();
+        }
+
+        function registerStudent() {
+            const name = document.getElementById('newStudentName').value.trim();
+            const pass = document.getElementById('newStudentPass').value.trim();
+
+            if (!name || !pass) {
+                showToast('Заполни имя и пароль');
+                return;
+            }
+
+            const db = getDB();
+            if (db.students[name]) {
+                showToast('Такой ученик уже существует');
+                return;
+            }
+
+            db.students[name] = {
+                password: pass,
+                createdAt: new Date().toISOString(),
+                progress: { completed: [], checklists: {}, homework: {}, botDialogs: 0, botLastReset: null }
+            };
+            saveDB(db);
+
+            document.getElementById('newStudentName').value = '';
+            document.getElementById('newStudentPass').value = '';
+
+            // Show credentials modal
+            showModal(`
+                <h2 class="modal-title">✅ Аккаунт создан!</h2>
+                <p class="modal-text">Передай эти данные ученику:</p>
+                <div class="modal-creds">
+                    <div class="modal-creds-label">Логин</div>
+                    <div class="modal-creds-value">${name}</div>
+                </div>
+                <div class="modal-creds">
+                    <div class="modal-creds-label">Пароль</div>
+                    <div class="modal-creds-value">${pass}</div>
+                </div>
+                <button class="btn btn-primary" style="width:100%" onclick="closeModal(); copyCredentials('${name}', '${pass}')">📋 Скопировать данные</button>
+            `);
+
+            initDashboard();
+        }
+
+        function copyCredentials(name, pass) {
+            const text = `Логин: ${name}\nПароль: ${pass}`;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Скопировано в буфер обмена!');
+            }).catch(() => {
+                showToast('Данные показаны выше');
+            });
+        }
+
+        function deleteStudent(name) {
+            if (!confirm(`Удалить ученика "${name}"? Это действие нельзя отменить.`)) return;
+            const db = getDB();
+            delete db.students[name];
+            saveDB(db);
+            showToast(`Ученик "${name}" удалён`);
+            initDashboard();
+        }
+
+        function resetPassword(name) {
+            const newPass = prompt(`Введите новый пароль для "${name}":`);
+            if (!newPass) return;
+
+            const db = getDB();
+            if (db.students[name]) {
+                db.students[name].password = newPass;
+                saveDB(db);
+                showToast(`Пароль для "${name}" изменён`);
+                initDashboard();
+            }
+        }
+
+        function initDashboard() {
+            const db = getDB();
+            const students = Object.entries(db.students);
+
+            document.getElementById('studentsCount').textContent = `Всего: ${students.length}`;
+
+            if (students.length === 0) {
+                document.getElementById('studentsTableContainer').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <p>Пока нет учеников. Создай первый аккаунт выше.</p>
+                    </div>`;
+            } else {
+                const moduleNames = ['Введение', 'Модуль 1', 'Модуль 2', 'Модуль 3', 'Модуль 4'];
+                document.getElementById('studentsTableContainer').innerHTML = `
+                    <div style="overflow-x:auto;">
+                        <table class="students-table">
+                            <thead>
+                                <tr>
+                                    <th>Ученик</th>
+                                    <th>Дата регистрации</th>
+                                    <th>Прогресс</th>
+                                    <th>Статус</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${students.map(([name, data]) => {
+                                    const progress = data.progress || { completed: [] };
+                                    const completed = progress.completed || [];
+                                    const moduleProgress = completed.filter(m => m > 0).length;
+                                    const totalModules = 4;
+                                    const percent = Math.round((moduleProgress / totalModules) * 100);
+                                    const date = new Date(data.createdAt).toLocaleDateString('ru-RU');
+                                    const status = moduleProgress === 0 ? 'new' : moduleProgress < totalModules ? 'active' : 'done';
+                                    const statusText = status === 'new' ? 'Новый' : status === 'active' ? 'Учится' : 'Завершил';
+
+                                    return `
+                                        <tr>
+                                            <td>
+                                                <div class="student-name-cell">
+                                                    <div class="student-avatar">${name.charAt(0).toUpperCase()}</div>
+                                                    <div>
+                                                        <div class="student-name">${name}</div>
+                                                        <div style="font-size:11px; color:var(--text-light);">Пароль: ••••••</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="student-date">${date}</div>
+                                            </td>
+                                            <td>
+                                                <div class="progress-bar-mini">
+                                                    <div class="progress-bar-mini-fill" style="width:${percent}%"></div>
+                                                </div>
+                                                <div class="progress-text">${moduleProgress}/${totalModules} модулей (${percent}%)</div>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-${status}">${status === 'new' ? '🆕' : status === 'active' ? '📚' : '🎉'} ${statusText}</span>
+                                            </td>
+                                            <td>
+                                                <div style="display:flex; gap:6px;">
+                                                    <button class="btn-copy" onclick="resetPassword('${name}')" title="Сбросить пароль">🔑</button>
+                                                    <button class="btn-copy" onclick="showModulesDetail('${name}')" title="Детали прогресса">📊</button>
+                                                    <button class="btn-delete" onclick="deleteStudent('${name}')" title="Удалить">🗑</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    `;
+                                }).join('')}
+                            </tbody>
+                        </table>
+                    </div>`;
+            }
+
+            // Applications
+            const applications = db.applications || [];
+            document.getElementById('appsCount').textContent = `Всего заявок: ${applications.length}`;
+
+            if (applications.length === 0) {
+                document.getElementById('applicationsContainer').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <p>Пока нет заявок</p>
+                    </div>`;
+            } else {
+                document.getElementById('applicationsContainer').innerHTML = applications.map(app => `
+                    <div class="app-item">
+                        <div class="app-header">
+                            <div class="app-name">${app.name || 'Без имени'}</div>
+                            <div class="app-date">${new Date(app.date).toLocaleDateString('ru-RU')}</div>
+                        </div>
+                        <div class="app-details">
+                            📱 Telegram: <strong>${app.telegram}</strong>
+                            ${app.phone ? ` • 📞 ${app.phone}` : ''}
+                            ${app.niche ? ` • 💼 ${app.niche}` : ''}
+                        </div>
+                        ${app.message ? `<div class="app-message">"${app.message}"</div>` : ''}
+                    </div>
+                `).join('');
+            }
+        }
+
+        function showModulesDetail(name) {
+            const db = getDB();
+            const data = db.students[name];
+            if (!data) return;
+
+            const progress = data.progress || { completed: [] };
+            const completed = progress.completed || [];
+            const moduleNames = ['Введение', 'Модуль 1: База знаний', 'Модуль 2: Лид-магнит', 'Модуль 3: Раздевающий вопрос', 'Модуль 4: CRM'];
+            const homework = progress.homework || {};
+
+            const hwStats = Object.values(homework).filter(h => h.rating).reduce((acc, h) => {
+                if (h.rating === 1) acc.done++;
+                if (h.rating === -1) acc.fail++;
+                return acc;
+            }, { done: 0, fail: 0 });
+
+            const hwCount = Object.keys(homework).length;
+
+            const content = `
+                <button class="modal-close" onclick="closeModal()">✕</button>
+                <h2 class="modal-title">📊 Прогресс: ${name}</h2>
+                <div style="margin-bottom:16px;">
+                    <div style="font-size:13px; color:var(--text-light); margin-bottom:8px;">Модули:</div>
+                    ${moduleNames.map((m, i) => `
+                        <div style="display:flex; align-items:center; gap:8px; padding:6px 0; font-size:14px;">
+                            <span style="color:${completed.includes(i) ? '#2D8B4E' : 'var(--text-light)'};">${completed.includes(i) ? '✅' : '⬜'}</span>
+                            ${m}
+                        </div>
+                    `).join('')}
+                </div>
+                <div style="margin-bottom:16px;">
+                    <div style="font-size:13px; color:var(--text-light); margin-bottom:8px;">Домашнее задание:</div>
+                    <div style="font-size:14px;">Заполнено: ${hwCount} заданий, ✅ ${hwStats.done}, ❌ ${hwStats.fail}</div>
+                </div>
+                <div>
+                    <div style="font-size:13px; color:var(--text-light); margin-bottom:8px;">Чек-листы:</div>
+                    <div style="font-size:14px;">Модуль 1: ${(progress.checklists && progress.checklists.m1) ? progress.checklists.m1.length : 0}/10 пунктов</div>
+                    <div style="font-size:14px;">Модуль 4: ${(progress.checklists && progress.checklists.m4) ? progress.checklists.m4.length : 0}/5 пунктов</div>
+                </div>
+            `;
+
+            showModal(content);
+        }
+
+        function initStats() {
+            const db = getDB();
+            const students = Object.entries(db.students);
+            const applications = db.applications || [];
+
+            let totalModulesCompleted = 0;
+            let studentsStarted = 0;
+            let studentsFinished = 0;
+
+            students.forEach(([_, data]) => {
+                const completed = (data.progress && data.progress.completed) || [];
+                const moduleCount = completed.filter(m => m > 0).length;
+                totalModulesCompleted += moduleCount;
+                if (moduleCount > 0) studentsStarted++;
+                if (moduleCount >= 4) studentsFinished++;
+            });
+
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-number">${students.length}</div>
+                    <div class="stat-label">Всего учеников</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number gold">${studentsStarted}</div>
+                    <div class="stat-label">Начали обучение</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${studentsFinished}</div>
+                    <div class="stat-label">Завершили курс</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number gold">${applications.length}</div>
+                    <div class="stat-label">Заявок на AgentFlow</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${totalModulesCompleted}</div>
+                    <div class="stat-label">Модулей пройдено</div>
+                </div>
+            `;
+
+            // Progress details
+            if (students.length === 0) {
+                document.getElementById('progressDetails').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">📊</div>
+                        <p>Нет данных для отображения</p>
+                    </div>`;
+            } else {
+                const moduleNames = ['Введение', 'Модуль 1', 'Модуль 2', 'Модуль 3', 'Модуль 4'];
+                document.getElementById('progressDetails').innerHTML = students.map(([name, data]) => {
+                    const completed = (data.progress && data.progress.completed) || [];
+                    return `
+                        <div style="margin-bottom:16px; padding:12px; background:var(--cream); border-radius:var(--radius-sm);">
+                            <div style="font-weight:700; margin-bottom:8px;">${name}</div>
+                            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                                ${moduleNames.map((m, i) => `
+                                    <span style="padding:3px 10px; border-radius:50px; font-size:12px; font-weight:600; background:${completed.includes(i) ? 'var(--gold)' : '#E8E0D8'}; color:${completed.includes(i) ? 'var(--cherry-dark)' : 'var(--text-light)'};">
+                                        ${completed.includes(i) ? '✓' : '○'} ${m}
+                                    </span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        function showModal(content) {
+            document.getElementById('modalContent').innerHTML = content;
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('adminAuth') === 'true') {
+                showPage('page-dashboard');
+                initDashboard();
+            }
+
+            document.getElementById('modalOverlay').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) closeModal();
+            });
+        });
+    </script>
+</body>
+</html>
+
