@@ -1,0 +1,10 @@
+name = "cursaiproject"
+main = "index.js"
+compatibility_date = "2024-05-26"
+
+[site]
+bucket = "./public"
+
+[[kv_namespaces]]
+binding = "AIRA_KV"
+id = "b51d5fc1b099465fb95321108f1a23a7"
