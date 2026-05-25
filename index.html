@@ -81,7 +81,6 @@
             100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Cherry particles */
         .cherry-particle {
             position: fixed;
             pointer-events: none;
@@ -91,7 +90,6 @@
             opacity: 0;
         }
 
-        /* Header */
         .header {
             background: linear-gradient(135deg, var(--cherry-dark) 0%, var(--cherry) 50%, var(--cherry-light) 100%);
             padding: 12px 24px;
@@ -113,11 +111,6 @@
             gap: 8px;
         }
 
-        .header-logo svg {
-            width: 28px;
-            height: 28px;
-        }
-
         .header-nav {
             display: flex;
             gap: 12px;
@@ -134,6 +127,7 @@
             font-size: 14px;
             font-weight: 600;
             transition: all 0.3s;
+            font-family: inherit;
         }
 
         .header-nav button:hover {
@@ -151,7 +145,6 @@
             box-shadow: var(--shadow-gold);
         }
 
-        /* Landing Page */
         .landing {
             min-height: 100vh;
             display: flex;
@@ -321,7 +314,6 @@
             font-weight: 500;
         }
 
-        /* Login Page */
         .login-container {
             min-height: 100vh;
             display: flex;
@@ -476,6 +468,7 @@
             font-weight: 600;
             margin-bottom: 16px;
             transition: color 0.3s;
+            font-family: inherit;
         }
 
         .btn-back:hover {
@@ -493,7 +486,6 @@
             display: none;
         }
 
-        /* Dashboard */
         .dashboard {
             padding: 32px 24px;
             max-width: 1200px;
@@ -644,7 +636,6 @@
             flex-wrap: wrap;
         }
 
-        /* Module Page */
         .module-page {
             padding: 32px 24px;
             max-width: 800px;
@@ -728,6 +719,12 @@
             background: var(--cream);
             border-radius: var(--radius-sm);
             margin-bottom: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .checklist-item:hover {
+            background: var(--cream-dark);
         }
 
         .checklist-checkbox {
@@ -735,13 +732,13 @@
             height: 20px;
             border: 2px solid var(--cherry);
             border-radius: 4px;
-            cursor: pointer;
             flex-shrink: 0;
             margin-top: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
+            background: var(--white);
         }
 
         .checklist-checkbox.checked {
@@ -761,6 +758,46 @@
             color: var(--text-dark);
         }
 
+        .checklist-result {
+            margin-top: 20px;
+            padding: 24px;
+            background: var(--cream);
+            border-radius: var(--radius);
+            text-align: center;
+            border: 2px solid var(--cream-dark);
+        }
+
+        .checklist-score {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .checklist-score.excellent {
+            color: #2D8B4E;
+        }
+
+        .checklist-score.good {
+            color: var(--gold-dark);
+        }
+
+        .checklist-score.work {
+            color: var(--cherry);
+        }
+
+        .checklist-label {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .checklist-recommendation {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
         .hw-section {
             margin-top: 32px;
             background: var(--white);
@@ -777,6 +814,12 @@
             display: flex;
             align-items: center;
             gap: 8px;
+        }
+
+        .hw-subtitle {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 16px;
         }
 
         .hw-item {
@@ -856,10 +899,6 @@
             border-color: var(--gold);
         }
 
-        .hw-save-btn {
-            margin-top: 12px;
-        }
-
         .hw-score {
             display: inline-flex;
             align-items: center;
@@ -877,7 +916,83 @@
             color: var(--cherry);
         }
 
-        /* PDF Materials */
+        .hw-score.neutral {
+            color: var(--text-light);
+        }
+
+        .draft-table-container {
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        .draft-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            min-width: 600px;
+        }
+
+        .draft-table th {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--cherry-dark);
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 700;
+            border: 1px solid var(--cream-dark);
+        }
+
+        .draft-table td {
+            border: 1px solid var(--cream-dark);
+            padding: 0;
+            vertical-align: top;
+        }
+
+        .draft-cell {
+            width: 100%;
+            min-height: 44px;
+            padding: 8px 10px;
+            border: none;
+            background: var(--white);
+            font-family: inherit;
+            font-size: 13px;
+            color: var(--text-dark);
+            resize: none;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .draft-cell:focus {
+            background: #FFFBF0;
+            box-shadow: inset 0 0 0 2px var(--gold);
+        }
+
+        .draft-cell::placeholder {
+            color: #C8C0B8;
+            font-style: italic;
+        }
+
+        .draft-row-num {
+            width: 30px;
+            text-align: center;
+            background: var(--cream);
+            font-weight: 700;
+            color: var(--text-light);
+            padding: 8px;
+            font-size: 12px;
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-sm {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+
         .pdf-section {
             padding: 32px 24px;
             max-width: 900px;
@@ -942,7 +1057,6 @@
             font-size: 20px;
         }
 
-        /* PDF Viewer */
         .pdf-viewer {
             padding: 32px 24px;
             max-width: 900px;
@@ -992,157 +1106,9 @@
             background: var(--cream);
         }
 
-        /* Admin Panel */
-        .admin-panel {
-            padding: 32px 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .admin-title {
-            font-size: 28px;
-            font-weight: 900;
-            color: var(--text-dark);
-        }
-
-        .admin-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 24px;
-            border-bottom: 2px solid var(--cream-dark);
-            padding-bottom: 0;
-        }
-
-        .admin-tab {
-            padding: 12px 24px;
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-light);
-            cursor: pointer;
-            border: none;
-            background: none;
-            border-bottom: 3px solid transparent;
-            margin-bottom: -2px;
-            transition: all 0.3s;
-            font-family: inherit;
-        }
-
-        .admin-tab.active {
-            color: var(--cherry);
-            border-bottom-color: var(--cherry);
-        }
-
-        .admin-tab:hover {
-            color: var(--cherry-light);
-        }
-
-        .admin-section {
-            display: none;
-        }
-
-        .admin-section.active {
-            display: block;
-        }
-
-        .admin-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 24px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-            margin-bottom: 20px;
-        }
-
-        .admin-card-title {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 16px;
-        }
-
-        .student-list {
-            display: grid;
-            gap: 12px;
-        }
-
-        .student-item {
-            display: grid;
-            grid-template-columns: 1fr auto auto auto;
-            gap: 16px;
-            align-items: center;
-            padding: 16px;
-            background: var(--cream);
-            border-radius: var(--radius-sm);
-            font-size: 14px;
-        }
-
-        .student-name {
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        .student-progress {
-            font-size: 13px;
-            color: var(--text-light);
-        }
-
-        .student-badge {
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .student-badge.active {
-            background: #E8F8EE;
-            color: #2D8B4E;
-        }
-
-        .student-badge.inactive {
-            background: #F0ECE8;
-            color: var(--text-light);
-        }
-
-        .btn-small {
-            padding: 6px 14px;
-            font-size: 13px;
-            border-radius: 6px;
-        }
-
-        .btn-danger {
-            background: var(--cherry);
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-danger:hover {
-            background: var(--cherry-dark);
-        }
-
-        .register-form {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .register-form .form-input {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        /* Bot Demo */
         .bot-container {
             padding: 32px 24px;
-            max-width: 500px;
+            max-width: 540px;
             margin: 0 auto;
         }
 
@@ -1195,7 +1161,7 @@
         }
 
         .bot-msg {
-            max-width: 85%;
+            max-width: 90%;
             padding: 12px 16px;
             border-radius: 16px;
             font-size: 14px;
@@ -1258,6 +1224,39 @@
             transform: scale(1.1);
         }
 
+        .bot-counter {
+            text-align: center;
+            padding: 8px;
+            font-size: 12px;
+            color: var(--text-light);
+            background: var(--cream);
+        }
+
+        .bot-quick-replies {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .bot-quick-reply {
+            padding: 8px 16px;
+            background: var(--cream);
+            border: 1px solid var(--cherry);
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--cherry);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .bot-quick-reply:hover {
+            background: var(--cherry);
+            color: white;
+        }
+
         .bot-typing {
             display: flex;
             gap: 4px;
@@ -1284,39 +1283,6 @@
             40% { transform: scale(1); opacity: 1; }
         }
 
-        .bot-quick-replies {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 8px;
-        }
-
-        .bot-quick-reply {
-            padding: 8px 16px;
-            background: var(--cream);
-            border: 1px solid var(--cherry);
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--cherry);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .bot-quick-reply:hover {
-            background: var(--cherry);
-            color: white;
-        }
-
-        .bot-counter {
-            text-align: center;
-            padding: 8px;
-            font-size: 12px;
-            color: var(--text-light);
-            background: var(--cream);
-        }
-
-        /* Application Form */
         .app-form-container {
             padding: 32px 24px;
             max-width: 700px;
@@ -1374,7 +1340,112 @@
             margin-bottom: 16px;
         }
 
-        /* Modal */
+        .contact-select {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .contact-option {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid #E8E0D8;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 600;
+            background: var(--white);
+            color: var(--text-light);
+        }
+
+        .contact-option.active {
+            border-color: var(--cherry);
+            background: rgba(196, 30, 58, 0.05);
+            color: var(--cherry);
+        }
+
+        .contact-option:hover {
+            border-color: var(--cherry-light);
+        }
+
+        .privacy-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: var(--cream);
+            border-radius: var(--radius-sm);
+            margin: 20px 0;
+            border: 1px solid var(--cream-dark);
+        }
+
+        .privacy-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            accent-color: var(--cherry);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .privacy-checkbox label {
+            font-size: 13px;
+            color: var(--text-light);
+            cursor: pointer;
+            line-height: 1.6;
+        }
+
+        .privacy-checkbox label a {
+            color: var(--cherry);
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--cherry-dark), var(--cherry));
+            color: rgba(255,255,255,0.8);
+            padding: 32px 24px;
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .footer a {
+            color: var(--gold-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--white);
+            padding: 16px 24px;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            z-index: 2000;
+            display: none;
+            animation: slideIn 0.3s ease;
+            border-left: 4px solid var(--gold);
+            max-width: 360px;
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        .toast-message {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -1421,249 +1492,6 @@
             font-weight: 800;
             color: var(--text-dark);
             margin-bottom: 16px;
-        }
-
-        /* Footer */
-        .footer {
-            background: linear-gradient(135deg, var(--cherry-dark), var(--cherry));
-            color: rgba(255,255,255,0.8);
-            padding: 32px 24px;
-            text-align: center;
-            margin-top: 48px;
-        }
-
-        .footer a {
-            color: var(--gold-light);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Toast */
-        .toast {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: var(--white);
-            padding: 16px 24px;
-            border-radius: var(--radius-sm);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-            z-index: 2000;
-            display: none;
-            animation: slideIn 0.3s ease;
-            border-left: 4px solid var(--gold);
-            max-width: 360px;
-        }
-
-        .toast.show {
-            display: block;
-        }
-
-        .toast-message {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .student-item {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-            
-            .modules-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .header {
-                padding: 10px 16px;
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-            
-            .header-nav {
-                flex-wrap: wrap;
-            }
-            
-            .login-card {
-                padding: 32px 24px;
-            }
-            
-            .module-content, .pdf-viewer-content, .app-form {
-                padding: 24px;
-            }
-            
-            .admin-tabs {
-                overflow-x: auto;
-            }
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--cream);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--cherry-light);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--cherry);
-        }
-
-        .table-responsive {
-            overflow-x: auto;
-        }
-
-        .module-nav-buttons {
-            display: flex;
-            gap: 12px;
-            margin-top: 32px;
-            flex-wrap: wrap;
-        }
-
-        .nav-step-indicator {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 16px 0;
-            font-size: 14px;
-            color: var(--text-light);
-        }
-
-        .nav-step-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--cream-dark);
-        }
-
-        .nav-step-dot.active {
-            background: var(--cherry);
-        }
-
-        .nav-step-dot.completed {
-            background: var(--gold);
-        }
-
-        .nav-step-line {
-            width: 24px;
-            height: 2px;
-            background: var(--cream-dark);
-        }
-
-        .price-highlight {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            color: var(--cherry-dark);
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 20px;
-            font-weight: 800;
-            margin: 16px 0;
-        }
-
-        .road-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 24px 0;
-        }
-
-        .road-card {
-            padding: 24px;
-            border-radius: var(--radius);
-            border: 2px solid;
-        }
-
-        .road-card.path1 {
-            border-color: #C8C0B8;
-            background: var(--cream);
-        }
-
-        .road-card.path2 {
-            border-color: var(--gold);
-            background: linear-gradient(135deg, #FFFBF0, #FFF8E6);
-        }
-
-        .road-card-title {
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-
-        .road-card.path1 .road-card-title {
-            color: var(--text-light);
-        }
-
-        .road-card.path2 .road-card-title {
-            color: var(--gold-dark);
-        }
-
-        @media (max-width: 600px) {
-            .road-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            width: 12px;
-            height: 12px;
-            background: var(--gold);
-            border-radius: 50%;
-            border: 2px solid var(--white);
-        }
-
-        .tab-container {
-            display: flex;
-            gap: 4px;
-            margin-bottom: 24px;
-            border-bottom: 2px solid var(--cream-dark);
-        }
-
-        .tab-btn {
-            padding: 12px 20px;
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-light);
-            cursor: pointer;
-            border: none;
-            background: none;
-            border-bottom: 3px solid transparent;
-            margin-bottom: -2px;
-            transition: all 0.3s;
-            font-family: inherit;
-        }
-
-        .tab-btn.active {
-            color: var(--cherry);
-            border-bottom-color: var(--cherry);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
         }
 
         .intro-banner {
@@ -1721,6 +1549,108 @@
         .toc-num.gold {
             background: linear-gradient(135deg, var(--gold), var(--gold-light));
             color: var(--cherry-dark);
+        }
+
+        .price-highlight {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--cherry-dark);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 800;
+            margin: 16px 0;
+        }
+
+        .road-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 24px 0;
+        }
+
+        .road-card {
+            padding: 24px;
+            border-radius: var(--radius);
+            border: 2px solid;
+        }
+
+        .road-card.path1 {
+            border-color: #C8C0B8;
+            background: var(--cream);
+        }
+
+        .road-card.path2 {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, #FFFBF0, #FFF8E6);
+        }
+
+        .road-card-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .road-card.path1 .road-card-title {
+            color: var(--text-light);
+        }
+
+        .road-card.path2 .road-card-title {
+            color: var(--gold-dark);
+        }
+
+        .module-nav-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .road-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                padding: 10px 16px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .header-nav {
+                flex-wrap: wrap;
+            }
+            
+            .login-card {
+                padding: 32px 24px;
+            }
+            
+            .module-content, .pdf-viewer-content, .app-form {
+                padding: 24px;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--cherry-light);
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -1811,8 +1741,7 @@
     <div id="page-dashboard" class="page">
         <header class="header">
             <div class="header-logo">
-                <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="currentColor" stroke-width="2"/></svg>
-                Новые Горизонты
+                🍒 Новые Горизонты
             </div>
             <div class="header-nav">
                 <button onclick="showPage('page-dashboard')">📚 Модули</button>
@@ -1848,12 +1777,12 @@
         </div>
 
         <div class="footer">
-            <p>© Кристина, архитектор AgentFlow. Основательница Академии «Новые Горизонты Инфобизнеса»</p>
+            <p>© Кристина, архитектор «Системы под ключ». Основательница Академии «Новые Горизонты Инфобизнеса»</p>
             <p style="margin-top:8px;">Telegram: <a href="https://t.me/marketologdizayner" target="_blank">@marketologdizayner</a> | <a href="https://t.me/fullstack_razrabotka" target="_blank">@fullstack_razrabotka</a></p>
         </div>
     </div>
 
-    <!-- ==================== MODULE PAGES ==================== -->
+    <!-- ==================== MODULE 0: INTRODUCTION ==================== -->
     <div id="page-module-0" class="page">
         <header class="header">
             <div class="header-logo">🍒 Новые Горизонты</div>
@@ -1869,9 +1798,7 @@
             <div class="module-content">
                 <h3>Привет. Я Кристина.</h3>
                 <p>Техно-маркетолог (Fullstack-разработчик), архитектор автономных систем продаж и коуч по проработке страхов продаж. А также основательница Академии «Новые Горизонты Инфобизнеса».</p>
-                
                 <p>Я не делаю красивые сайты «под ключ». Я проектирую системы, которые приносят деньги без твоего участия.</p>
-                
                 <div class="highlight-box">
                     <strong>⚠️ Предупреждение:</strong> Это не про «теплоту и лампу». Это про код, скрипты и наглую автоматизацию.
                 </div>
@@ -1881,7 +1808,7 @@
                     <li>Соберёшь работающего бота (даже если никогда не программировал)</li>
                     <li>Получишь готовый скрипт «Раздевающий вопрос» — он доводит до оплаты диагностики</li>
                     <li>Настроишь CRM-панель в Telegram, чтобы не терять лидов</li>
-                    <li>Протестируешь моего AI-агента (бонус на 3 дня)</li>
+                    <li>Протестируешь моего AI-агента AIRA (бонус на 3 дня)</li>
                 </ul>
 
                 <h3>Как проходить курс:</h3>
@@ -1895,7 +1822,7 @@
                         <li><span class="toc-num">2</span> Три смертельные ошибки в лид-магните</li>
                         <li><span class="toc-num">3</span> Шаблон скрипта «Раздевающий вопрос»</li>
                         <li><span class="toc-num">4</span> CRM в кармане</li>
-                        <li><span class="toc-num gold">★</span> Бонус – Демо AI-агента на 3 дня</li>
+                        <li><span class="toc-num gold">★</span> Бонус – Демо AI-агента AIRA на 3 дня</li>
                         <li><span class="toc-num">?</span> Что дальше? — Твой выбор</li>
                     </ul>
                 </div>
@@ -1908,7 +1835,7 @@
         </div>
     </div>
 
-    <!-- Module 1 -->
+    <!-- ==================== MODULE 1 ==================== -->
     <div id="page-module-1" class="page">
         <header class="header">
             <div class="header-logo">🍒 Новые Горизонты</div>
@@ -1925,9 +1852,7 @@
             <div class="module-content">
                 <h3>Теория</h3>
                 <p>Большинство ботов — тупое меню с кнопками: «1 — Услуги, 2 — Цены, 3 — Связаться». Никто не нажимает. Потому что это скучно.</p>
-                
                 <p>Твой бот должен <strong>говорить как ты</strong>. Отвечать на возражения так же убедительно, шутить там, где шутишь ты, задавать те же вопросы, что задаёшь вживую.</p>
-
                 <div class="highlight-box">
                     <strong>Для этого нужна база знаний</strong> — файл, в который ты соберёшь:<br>
                     • Реальные диалоги с клиентами (из Telegram, WhatsApp)<br>
@@ -1972,16 +1897,12 @@
 
                 <h3>Где всё это записать?</h3>
                 <div class="gold-box">
-                    <button class="btn btn-gold btn-small" onclick="openPdfViewer('Скрипты_загрузка.docx')">👉 Открыть «Скрипты_загрузка.docx»</button>
-                    <p style="margin-top:8px; font-size:14px;">Там готовая таблица. В столбцы вносишь:<br>
-                    A. Вопрос клиента<br>
-                    B. Твой ответ<br>
-                    C. Возражение (если есть)<br>
-                    D. Ответ на возражение</p>
+                    <button class="btn btn-gold btn-sm" onclick="showPage('page-homework')">👉 Перейти к ДЗ — Таблица-черновик для тренировки</button>
+                    <p style="margin-top:8px; font-size:14px;">Там готовая таблица-черновик. Записывай свои ответы прямо в ячейки. Они сохраняются автоматически.</p>
                 </div>
 
                 <div class="gold-box">
-                    <button class="btn btn-gold btn-small" onclick="openPdfViewer('Пример_базы_коуч.pdf')">👉 Пример заполнения — «Пример_базы_коуч.pdf»</button>
+                    <button class="btn btn-gold btn-sm" onclick="openPdfViewer('Пример_базы_коуч.pdf')">👉 Пример заполнения — «Пример_базы_коуч.pdf»</button>
                 </div>
 
                 <h3>Чек-лист самопроверки «10 признаков, что база знаний огонь»</h3>
@@ -1989,15 +1910,11 @@
                 <div class="checklist" id="checklist-1"></div>
 
                 <div class="gold-box">
-                    <button class="btn btn-gold btn-small" onclick="openPdfViewer('Чек-лист_10_признаков.pdf')">👉 Открыть чек-лист в PDF</button>
+                    <button class="btn btn-gold btn-sm" onclick="openPdfViewer('Чек-лист_10_признаков.pdf')">👉 Открыть чек-лист в PDF</button>
                 </div>
 
                 <h3>Результат модуля 1</h3>
                 <p>Ты имеешь заполненную таблицу базы знаний. Не надо настраивать её в боте сейчас — следующие модули покажут, как использовать.</p>
-
-                <div class="highlight-box">
-                    <strong>💡 Если набрал меньше 5 баллов по чек-листу:</strong> не трать время на самостоятельную настройку. Я соберу базу знаний за тебя за 30 000 ₽. Напиши мне «БАЗА» в Telegram: <a href="https://t.me/kristina_agentflow" target="_blank" style="color:var(--cherry); font-weight:600;">@kristina_agentflow</a>
-                </div>
             </div>
             <div class="module-nav-buttons">
                 <button class="btn btn-outline" onclick="showPage('page-module-0')">← Введение</button>
@@ -2006,7 +1923,7 @@
         </div>
     </div>
 
-    <!-- Module 2 -->
+    <!-- ==================== MODULE 2 ==================== -->
     <div id="page-module-2" class="page">
         <header class="header">
             <div class="header-logo">🍒 Новые Горизонты</div>
@@ -2046,7 +1963,7 @@
                 <p>Исправить своего бота (или будущего).</p>
 
                 <div class="gold-box">
-                    <button class="btn btn-gold btn-small" onclick="openPdfViewer('Лидмагнит_конструктор.xlsx')">👉 Открыть «Лидмагнит_конструктор.xlsx»</button>
+                    <button class="btn btn-gold btn-sm" onclick="openPdfViewer('Лидмагнит_конструктор.xlsx')">👉 Открыть «Лидмагнит_конструктор.xlsx»</button>
                     <p style="margin-top:8px; font-size:14px;">В файле 5 готовых офферов для коучей, наставников, психологов. Просто замени свои слова.</p>
                 </div>
 
@@ -2062,7 +1979,7 @@
                 </div>
 
                 <div class="gold-box">
-                    <button class="btn btn-gold btn-small" onclick="openPdfViewer('3_ошибки_чеклист.pdf')">👉 Открыть «3_ошибки_чеклист.pdf»</button>
+                    <button class="btn btn-gold btn-sm" onclick="openPdfViewer('3_ошибки_чеклист.pdf')">👉 Открыть «3_ошибки_чеклист.pdf»</button>
                     <p style="margin-top:8px; font-size:14px;">Одностраничная памятка. Распечатай, положи перед глазами.</p>
                 </div>
 
@@ -2083,7 +2000,7 @@
                 </div>
 
                 <div class="gold-box">
-                    <strong>Если все три «Да»</strong> – тебе нужен не лид-магнит, а полноценный AI-агент. Напиши «ОШИБКИ» — я покажу демо, как агент закрывает эти три проблемы за 2 дня. Стоимость от 50 000 ₽.
+                    <strong>Если все три «Да»</strong> – тебе нужен не лид-магнит, а полноценная «Система под ключ». Напиши «ОШИБКИ» — я покажу демо, как система закрывает эти три проблемы за 2 дня. Стоимость от 50 000 ₽.
                 </div>
             </div>
             <div class="module-nav-buttons">
@@ -2093,7 +2010,7 @@
         </div>
     </div>
 
-    <!-- Module 3 -->
+    <!-- ==================== MODULE 3 ==================== -->
     <div id="page-module-3" class="page">
         <header class="header">
             <div class="header-logo">🍒 Новые Горизонты</div>
@@ -2134,10 +2051,10 @@
 
                 <h3>Задание модуля 3</h3>
                 <div class="gold-box">
-                    <button class="btn btn-gold btn-small" onclick="openPdfViewer('Раздевающий_вопрос.pdf')">👉 Открыть «Раздевающий_вопрос.pdf»</button>
+                    <button class="btn btn-gold btn-sm" onclick="openPdfViewer('Раздевающий_вопрос.pdf')">👉 Открыть «Раздевающий_вопрос.pdf»</button>
                 </div>
                 <div class="gold-box">
-                    <button class="btn btn-gold btn-small" onclick="openPdfViewer('Готовая_таблица_для_бота.xlsx')">👉 Открыть «Готовая_таблица_для_бота.xlsx»</button>
+                    <button class="btn btn-gold btn-sm" onclick="openPdfViewer('Готовая_таблица_для_бота.xlsx')">👉 Открыть «Готовая_таблица_для_бота.xlsx»</button>
                     <p style="margin-top:8px; font-size:14px;">Шаблон Google Sheets для Typebot/Make. Просто замени содержимое колонок своими ответами.</p>
                 </div>
 
@@ -2164,7 +2081,7 @@
         </div>
     </div>
 
-    <!-- Module 4 -->
+    <!-- ==================== MODULE 4 ==================== -->
     <div id="page-module-4" class="page">
         <header class="header">
             <div class="header-logo">🍒 Новые Горизонты</div>
@@ -2182,7 +2099,7 @@
                 <h3>Теория</h3>
                 <p>Ты настроил бота. Он присылает заявки. Но ты:</p>
                 <ul>
-                    <li>За забываешь ответить</li>
+                    <li>Забываешь ответить</li>
                     <li>Отвечаешь невпопад</li>
                     <li>Не помнишь, кто на каком этапе</li>
                 </ul>
@@ -2197,11 +2114,11 @@
 
                 <h3>Задание модуля 4</h3>
                 <div class="gold-box">
-                    <button class="btn btn-gold btn-small" onclick="openPdfViewer('CRM_инструкция.pdf')">👉 Открыть «CRM_инструкция.pdf»</button>
+                    <button class="btn btn-gold btn-sm" onclick="openPdfViewer('CRM_инструкция.pdf')">👉 Открыть «CRM_инструкция.pdf»</button>
                     <p style="margin-top:8px; font-size:14px;">5 страниц, по шагам с картинками. Выполни настройку за 2 минуты.</p>
                 </div>
                 <div class="gold-box">
-                    <button class="btn btn-gold btn-small" onclick="openPdfViewer('Контакты_шаблон.xlsx')">👉 Открыть «Контакты_шаблон.xlsx»</button>
+                    <button class="btn btn-gold btn-sm" onclick="openPdfViewer('Контакты_шаблон.xlsx')">👉 Открыть «Контакты_шаблон.xlsx»</button>
                     <p style="margin-top:8px; font-size:14px;">Шаблон таблицы для ручного учёта (если не хочешь автоматику).</p>
                 </div>
 
@@ -2215,7 +2132,7 @@
         </div>
     </div>
 
-    <!-- Bonus -->
+    <!-- ==================== BONUS ==================== -->
     <div id="page-bonus" class="page">
         <header class="header">
             <div class="header-logo">🍒 Новые Горизонты</div>
@@ -2226,14 +2143,14 @@
         <div class="module-page">
             <button class="btn-back" onclick="showPage('page-dashboard')">← Назад к модулям</button>
             <div class="module-page-header">
-                <h1 class="module-page-title">🎁 Бонус. Демо AI-агента на 3 дня</h1>
+                <h1 class="module-page-title">🎁 Бонус. Демо AI-агента AIRA на 3 дня</h1>
                 <p style="color:var(--text-light)">Активируется после прохождения модулей 1–3</p>
             </div>
             <div class="module-content">
                 <p>Ты сделал всё по курсу? Молодец.</p>
-                <p>Теперь попробуй моего фирменного AI-агента, обученного на реальных продажах коучей и психологов.</p>
+                <p>Теперь попробуй моего фирменного AI-агента AIRA, обученного на реальных продажах коучей и психологов.</p>
 
-                <h3>Что умеет мой агент (а твой самодельный – нет):</h3>
+                <h3>Что умеет AIRA (а твой самодельный – нет):</h3>
                 <ul>
                     <li>Понимает сложные вопросы</li>
                     <li>Использует твою базу знаний (если загрузишь файл из модуля 1)</li>
@@ -2244,18 +2161,18 @@
 
                 <h3>Как получить доступ:</h3>
                 <div class="gold-box" style="text-align:center;">
-                    <button class="btn btn-gold" onclick="showPage('page-bot')">👉 Открыть демо-бота</button>
+                    <button class="btn btn-gold" onclick="showPage('page-bot')">👉 Открыть демо-бота AIRA</button>
                     <p style="margin-top:12px; font-size:14px;">Лимит: 10 диалогов в день, доступ 3 дня с момента первого сообщения.</p>
                 </div>
 
                 <div class="highlight-box">
                     <strong>После 3 дней</strong> демо-бот уснёт. И ты выберешь:<br>
                     • Вернуться к ручному режиму (и терять деньги)<br>
-                    • Или купить полную систему AgentFlow за 400 000 ₽
+                    • Или купить «Систему под ключ» за 250 000 ₽
                 </div>
 
                 <div class="gold-box">
-                    <button class="btn btn-gold btn-small" onclick="openPdfViewer('5_фишек_AI_агента.pdf')">👉 Открыть «5 фишек AI-агента, которых нет в конструкторах»</button>
+                    <button class="btn btn-gold btn-sm" onclick="openPdfViewer('5_фишек_AI_агента.pdf')">👉 Открыть «5 фишек AI-агента, которых нет в конструкторах»</button>
                 </div>
             </div>
             <div class="module-nav-buttons">
@@ -2265,7 +2182,7 @@
         </div>
     </div>
 
-    <!-- Final Page -->
+    <!-- ==================== FINAL PAGE ==================== -->
     <div id="page-final" class="page">
         <header class="header">
             <div class="header-logo">🍒 Новые Горизонты</div>
@@ -2286,7 +2203,7 @@
                     <li>Готовые скрипты лид-магнитов</li>
                     <li>«Раздевающий вопрос»</li>
                     <li>Настройку CRM</li>
-                    <li>И 3 дня демо-доступа к настоящему AI-агенту</li>
+                    <li>И 3 дня демо-доступа к AI-агенту AIRA</li>
                 </ul>
 
                 <p style="font-size:18px; font-weight:700; margin:24px 0;">Теперь у тебя есть две дороги:</p>
@@ -2297,18 +2214,18 @@
                         <p style="font-size:14px; color:var(--text-light);">Ты будешь использовать бесплатные конструкторы, ручную CRM, периодически терять лидов. Доход – 200–300 тыс. в месяц, дальше – потолок.</p>
                     </div>
                     <div class="road-card path2">
-                        <div class="road-card-title">🚀 Дорога 2. Внедрить систему под ключ</div>
+                        <div class="road-card-title">🚀 Дорога 2. «Система под ключ»</div>
                         <p style="font-size:14px; color:var(--text-dark); margin-bottom:8px;">Что ты получишь:</p>
                         <ul style="font-size:14px;">
                             <li>Сайт на чистом коде (загрузка 0.3 сек)</li>
-                            <li>AI-агента 24/7 без лимитов</li>
+                            <li>AI-агента AIRA 24/7 без лимитов</li>
                             <li>CRM-панель в Telegram</li>
                             <li>Интеграцию с платёжками</li>
                             <li>Меня как архитектора на 14 дней</li>
                         </ul>
                         <div class="price-highlight">250 000 ₽</div>
                         <p style="font-size:13px; color:var(--gold-dark);">Первые 100 000 ₽ через 14 дней. Окупаемость – 1–2 месяца.</p>
-                        <p style="font-size:13px; margin-top:8px;">🎁 В подарок: 5 сессий по проработке страха продаж</p>
+                        <p style="font-size:13px; margin-top:8px;">🎁 В подарок: 5 сессий по проработке страха продаж от меня как коуча</p>
                     </div>
                 </div>
 
@@ -2326,7 +2243,7 @@
         </div>
     </div>
 
-    <!-- Application Form -->
+    <!-- ==================== APPLICATION FORM ==================== -->
     <div id="page-application" class="page">
         <header class="header">
             <div class="header-logo">🍒 Новые Горизонты</div>
@@ -2337,18 +2254,29 @@
         <div class="app-form-container">
             <button class="btn-back" onclick="showPage('page-final')">← Назад</button>
             <div class="app-form">
-                <h2 class="app-form-title">📝 Заявка на внедрение AgentFlow</h2>
+                <h2 class="app-form-title">📝 Заявка на «Систему под ключ»</h2>
                 <div id="appFormContent">
                     <div class="form-group">
                         <label class="form-label">Ваше имя</label>
                         <input id="appName" type="text" class="form-input" placeholder="Как вас зовут?">
                     </div>
                     <div class="form-group">
+                        <label class="form-label">Как с вами связаться?</label>
+                        <div class="contact-select">
+                            <div class="contact-option active" onclick="selectContact('tg', this)">📱 Telegram</div>
+                            <div class="contact-option" onclick="selectContact('vk', this)">💬 ВКонтакте</div>
+                        </div>
+                    </div>
+                    <div class="form-group" id="tgField">
                         <label class="form-label">Telegram</label>
                         <input id="appTelegram" type="text" class="form-input" placeholder="@ваш_username">
                     </div>
+                    <div class="form-group" id="vkField" style="display:none;">
+                        <label class="form-label">ВКонтакте (id или ссылка)</label>
+                        <input id="appVK" type="text" class="form-input" placeholder="vk.com/ваш_id или id123456">
+                    </div>
                     <div class="form-group">
-                        <label class="form-label">Телефон</label>
+                        <label class="form-label">Телефон <span style="color:var(--text-light); font-weight:400;">(по желанию)</span></label>
                         <input id="appPhone" type="tel" class="form-input" placeholder="+7 (___) ___-__-__">
                     </div>
                     <div class="form-group">
@@ -2365,6 +2293,10 @@
                         <label class="form-label">Что хотите автоматизировать?</label>
                         <textarea id="appMessage" class="form-textarea" placeholder="Расскажите кратко о вашей ситуации..."></textarea>
                     </div>
+                    <div class="privacy-checkbox">
+                        <input type="checkbox" id="privacyCheck">
+                        <label for="privacyCheck">Я даю согласие на обработку моих персональных данных в соответствии с <a href="#" onclick="showPrivacyModal(); return false;">политикой конфиденциальности</a>. Я понимаю, что мои данные будут использованы исключительно для связи по моей заявке на «Систему под ключ».</label>
+                    </div>
                     <button class="btn btn-gold" style="width:100%;" onclick="submitApplication()">Отправить заявку</button>
                 </div>
                 <div id="appFormSuccess" class="form-success" style="display:none;">
@@ -2377,7 +2309,7 @@
         </div>
     </div>
 
-    <!-- PDF Materials -->
+    <!-- ==================== PDF MATERIALS ==================== -->
     <div id="page-materials" class="page">
         <header class="header">
             <div class="header-logo">🍒 Новые Горизонты</div>
@@ -2395,7 +2327,7 @@
         </div>
     </div>
 
-    <!-- PDF Viewer -->
+    <!-- ==================== PDF VIEWER ==================== -->
     <div id="page-pdf-viewer" class="page">
         <header class="header">
             <div class="header-logo">🍒 Новые Горизонты</div>
@@ -2410,7 +2342,7 @@
         </div>
     </div>
 
-    <!-- Homework -->
+    <!-- ==================== HOMEWORK ==================== -->
     <div id="page-homework" class="page">
         <header class="header">
             <div class="header-logo">🍒 Новые Горизонты</div>
@@ -2428,7 +2360,7 @@
         </div>
     </div>
 
-    <!-- Bot Demo -->
+    <!-- ==================== BOT ==================== -->
     <div id="page-bot" class="page">
         <header class="header">
             <div class="header-logo">🍒 Новые Горизонты</div>
@@ -2442,20 +2374,20 @@
                 <div class="bot-header">
                     <div class="bot-avatar">🤖</div>
                     <div>
-                        <div class="bot-name">AgentFlow AI</div>
+                        <div class="bot-name">AIRA — AI-агент Кристины</div>
                         <div class="bot-status">Онлайн • Демо 3 дня</div>
                     </div>
                 </div>
                 <div id="botMessages" class="bot-messages">
                     <div class="bot-msg bot">
-                        Привет! Я AI-агент Кристины 👋<br><br>
-                        Я обучен на реальных продажах коучей и психологов. Могу помочь разобраться с вашими страхами и показать, как работает автоматизация.<br><br>
+                        Привет! Я AIRA — AI-агент Кристины 👋<br><br>
+                        Я обучена на реальных продажах коучей, психологов и наставников. Могу помочь разобраться с автоматизацией, страхами продаж и показать, как работает «Система под ключ».<br><br>
                         Что вас интересует?
                         <div class="bot-quick-replies">
-                            <button class="bot-quick-reply" onclick="botReply('Расскажи о себе')">Расскажи о себе</button>
-                            <button class="bot-quick-reply" onclick="botReply('Как работает бот?')">Как работает бот?</button>
+                            <button class="bot-quick-reply" onclick="botReply('Расскажи о Кристине')">О Кристине</button>
+                            <button class="bot-quick-reply" onclick="botReply('Что такое Система под ключ?')">Система под ключ</button>
                             <button class="bot-quick-reply" onclick="botReply('Сколько стоит?')">Сколько стоит?</button>
-                            <button class="bot-quick-reply" onclick="botReply('Хочу диагностику')">Хочу диагностику</button>
+                            <button class="bot-quick-reply" onclick="botReply('Хочу оставить заявку')">Оставить заявку</button>
                         </div>
                     </div>
                 </div>
@@ -2463,14 +2395,14 @@
                     Осталось диалогов: <span id="botCounter">10</span> из 10 сегодня
                 </div>
                 <div class="bot-input-area">
-                    <input id="botInput" type="text" class="bot-input" placeholder="Напишите сообщение..." onkeypress="if(event.key==='Enter')sendBotMessage()">
+                    <input id="botInput" type="text" class="bot-input" placeholder="Напишите сообщение..." onkeypress="if(event.key==='Enter') sendBotMessage()">
                     <button class="bot-send" onclick="sendBotMessage()">➤</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Admin Panel -->
+    <!-- ==================== ADMIN PANEL ==================== -->
     <div id="page-admin" class="page">
         <header class="header">
             <div class="header-logo">🍒 Админ-панель</div>
@@ -2514,7 +2446,7 @@
 
             <div id="admin-applications" class="admin-section">
                 <div class="admin-card">
-                    <h3 class="admin-card-title">Заявки на AgentFlow</h3>
+                    <h3 class="admin-card-title">Заявки на «Систему под ключ»</h3>
                     <div id="applicationsList"></div>
                 </div>
             </div>
@@ -2522,912 +2454,1287 @@
     </div>
 
     <script>
-        // ==================== STATE MANAGEMENT ====================
-        const ADMIN_LOGIN = 'admin';
-        const ADMIN_PASS = 'kristina2024';
+    // ==================== CONFIG ====================
+    const ADMIN_LOGIN = 'admin';
+    const ADMIN_PASS = 'zaqqaz';
+    const TG_BOT_TOKEN = '8788227838:AAHxvmXEQ6C2rKfhl0e1cgdl1sn1eUUfAUk';
+    const TG_CHAT_ID = '6300678737';
 
-        const modules = [
-            { id: 0, title: 'Введение', desc: 'От автора: о чём курс и что получишь', page: 'page-module-0' },
-            { id: 1, title: 'Модуль 1', desc: 'Твоя база знаний: откуда бот возьмёт наглость продавать', page: 'page-module-1' },
-            { id: 2, title: 'Модуль 2', desc: 'Три смертельные ошибки в лид-магните', page: 'page-module-2' },
-            { id: 3, title: 'Модуль 3', desc: 'Шаблон скрипта «Раздевающий вопрос»', page: 'page-module-3' },
-            { id: 4, title: 'Модуль 4', desc: 'CRM в кармане: как не потерять ни одного контакта', page: 'page-module-4' },
-            { id: 5, title: 'Бонус', desc: 'Демо-доступ к AI-агенту на 3 дня', page: 'page-bonus' },
-            { id: 6, title: 'Что дальше?', desc: 'Твой выбор: самоделка или AgentFlow', page: 'page-final' }
-        ];
+    // Cloudflare AI - вставьте свои данные если есть:
+    const CF_ACCOUNT_ID = '';
+    const CF_API_TOKEN = '';
 
-        const pdfFiles = [
-            { name: 'Скрипты_загрузка.docx', desc: 'Таблица для сбора базы знаний', module: 1, type: 'table' },
-            { name: 'Пример_базы_коуч.pdf', desc: 'Образец заполнения для коуча', module: 1, type: 'table' },
-            { name: 'Чек-лист_10_признаков.pdf', desc: 'Проверка базы знаний', module: 1, type: 'checklist' },
-            { name: 'Лидмагнит_конструктор.xlsx', desc: '5 офферов для лид-магнита', module: 2, type: 'table' },
-            { name: '3_ошибки_чеклист.pdf', desc: 'Памятка на один лист', module: 2, type: 'text' },
-            { name: 'Раздевающий_вопрос.pdf', desc: 'Скрипт из 7 шагов + пример диалога', module: 3, type: 'text' },
-            { name: 'Готовая_таблица_для_бота.xlsx', desc: 'Шаблон для Typebot / Make', module: 3, type: 'table' },
-            { name: 'CRM_инструкция.pdf', desc: 'Настройка пересылки диалогов в Telegram', module: 4, type: 'text' },
-            { name: 'Контакты_шаблон.xlsx', desc: 'Таблица для ручной CRM', module: 4, type: 'table' },
-            { name: '5_фишек_AI_агента.pdf', desc: 'Сравнение обычного бота и AI-агента', module: 5, type: 'table' }
-        ];
-
-        const checklist1 = [
-            'У меня есть минимум 20 реальных диалогов (вопрос+ответ)',
-            'Среди них есть 5 возражений с закрывающими ответами',
-            'На каждое возражение я записал рабочий ответ',
-            'У меня есть 3 истории успеха с цифрами',
-            'Я записал ответы на 5 частых вопросов (цена, формат, сроки, отличие, результат)',
-            'Мои ответы написаны моим же тоном (эмодзи, сленг — как в жизни)',
-            'Нет фраз «напишите в WhatsApp» — бот не должен уводить клиента',
-            'Каждый диалог заканчивается призывом к действию («назначить диагностику», «получить чек-лист»)',
-            'Есть 3 разных сценария: холодный, тёплый, возражение «уже с конкурентом»',
-            'Всё собрано в одном текстовом файле (без фото и голосовых)'
-        ];
-
-        const checklist4 = [
-            'Пересылка из бота в мой Telegram-чат настроена',
-            'Я поставил каждому новому лиду тег: «холодный», «тёплый», «назначена диагностика»',
-            'В течение 1 часа после контакта я написал личное сообщение',
-            'Все, кто не купил сегодня, добавлены в рассылку на 7 дней',
-            'У меня есть напоминалка написать «тёплому» раз в 3 дня'
-        ];
-
-        const homeworkData = [
-            {
-                id: 'hw1',
-                title: 'Модуль 1: База знаний',
-                tasks: [
-                    { id: 'hw1_t1', text: 'ШАГ 1: Найти 10 диалогов «вопрос-ответ»' },
-                    { id: 'hw1_t2', text: 'ШАГ 2: Найти 5 частых возражений' },
-                    { id: 'hw1_t3', text: 'ШАГ 3: Написать ответы на возражения' },
-                    { id: 'hw1_t4', text: 'ШАГ 4: Вспомнить 3 истории успеха с цифрами' },
-                    { id: 'hw1_t5', text: 'ШАГ 5: Ответить на 5 частых вопросов' }
-                ]
-            },
-            {
-                id: 'hw2',
-                title: 'Модуль 2: Лид-магнит',
-                tasks: [
-                    { id: 'hw2_t1', text: 'Выбрать один оффер из конструктора' },
-                    { id: 'hw2_t2', text: 'Записать оффер в скрипт бота' },
-                    { id: 'hw2_t3', text: 'Проверить бота по чек-листу «3 ошибки»' }
-                ]
-            },
-            {
-                id: 'hw3',
-                title: 'Модуль 3: Раздевающий вопрос',
-                tasks: [
-                    { id: 'hw3_t1', text: 'Адаптировать скрипт под свою нишу' },
-                    { id: 'hw3_t2', text: 'Вставить скрипт в бота' },
-                    { id: 'hw3_t3', text: 'Написать готовый текст «Раздевающего вопроса»' }
-                ]
-            },
-            {
-                id: 'hw4',
-                title: 'Модуль 4: CRM',
-                tasks: [
-                    { id: 'hw4_t1', text: 'Настроить пересылку из бота в Telegram' },
-                    { id: 'hw4_t2', text: 'Заполнить таблицу контактов' },
-                    { id: 'hw4_t3', text: 'Пройти чек-лист «Как не потерять лида»' }
-                ]
-            }
-        ];
-
-        const botResponses = {
-            'расскажи о себе': 'Я — AI-агент, обученный на реальных продажах коучей и психологов. Я понимаю контекст, помню историю диалога и могу вести клиента до покупки диагностики. 🎯\n\nВ отличие от обычных ботов, я:\n• Не туплю на сложных вопросах\n• Могу отправить голосовое\n• Переключаю на эксперта когда нужно\n\nХотите попробовать?',
-            'как работает бот?': 'Всё просто! Бот обучается на вашей базе знаний (диалоги, возражения, ответы из Модуля 1).\n\n1. Клиент пишет боту\n2. Бот задаёт «Раздевающий вопрос»\n3. Клиент раскрывается\n4. Бот предлагает диагностику\n5. Продажа без вашего участия! 🚀\n\nХотите узнать стоимость?',
-            'сколько стоит?': 'Полная система AgentFlow включает:\n\n✅ Сайт на чистом коде (0.3 сек загрузка)\n✅ AI-агент 24/7 без лимитов\n✅ CRM-панель в Telegram\n✅ Интеграции с платёжками\n\n💰 Стоимость: 250 000 ₽\nОкупаемость: 1-2 месяца\n\nГотовы оставить заявку? Напишите «ДА»',
-            'хочу диагностику': 'Отлично! Для записи на диагностику:\n\n1. Оставьте заявку через форму в курсе (раздел «Что дальше?»)\n2. Или напишите Кристине напрямую: @kristina_agentflow\n\nДиагностика бесплатная — 15-15 минут. Мы разберём вашу ситуацию и покажем, как AI-агент может помочь именно вам. 🎯',
-            'да': 'Супер! 🎉\n\nДля оформления заявки:\n• Перейдите в раздел «Что дальше?» в курсе\n• Или напишите «ЗАЯВКА» Кристине: @kristina_agentflow\n\nУ меня всего 5 слотов на этот месяц, так что не затягивайте!',
-            'база': 'Для заказа готовой базы знаний:\n\n💰 Стоимость: 30 000 ₽\n⏱ Срок: 2-3 дня\n\nНапишите Кристине «БАЗА» в Telegram: @kristina_agentflow\n\nОна соберёт базу за вас на основе ваших диалогов!',
-            'ошибки': 'Хотите увидеть, как AI-агент закрывает 3 смертельные ошибки лид-магнита?\n\n🤖 Демо-бот покажет:\n• Как давать ценность + дожимать вопросом\n• Как не просить контакт до пользы\n• Как возвращать боль после «прочитаю потом»\n\nПопробуйте демо — оно доступно 3 дня бесплатно!'
-        };
-
-        // ==================== LOCAL STORAGE HELPERS ====================
-        function getDB() {
-            const db = localStorage.getItem('courseDB');
-            return db ? JSON.parse(db) : { students: {}, currentUser: null, applications: [] };
+    // ==================== AIRA KNOWLEDGE BASE ====================
+    const AIRA_KB = [
+        {
+            q: ['кто ты', 'что ты', 'расскажи о себе', 'кто такая aira', 'ты кто', 'ты aira', 'что это за бот'],
+            a: 'Я AIRA — AI-агент Кристины, техно-маркетолога и коуча по проработке страхов продаж. Я обучена на реальных продажах коучей, психологов и наставников. Могу ответить на вопросы о «Системе под ключ», помочь с автоматизацией продаж и провести мини-консультацию. Чем могу помочь? 😊',
+            quick: ['Сколько стоит?', 'О Кристине', 'Как работает?']
+        },
+        {
+            q: ['кто кристина', 'расскажи о кристине', 'кто создатель', 'автор курса', 'кристина техно', 'кто такой техно-маркетолог'],
+            a: 'Кристина — техно-маркетолог, Fullstack-разработчик, архитектор автономных систем продаж и коуч по проработке страхов продаж. Основательница Академии «Новые Горизонты Инфобизнеса».\n\nОна не делает красивые сайты «под ключ» — она проектирует системы, которые приносят деньги без участия владельца.\n\nСайт: https://chatbotsmarketolog-dotcom.github.io/\nTelegram: @marketologdizayner',
+            quick: ['Что такое Система под ключ?', 'Сколько стоит?', 'Оставить заявку']
+        },
+        {
+            q: ['система под ключ', 'что вы предлагаете', 'что такое система', 'agentflow', 'агентфлоу', 'что такое agentflow', 'в чём суть системы'],
+            a: '«Система под ключ» — это полное решение для автоматизации продаж:\n\n✅ Сайт на чистом коде (загрузка 0.3 сек, идеальное SEO)\n✅ AI-агент AIRA, обученный на вашей базе знаний (без лимитов, 24/7)\n✅ CRM-панель в Telegram с автоматическими тегами и напоминаниями\n✅ Интеграция с любыми платёжками и рассылками\n\nРезультат: первые 100 000 ₽ через 14 дней после запуска.\n\nБонус: 5 сессий по проработке страха продаж от Кристины как коуча.',
+            quick: ['Сколько стоит?', 'Что входит?', 'Оставить заявку']
+        },
+        {
+            q: ['сколько стоит', 'цена', 'стоимость', 'прайс', 'сколько стоит система', 'сколько стоит agentflow', 'дорого', 'бюджет'],
+            a: '«Система под ключ» стоит 250 000 ₽.\n\nЭто включает:\n• Сайт на чистом коде\n• AI-агент AIRA 24/7 без лимитов\n• CRM-панель в Telegram\n• Все интеграции\n• Настройку за 14 дней\n\n🎁 В подарок: 5 сессий по проработке страха продаж от Кристины.\n\nОкупаемость системы — 1–2 месяца.',
+            quick: ['Оставить заявку', 'Что входит?', 'Расскажи о Кристине']
+        },
+        {
+            q: ['что входит', 'что включает', 'входит в систему', 'что я получу', 'что входит в систему под ключ'],
+            a: 'В «Систему под ключ» входит:\n\n🌐 Сайт на чистом коде — загрузка 0.3 сек, идеальное SEO\n🤖 AI-агент AIRA — обучен на вашей базе знаний, работает 24/7\n📊 CRM-панель в Telegram — автоматические теги, напоминания\n💳 Интеграция с платёжками и рассылками\n👩‍💻 Кристина как архитектор — настройка за 14 дней\n\nБонус: 5 сессий по проработке страха продаж.',
+            quick: ['Сколько стоит?', 'Как заказать?', 'О Кристине']
+        },
+        {
+            q: ['как заказать', 'как купить', 'оформить', 'заявка', 'оставить заявку', 'хочу купить', 'заказать систему', 'оформить заявку'],
+            a: 'Отлично! Для оформления заявки:\n\n1. Заполните форму в разделе «Что дальше?» в курсе\n2. Или напишите Кристине напрямую: @marketologdizayner\n\nМы созвонимся на 15 минут — бесплатно. Обсудим вашу ситуацию и план запуска.\n\n⚠️ У Кристины всего 5 слотов в месяц!',
+            quick: ['Сколько стоит?', 'Что входит?', 'Написать Кристине']
+        },
+        {
+            q: ['как работает бот', 'как работает aira', 'как работает система', 'как это работает', 'принцип работы', 'как работает ai-агент'],
+            a: 'AIRA работает по технологии AI + ваша база знаний:\n\n1. Вы собираете базу знаний (диалоги, возражения, ответы) — это Модуль 1 курса\n2. AIRA обучается на ваших реальных диалогах\n3. Бот общается с клиентами как ВЫ — задаёт «Раздевающий вопрос», обрабатывает возражения\n4. Доводит клиента до покупки диагностики\n5. Все диалоги пересылаются в вашу CRM-панель в Telegram\n\nВсё без вашего участия! 24/7.',
+            quick: ['Сколько стоит?', 'Оставить заявку', 'Что входит?']
+        },
+        {
+            q: ['страх продаж', 'боюсь продавать', 'проработка страха', 'коуч', 'сессии', 'бонус', 'страх', 'проработка', '5 сессий'],
+            a: 'Вместе с «Системой под ключ» Кристина дарит 5 сессий по проработке страха продаж!\n\nКак коуч, она поможет:\n• Снять блоки и неуверенность\n• Найти уверенность продавать без страха и вины\n• Проработать внутренние барьеры\n\nЭто не просто техническое решение — это трансформация вашего отношения к продажам. 💪',
+            quick: ['Сколько стоит?', 'Оставить заявку', 'О Кристине']
+        },
+        {
+            q: ['база знаний', 'что такое база знаний', 'зачем база знаний', 'модуль 1', 'как собрать базу', 'диалоги'],
+            a: 'База знаний — это файл, куда вы собираете:\n\n• Реальные диалоги с клиентами\n• Возражения и ваши ответы, которые закрывали сделку\n• Частые вопросы про цену, формат, сроки\n• Истории успеха с цифрами\n\nКогда вы передаёте этот файл, AI-агент обучается именно вашему стилю. Он перестаёт быть «роботом» и становится вашим цифровым двойником.\n\nСобирать базу знаний нужно в Модуле 1 курса.',
+            quick: ['Как собрать базу?', 'Сколько стоит система?', 'Оставить заявку']
+        },
+        {
+            q: ['демо', 'демо доступ', 'демо бот', 'попробовать бота', 'тестовый доступ', 'демо aira'],
+            a: 'Демо-доступ к AIRA — 3 дня, 10 диалогов в день.\n\nОн активируется автоматически после прохождения модулей 1–3 курса.\n\nПосле 3 дней демо-бот уснёт. И вы выберете: вернуться к ручному режиму или купить «Систему под ключ» за 250 000 ₽.',
+            quick: ['Сколько стоит?', 'Оставить заявку', 'Как работает?']
+        },
+        {
+            q: ['telegram бот', 'бот в телеграм', 'создать бота', 'настроить бота', 'как создать бота'],
+            a: 'В курсе вы научитесь:\n\n1. Создавать бота в Telegram (через @BotFather)\n2. Настраивать сценарии в бесплатных конструкторах (Typebot, ManyChat, Botmother)\n3. Собирать базу знаний для обучения бота\n4. Подключать CRM-панель\n\nИли можете заказать «Систему под ключ» — и Кристина настроит всё за вас за 14 дней.',
+            quick: ['Сколько стоит?', 'Как заказать?', 'О Кристине']
+        },
+        {
+            q: ['консультация', 'диагностика', 'позвонить', 'созвон', 'бесплатная консультация'],
+            a: 'Кристина предлагает бесплатную 15-минутную диагностику!\n\nНа ней:\n• Разберём вашу ситуацию\n• Покажем, как AI-агент может помочь именно вам\n• Обсудим план запуска\n\nОставьте заявку в разделе «Что дальше?» или напишите @marketologdizayner',
+            quick: ['Оставить заявку', 'Сколько стоит?', 'О Кристине']
+        },
+        {
+            q: ['написать кристине', 'контакт кристины', 'телеграм кристины', 'связаться', 'как связаться', 'контакты'],
+            a: 'Кристину можно найти в Telegram:\n\n📱 @marketologdizayner — основной контакт\n📢 @fullstack_razrabotka — канал\n\nИли оставьте заявку прямо в курсе — она свяжется в течение 24 часов!',
+            quick: ['Оставить заявку', 'Сколько стоит?']
+        },
+        {
+            q: ['раздевающий вопрос', 'скрипт', 'формула', 'модуль 3'],
+            a: '«Раздевающий вопрос» — это формула, которая доводит клиента до покупки:\n\n«На шкале от 1 до 10, насколько [проблема] мешает вам [последствие]?»\n\nПример:\n«На шкале от 1 до 10 – насколько сильно тревога мешает вам засыпать ночью?»\n\nКлиент отвечает «7» → Бот: «Расскажите подробнее...» → Клиент распаковывается → Бот предлагает диагностику.\n\nПолный скрипт — в Модуле 3 курса.',
+            quick: ['Оставить заявку', 'Сколько стоит?', 'Как работает?']
+        },
+        {
+            q: ['crm', 'crm панель', 'не терять лидов', 'модуль 4', 'как настроить crm'],
+            a: 'CRM в кармане — это панель прямо в Telegram:\n\n• Все диалоги с лидами пересылаются в один чат\n• Вы видите имя, телефон, ответы на ключевые вопросы\n• Можете написать клиенту из того же чата\n\nНастройка — за 2 минуты (Модуль 4 курса). Или в «Системе под ключ» — автоматическая CRM с тегами и напоминаниями.',
+            quick: ['Сколько стоит система?', 'Оставить заявку', 'Как настроить?']
+        },
+        {
+            q: ['лид магнит', 'ошибки', 'модуль 2', 'сливает лидов', 'ошибки в лид-магните'],
+            a: '3 смертельные ошибки в лид-магните:\n\n1. ❌ Полезный мусор — много страниц без дожима → ✅ Дай технику + сразу вопрос\n2. ❌ Слепая анкета — просишь телефон до ценности → ✅ Сначала ценность, потом вопрос\n3. ❌ Безликий автомат — «напишите если что» → ✅ Дожимай вопросом про боль\n\nИсправление — в Модуле 2 курса.',
+            quick: ['Сколько стоит система?', 'Оставить заявку', 'Как работает бот?']
+        },
+        {
+            q: ['возражения', 'дорого', 'подумаю', 'гарантия', 'как ответить на возражения', 'обработка возражений'],
+            a: 'Работа с возражениями — ключевая часть базы знаний.\n\nПримеры:\n• «Дорого» → «Есть диагностика за 1500 ₽ — определим, нужны ли платные встречи»\n• «Подумаю» → «Без проблем. Возьмите время. Я пришлю кейс клиента, который тоже сомневался, а потом заработал +200к»\n\nAI-агент AIRA обрабатывает возражения по вашей базе знаний — так же, как вы бы сделали сами.',
+            quick: ['Как собрать базу?', 'Сколько стоит?', 'Оставить заявку']
+        },
+        {
+            q: ['сайт', 'сайт на чистом коде', 'скорость загрузки', 'seo'],
+            a: 'Сайт на чистом коде — это часть «Системы под ключ»:\n\n⚡ Загрузка 0.3 секунды (не 3-5 секунд как на конструкторах)\n🔍 Идеальное SEO — ваш сайт будет в топе поиска\n📱 Адаптивный дизайн под все устройства\n🎨 Уникальный дизайн под ваш бренд\n\nВ отличие от конструкторов, чистый код даёт максимальную скорость и полный контроль.',
+            quick: ['Сколько стоит?', 'Что входит?', 'Оставить заявку']
+        },
+        {
+            q: ['интеграция', 'платёжки', 'рассылки', 'интеграции'],
+            a: '«Система под ключ» включает интеграцию с:\n\n💳 Любыми платёжными системами\n📧 Рассылками (email, Telegram, WhatsApp)\n📊 CRM-панелью\n🔗 Любыми внешними сервисами\n\nВсё настраивается под ваши задачи за 14 дней.',
+            quick: ['Сколько стоит?', 'Оставить заявку', 'Как работает?']
+        },
+        {
+            q: ['привет', 'здравствуй', 'добрый день', 'хай', 'hello', 'здравствуйте'],
+            a: 'Привет! 😊 Я AIRA — AI-агент Кристины. Готова помочь с вопросами о «Системе под ключ», автоматизации продаж и курсе.\n\nЧто вас интересует?',
+            quick: ['О Кристине', 'Сколько стоит?', 'Как работает?', 'Оставить заявку']
+        },
+        {
+            q: ['спасибо', 'благодарю', 'спс'],
+            a: 'Всегда рада помочь! 😊 Если появятся ещё вопросы — я здесь. А если готовы к действиям — оставьте заявку, и Кристина свяжется с вами лично!',
+            quick: ['Оставить заявку', 'Сколько стоит?', 'Написать Кристине']
+        },
+        {
+            q: ['гарантия', 'результат', 'окупаемость', 'когда вернутся деньги', 'когда окупится'],
+            a: '«Система под ключ» окупается за 1–2 месяца.\n\nКристина обещает: первые 100 000 ₽ через 14 дней после запуска.\n\nЭто не просто бот — это полноценная система продаж с AI-агентом, CRM, сайтом и интеграциями.\n\n+ 5 сессий проработки страхов продаж в подарок!',
+            quick: ['Сколько стоит?', 'Оставить заявку', 'Что входит?']
+        },
+        {
+            q: ['голосовое', 'голосовые сообщения', 'отправить голосовое'],
+            a: 'Да, AIRA может отправлять голосовые сообщения! Это создаёт эффект живого общения и повышает доверие клиента.\n\nГолосовые — один из мощных инструментов конверсии, которого нет в обычных конструкторах.',
+            quick: ['Сколько стоит?', 'Оставить заявку', 'Как работает?']
+        },
+        {
+            q: ['переключить', 'живой эксперт', 'человек', 'переключает на эксперта'],
+            a: 'AIRA может переключить на живого эксперта (Кристину), когда:\n\n• Вопрос выходит за рамки базы знаний\n• Клиент просит поговорить с человеком\n• Нужна индивидуальная консультация\n\nЭто обеспечивает баланс между автоматизацией и человеческим подходом.',
+            quick: ['Оставить заявку', 'Сколько стоит?', 'О Кристине']
+        },
+        {
+            q: ['обучение', 'курс', 'модули', 'что в курсе', 'о курсе'],
+            a: 'Курс «Как заставить Telegram продавать за тебя» включает:\n\n📚 Введение — От автора\n📖 Модуль 1 — Твоя база знаний\n📖 Модуль 2 — Три смертельные ошибки в лид-магните\n📖 Модуль 3 — Шаблон скрипта «Раздевающий вопрос»\n📖 Модуль 4 — CRM в кармане\n🎁 Бонус — Демо AI-агента AIRA на 3 дня\n\nКаждый модуль — текст + задание + чек-лист.',
+            quick: ['Сколько стоит?', 'Оставить заявку', 'Как работает?']
+        },
+        {
+            q: ['коуч', 'психолог', 'наставник', 'для кого курс', 'для кого система'],
+            a: 'Курс и «Система под ключ» созданы для:\n\n🎯 Коучей — автоматизация привлечения клиентов\n🧠 Психологов — запись на консультации без ручного труда\n📚 Наставников — масштабирование бизнеса\n\nЕсли вы продаёте экспертные услуги через Telegram — это для вас!',
+            quick: ['Сколько стоит?', 'Оставить заявку', 'Как работает?']
         }
+    ];
 
-        function saveDB(db) {
-            localStorage.setItem('courseDB', JSON.stringify(db));
+    // ==================== MODULES DATA ====================
+    const modules = [
+        { id: 0, title: 'Введение', desc: 'От автора: о чём курс и что получишь', page: 'page-module-0' },
+        { id: 1, title: 'Модуль 1', desc: 'Твоя база знаний: откуда бот возьмёт наглость продавать', page: 'page-module-1' },
+        { id: 2, title: 'Модуль 2', desc: 'Три смертельные ошибки в лид-магните', page: 'page-module-2' },
+        { id: 3, title: 'Модуль 3', desc: 'Шаблон скрипта «Раздевающий вопрос»', page: 'page-module-3' },
+        { id: 4, title: 'Модуль 4', desc: 'CRM в кармане: как не потерять ни одного контакта', page: 'page-module-4' },
+        { id: 5, title: 'Бонус', desc: 'Демо-доступ к AI-агенту AIRA на 3 дня', page: 'page-bonus' },
+        { id: 6, title: 'Что дальше?', desc: 'Твой выбор: самоделка или Система под ключ', page: 'page-final' }
+    ];
+
+    const pdfFiles = [
+        { name: 'Пример_базы_коуч.pdf', desc: 'Образец заполнения для коуча', module: 1, type: 'table' },
+        { name: 'Чек-лист_10_признаков.pdf', desc: 'Проверка базы знаний', module: 1, type: 'checklist' },
+        { name: 'Лидмагнит_конструктор.xlsx', desc: '5 офферов для лид-магнита', module: 2, type: 'table' },
+        { name: '3_ошибки_чеклист.pdf', desc: 'Памятка на один лист', module: 2, type: 'text' },
+        { name: 'Раздевающий_вопрос.pdf', desc: 'Скрипт из 7 шагов + пример диалога', module: 3, type: 'text' },
+        { name: 'Готовая_таблица_для_бота.xlsx', desc: 'Шаблон для Typebot / Make', module: 3, type: 'table' },
+        { name: 'CRM_инструкция.pdf', desc: 'Настройка пересылки диалогов в Telegram', module: 4, type: 'text' },
+        { name: 'Контакты_шаблон.xlsx', desc: 'Таблица для ручной CRM', module: 4, type: 'table' },
+        { name: '5_фишек_AI_агента.pdf', desc: 'Сравнение обычного бота и AI-агента', module: 5, type: 'table' }
+    ];
+
+    const checklist1 = [
+        'У меня есть минимум 20 реальных диалогов (вопрос+ответ)',
+        'Среди них есть 5 возражений с закрывающими ответами',
+        'На каждое возражение я записал рабочий ответ',
+        'У меня есть 3 истории успеха с цифрами',
+        'Я записал ответы на 5 частых вопросов (цена, формат, сроки, отличие, результат)',
+        'Мои ответы написаны моим же тоном (эмодзи, сленг — как в жизни)',
+        'Нет фраз «напишите в WhatsApp» — бот не должен уводить клиента',
+        'Каждый диалог заканчивается призывом к действию («назначить диагностику», «получить чек-лист»)',
+        'Есть 3 разных сценария: холодный, тёплый, возражение «уже с конкурентом»',
+        'Всё собрано в одном текстовом файле (без фото и голосовых)'
+    ];
+
+    const checklist4 = [
+        'Пересылка из бота в мой Telegram-чат настроена',
+        'Я поставил каждому новому лиду тег: «холодный», «тёплый», «назначена диагностика»',
+        'В течение 1 часа после контакта я написал личное сообщение',
+        'Все, кто не купил сегодня, добавлены в рассылку на 7 дней',
+        'У меня есть напоминалка написать «тёплому» раз в 3 дня'
+    ];
+
+    const homeworkData = [
+        {
+            id: 'hw1',
+            title: 'Модуль 1: База знаний — Таблица-черновик',
+            isDraft: true,
+            columns: ['A. Вопрос клиента', 'B. Твой ответ', 'C. Возражение', 'D. Ответ на возражение'],
+            rows: 10
+        },
+        {
+            id: 'hw2',
+            title: 'Модуль 2: Лид-магнит',
+            tasks: [
+                { id: 'hw2_t1', text: 'Выбрать один оффер из конструктора' },
+                { id: 'hw2_t2', text: 'Записать оффер в скрипт бота' },
+                { id: 'hw2_t3', text: 'Проверить бота по чек-листу «3 ошибки»' }
+            ]
+        },
+        {
+            id: 'hw3',
+            title: 'Модуль 3: Раздевающий вопрос',
+            tasks: [
+                { id: 'hw3_t1', text: 'Адаптировать скрипт под свою нишу' },
+                { id: 'hw3_t2', text: 'Вставить скрипт в бота' },
+                { id: 'hw3_t3', text: 'Написать готовый текст «Раздевающего вопроса»' }
+            ]
+        },
+        {
+            id: 'hw4',
+            title: 'Модуль 4: CRM',
+            tasks: [
+                { id: 'hw4_t1', text: 'Настроить пересылку из бота в Telegram' },
+                { id: 'hw4_t2', text: 'Заполнить таблицу контактов' },
+                { id: 'hw4_t3', text: 'Пройти чек-лист «Как не потерять лида»' }
+            ]
         }
+    ];
 
-        function getUserProgress(username) {
-            const db = getDB();
-            if (!db.students[username]) return { completed: [], checklists: {}, homework: {}, botDialogs: 0, botLastReset: null };
-            return db.students[username].progress || { completed: [], checklists: {}, homework: {}, botDialogs: 0, botLastReset: null };
-        }
+    // ==================== LOCAL STORAGE HELPERS ====================
+    function getDB() {
+        const db = localStorage.getItem('courseDB');
+        return db ? JSON.parse(db) : { students: {}, currentUser: null, applications: [] };
+    }
 
-        function setUserProgress(username, progress) {
-            const db = getDB();
-            if (db.students[username]) {
-                db.students[username].progress = progress;
-                saveDB(db);
-            }
-        }
+    function saveDB(db) {
+        localStorage.setItem('courseDB', JSON.stringify(db));
+    }
 
-        // ==================== PAGE NAVIGATION ====================
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            const page = document.getElementById(pageId);
-            if (page) {
-                page.classList.add('active');
-                page.style.animation = 'none';
-                page.offsetHeight;
-                page.style.animation = 'fadeIn 0.5s ease';
-                window.scrollTo(0, 0);
-            }
+    function getUserProgress(username) {
+        const db = getDB();
+        if (!db.students[username]) return { completed: [], checklists: {}, homework: {}, botDialogs: 0, botLastReset: null };
+        return db.students[username].progress || { completed: [], checklists: {}, homework: {}, botDialogs: 0, botLastReset: null };
+    }
 
-            // Initialize page-specific content
-            if (pageId === 'page-dashboard') initDashboard();
-            if (pageId === 'page-materials') initMaterials();
-            if (pageId === 'page-homework') initHomework();
-            if (pageId === 'page-admin') initAdmin();
-            if (pageId === 'page-module-1') initChecklist('checklist-1', checklist1, 'm1');
-            if (pageId === 'page-module-4') initChecklist('checklist-4', checklist4, 'm4');
-        }
-
-        // ==================== AUTH ====================
-        function handleLogin() {
-            const username = document.getElementById('loginUsername').value.trim();
-            const password = document.getElementById('loginPassword').value.trim();
-            const errorEl = document.getElementById('loginError');
-
-            if (!username || !password) {
-                errorEl.textContent = 'Заполните все поля';
-                errorEl.style.display = 'block';
-                return;
-            }
-
-            // Admin login
-            if (username === ADMIN_LOGIN && password === ADMIN_PASS) {
-                const db = getDB();
-                db.currentUser = { username: 'admin', isAdmin: true };
-                saveDB(db);
-                document.getElementById('adminBtn').style.display = 'inline-flex';
-                document.getElementById('botBtn').style.display = 'inline-flex';
-                showPage('page-dashboard');
-                showToast('Добро пожаловать, Кристина! 👑');
-                return;
-            }
-
-            const db = getDB();
-            const student = db.students[username];
-
-            if (!student) {
-                errorEl.textContent = 'Аккаунт не найден. Обратитесь к Кристине.';
-                errorEl.style.display = 'block';
-                return;
-            }
-
-            if (student.password !== password) {
-                errorEl.textContent = 'Неверный пароль';
-                errorEl.style.display = 'block';
-                return;
-            }
-
-            db.currentUser = { username, isAdmin: false };
+    function setUserProgress(username, progress) {
+        const db = getDB();
+        if (db.students[username]) {
+            db.students[username].progress = progress;
             saveDB(db);
+        }
+    }
 
-            // Show bot button if modules 1-3 completed
-            const progress = getUserProgress(username);
-            if (progress.completed && progress.completed.length >= 3) {
-                document.getElementById('botBtn').style.display = 'inline-flex';
-            }
+    // ==================== PAGE NAVIGATION ====================
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        const page = document.getElementById(pageId);
+        if (page) {
+            page.classList.add('active');
+            page.style.animation = 'none';
+            page.offsetHeight;
+            page.style.animation = 'fadeIn 0.5s ease';
+            window.scrollTo(0, 0);
+        }
 
+        // Initialize page-specific content
+        if (pageId === 'page-dashboard') initDashboard();
+        if (pageId === 'page-materials') initMaterials();
+        if (pageId === 'page-homework') initHomework();
+        if (pageId === 'page-admin') initAdmin();
+        if (pageId === 'page-module-1') initChecklist('checklist-1', checklist1, 'm1');
+        if (pageId === 'page-module-4') initChecklist('checklist-4', checklist4, 'm4');
+    }
+
+    // ==================== AUTH ====================
+    function handleLogin() {
+        const username = document.getElementById('loginUsername').value.trim();
+        const password = document.getElementById('loginPassword').value.trim();
+        const errorEl = document.getElementById('loginError');
+
+        if (!username || !password) {
+            errorEl.textContent = 'Заполните все поля';
+            errorEl.style.display = 'block';
+            return;
+        }
+
+        // Admin login
+        if (username === ADMIN_LOGIN && password === ADMIN_PASS) {
+            const db = getDB();
+            db.currentUser = { username: 'admin', isAdmin: true };
+            saveDB(db);
+            document.getElementById('adminBtn').style.display = 'inline-flex';
+            document.getElementById('botBtn').style.display = 'inline-flex';
             showPage('page-dashboard');
-            showToast(`Добро пожаловать, ${username}! 🍒`);
+            showToast('Добро пожаловать, Кристина! 👑');
+            return;
         }
 
-        function handleLogout() {
-            const db = getDB();
-            db.currentUser = null;
-            saveDB(db);
-            document.getElementById('adminBtn').style.display = 'none';
-            document.getElementById('botBtn').style.display = 'none';
-            document.getElementById('loginUsername').value = '';
-            document.getElementById('loginPassword').value = '';
-            document.getElementById('loginError').style.display = 'none';
-            showPage('page-landing');
+        const db = getDB();
+        const student = db.students[username];
+
+        if (!student) {
+            errorEl.textContent = 'Аккаунт не найден. Обратитесь к Кристине.';
+            errorEl.style.display = 'block';
+            return;
         }
 
-        // ==================== ADMIN ====================
-        function registerStudent() {
-            const name = document.getElementById('newStudentName').value.trim();
-            const pass = document.getElementById('newStudentPass').value.trim();
-
-            if (!name || !pass) {
-                showToast('Заполните имя и пароль');
-                return;
-            }
-
-            const db = getDB();
-            if (db.students[name]) {
-                showToast('Студент уже существует');
-                return;
-            }
-
-            db.students[name] = {
-                password: pass,
-                createdAt: new Date().toISOString(),
-                progress: { completed: [], checklists: {}, homework: {}, botDialogs: 0, botLastReset: null }
-            };
-            saveDB(db);
-
-            document.getElementById('newStudentName').value = '';
-            document.getElementById('newStudentPass').value = '';
-
-            showToast(`Студент "${name}" зарегистрирован! ✅`);
-            initAdmin();
+        if (student.password !== password) {
+            errorEl.textContent = 'Неверный пароль';
+            errorEl.style.display = 'block';
+            return;
         }
 
-        function deleteStudent(username) {
-            if (!confirm(`Удалить студента "${username}"?`)) return;
-            const db = getDB();
-            delete db.students[username];
-            saveDB(db);
-            showToast(`Студент "${username}" удалён`);
-            initAdmin();
+        db.currentUser = { username, isAdmin: false };
+        saveDB(db);
+
+        const progress = getUserProgress(username);
+        if (progress.completed && progress.completed.length >= 3) {
+            document.getElementById('botBtn').style.display = 'inline-flex';
         }
 
-        function switchAdminTab(tab) {
-            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
-            event.target.classList.add('active');
-            document.getElementById(`admin-${tab}`).classList.add('active');
+        showPage('page-dashboard');
+        showToast(`Добро пожаловать, ${username}! 🍒`);
+    }
+
+    function handleLogout() {
+        const db = getDB();
+        db.currentUser = null;
+        saveDB(db);
+        document.getElementById('adminBtn').style.display = 'none';
+        document.getElementById('botBtn').style.display = 'none';
+        document.getElementById('loginUsername').value = '';
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('loginError').style.display = 'none';
+        showPage('page-landing');
+    }
+
+    // ==================== ADMIN ====================
+    function registerStudent() {
+        const name = document.getElementById('newStudentName').value.trim();
+        const pass = document.getElementById('newStudentPass').value.trim();
+
+        if (!name || !pass) {
+            showToast('Заполните имя и пароль');
+            return;
         }
 
-        function initAdmin() {
-            const db = getDB();
-            const studentList = document.getElementById('studentList');
-            const progressList = document.getElementById('progressList');
-            const applicationsList = document.getElementById('applicationsList');
-
-            // Students list
-            if (Object.keys(db.students).length === 0) {
-                studentList.innerHTML = '<p style="color:var(--text-light); text-align:center; padding:20px;">Пока нет студентов</p>';
-            } else {
-                studentList.innerHTML = Object.entries(db.students).map(([name, data]) => {
-                    const progress = data.progress || { completed: [] };
-                    const completedCount = progress.completed ? progress.completed.length : 0;
-                    const totalModules = 4;
-                    return `
-                        <div class="student-item">
-                            <div>
-                                <div class="student-name">${name}</div>
-                                <div class="student-progress">Зарегистрирован: ${new Date(data.createdAt).toLocaleDateString('ru-RU')}</div>
-                            </div>
-                            <div>
-                                <div style="font-size:13px; color:var(--text-light);">Прогресс</div>
-                                <div style="font-weight:700; color:var(--cherry);">${completedCount}/${totalModules}</div>
-                            </div>
-                            <span class="student-badge ${completedCount > 0 ? 'active' : 'inactive'}">${completedCount > 0 ? 'Активен' : 'Новый'}</span>
-                            <button class="btn btn-danger btn-small" onclick="deleteStudent('${name}')">Удалить</button>
-                        </div>
-                    `;
-                }).join('');
-            }
-
-            // Progress
-            if (Object.keys(db.students).length === 0) {
-                progressList.innerHTML = '<p style="color:var(--text-light); text-align:center; padding:20px;">Нет данных</p>';
-            } else {
-                progressList.innerHTML = Object.entries(db.students).map(([name, data]) => {
-                    const progress = data.progress || { completed: [] };
-                    const completed = progress.completed || [];
-                    const moduleNames = ['Введение', 'Модуль 1', 'Модуль 2', 'Модуль 3', 'Модуль 4'];
-                    return `
-                        <div style="margin-bottom:20px; padding:16px; background:var(--cream); border-radius:var(--radius-sm);">
-                            <div style="font-weight:700; margin-bottom:8px;">${name}</div>
-                            <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                                ${moduleNames.map((m, i) => `
-                                    <span style="padding:4px 12px; border-radius:50px; font-size:12px; font-weight:600; background:${completed.includes(i) ? 'var(--gold)' : '#E8E0D8'}; color:${completed.includes(i) ? 'var(--cherry-dark)' : 'var(--text-light)'};">
-                                        ${completed.includes(i) ? '✓' : '○'} ${m}
-                                    </span>
-                                `).join('')}
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-            }
-
-            // Applications
-            const applications = db.applications || [];
-            if (applications.length === 0) {
-                applicationsList.innerHTML = '<p style="color:var(--text-light); text-align:center; padding:20px;">Пока нет заявок</p>';
-            } else {
-                applicationsList.innerHTML = applications.map((app, i) => `
-                    <div style="margin-bottom:16px; padding:16px; background:var(--cream); border-radius:var(--radius-sm);">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                            <strong>${app.name}</strong>
-                            <span style="font-size:12px; color:var(--text-light);">${new Date(app.date).toLocaleDateString('ru-RU')}</span>
-                        </div>
-                        <div style="font-size:14px; color:var(--text-light);">
-                            <div>📱 Telegram: ${app.telegram}</div>
-                            <div>📞 Телефон: ${app.phone}</div>
-                            <div>💼 Ниша: ${app.niche}</div>
-                            ${app.message ? `<div style="margin-top:8px;">💬 ${app.message}</div>` : ''}
-                        </div>
-                    </div>
-                `).join('');
-            }
+        const db = getDB();
+        if (db.students[name]) {
+            showToast('Студент уже существует');
+            return;
         }
 
-        // ==================== DASHBOARD ====================
-        function initDashboard() {
-            const db = getDB();
-            const user = db.currentUser;
-            if (!user) return;
+        db.students[name] = {
+            password: pass,
+            createdAt: new Date().toISOString(),
+            progress: { completed: [], checklists: {}, homework: {}, botDialogs: 0, botLastReset: null }
+        };
+        saveDB(db);
 
-            document.getElementById('dashboardUserName').textContent = user.isAdmin ? 'Кристина' : user.username;
+        document.getElementById('newStudentName').value = '';
+        document.getElementById('newStudentPass').value = '';
 
-            const progress = getUserProgress(user.username);
-            const completedModules = progress.completed || [];
-            const totalModules = 4;
-            const completedCount = Math.min(completedModules.filter(m => m > 0).length, totalModules);
-            const percent = Math.round((completedCount / totalModules) * 100);
+        showToast(`Студент "${name}" зарегистрирован! ✅`);
+        initAdmin();
+    }
 
-            document.getElementById('progressBar').style.width = percent + '%';
-            document.getElementById('progressText').textContent = `Прогресс: ${completedCount} из ${totalModules} модулей (${percent}%)`;
+    function deleteStudent(username) {
+        if (!confirm(`Удалить студента "${username}"?`)) return;
+        const db = getDB();
+        delete db.students[username];
+        saveDB(db);
+        showToast(`Студент "${username}" удалён`);
+        initAdmin();
+    }
 
-            // Show bot button if bonus unlocked
-            if (completedCount >= 3) {
-                document.getElementById('botBtn').style.display = 'inline-flex';
-            }
+    function switchAdminTab(tab) {
+        document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+        event.target.classList.add('active');
+        document.getElementById(`admin-${tab}`).classList.add('active');
+    }
 
-            // Render modules grid
-            const grid = document.getElementById('modulesGrid');
-            grid.innerHTML = modules.map((mod, idx) => {
-                const isCompleted = completedModules.includes(mod.id);
-                const statusClass = isCompleted ? 'completed' : '';
-                const statusBadge = isCompleted ? 'completed' : 'available';
-                const statusText = isCompleted ? '✓ Пройден' : mod.id === 0 ? 'Начни здесь' : `Модуль ${mod.id}`;
-                
+    function initAdmin() {
+        const db = getDB();
+        const studentList = document.getElementById('studentList');
+        const progressList = document.getElementById('progressList');
+        const applicationsList = document.getElementById('applicationsList');
+
+        // Students list
+        if (Object.keys(db.students).length === 0) {
+            studentList.innerHTML = '<p style="color:var(--text-light); text-align:center; padding:20px;">Пока нет студентов</p>';
+        } else {
+            studentList.innerHTML = Object.entries(db.students).map(([name, data]) => {
+                const progress = data.progress || { completed: [] };
+                const completedCount = progress.completed ? progress.completed.length : 0;
+                const totalModules = 4;
                 return `
-                    <div class="module-card ${statusClass}" onclick="${mod.page ? `showPage('${mod.page}')` : ''}">
-                        <div class="module-number">${mod.id === 0 ? '→' : mod.id === 5 ? '★' : mod.id === 6 ? '?' : mod.id}</div>
-                        <div class="module-card-title">${mod.title}</div>
-                        <div class="module-card-desc">${mod.desc}</div>
-                        <span class="module-status ${statusBadge}">${statusText}</span>
+                    <div class="student-item">
+                        <div>
+                            <div class="student-name">${name}</div>
+                            <div class="student-progress">Зарегистрирован: ${new Date(data.createdAt).toLocaleDateString('ru-RU')}</div>
+                        </div>
+                        <div>
+                            <div style="font-size:13px; color:var(--text-light);">Прогресс</div>
+                            <div style="font-weight:700; color:var(--cherry);">${completedCount}/${totalModules}</div>
+                        </div>
+                        <span class="student-badge ${completedCount > 0 ? 'active' : 'inactive'}">${completedCount > 0 ? 'Активен' : 'Новый'}</span>
+                        <button class="btn btn-danger btn-small" onclick="deleteStudent('${name}')">Удалить</button>
                     </div>
                 `;
             }).join('');
         }
 
-        // ==================== MODULE COMPLETION ====================
-        function completeModule(moduleId) {
-            const db = getDB();
-            const user = db.currentUser;
-            if (!user) return;
-
-            const progress = getUserProgress(user.username);
-            if (!progress.completed) progress.completed = [];
-            if (!progress.completed.includes(moduleId)) {
-                progress.completed.push(moduleId);
-            }
-            setUserProgress(user.username, progress);
-
-            if (moduleId >= 1 && moduleId <= 3) {
-                document.getElementById('botBtn').style.display = 'inline-flex';
-            }
-
-            showToast(`Модуль отмечен как пройден! ✅`);
+        // Progress
+        if (Object.keys(db.students).length === 0) {
+            progressList.innerHTML = '<p style="color:var(--text-light); text-align:center; padding:20px;">Нет данных</p>';
+        } else {
+            progressList.innerHTML = Object.entries(db.students).map(([name, data]) => {
+                const progress = data.progress || { completed: [] };
+                const completed = progress.completed || [];
+                const moduleNames = ['Введение', 'Модуль 1', 'Модуль 2', 'Модуль 3', 'Модуль 4'];
+                return `
+                    <div style="margin-bottom:20px; padding:16px; background:var(--cream); border-radius:var(--radius-sm);">
+                        <div style="font-weight:700; margin-bottom:8px;">${name}</div>
+                        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                            ${moduleNames.map((m, i) => `
+                                <span style="padding:4px 12px; border-radius:50px; font-size:12px; font-weight:600; background:${completed.includes(i) ? 'var(--gold)' : '#E8E0D8'}; color:${completed.includes(i) ? 'var(--cherry-dark)' : 'var(--text-light)'};">
+                                    ${completed.includes(i) ? '✓' : '○'} ${m}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
 
-        function checkBonusUnlock() {
-            const db = getDB();
-            const user = db.currentUser;
-            if (!user) return;
-            const progress = getUserProgress(user.username);
-            const completed = progress.completed || [];
-            if (completed.includes(1) && completed.includes(2) && completed.includes(3)) {
-                showToast('🎁 Бонус разблокирован! Демо AI-агента доступен!');
-            }
-        }
-
-        // ==================== CHECKLISTS ====================
-        function initChecklist(containerId, items, key) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-
-            const db = getDB();
-            const user = db.currentUser;
-            const progress = user ? getUserProgress(user.username) : {};
-            const checked = (progress.checklists && progress.checklists[key]) || [];
-
-            container.innerHTML = items.map((item, i) => `
-                <div class="checklist-item">
-                    <div class="checklist-checkbox ${checked.includes(i) ? 'checked' : ''}" onclick="toggleChecklist('${key}', ${i}, '${containerId}')"></div>
-                    <div class="checklist-text"><strong>${i + 1}.</strong> ${item}</div>
+        // Applications
+        const applications = db.applications || [];
+        if (applications.length === 0) {
+            applicationsList.innerHTML = '<p style="color:var(--text-light); text-align:center; padding:20px;">Пока нет заявок</p>';
+        } else {
+            applicationsList.innerHTML = applications.map((app, i) => `
+                <div style="margin-bottom:16px; padding:16px; background:var(--cream); border-radius:var(--radius-sm);">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <strong>${app.name}</strong>
+                        <span style="font-size:12px; color:var(--text-light);">${new Date(app.date).toLocaleDateString('ru-RU')}</span>
+                    </div>
+                    <div style="font-size:14px; color:var(--text-light);">
+                        <div>📱 ${app.contactType || 'Telegram'}: ${app.contact || app.telegram}</div>
+                        ${app.phone ? `<div>📞 Телефон: ${app.phone}</div>` : ''}
+                        ${app.niche ? `<div>💼 Ниша: ${app.niche}</div>` : ''}
+                        ${app.message ? `<div style="margin-top:8px;">💬 ${app.message}</div>` : ''}
+                    </div>
                 </div>
             `).join('');
         }
+    }
 
-        function toggleChecklist(key, index, containerId) {
-            const db = getDB();
-            const user = db.currentUser;
-            if (!user) return;
+    // ==================== DASHBOARD ====================
+    function initDashboard() {
+        const db = getDB();
+        const user = db.currentUser;
+        if (!user) return;
 
-            const progress = getUserProgress(user.username);
-            if (!progress.checklists) progress.checklists = {};
-            if (!progress.checklists[key]) progress.checklists[key] = [];
+        document.getElementById('dashboardUserName').textContent = user.isAdmin ? 'Кристина' : user.username;
 
-            const idx = progress.checklists[key].indexOf(index);
-            if (idx > -1) {
-                progress.checklists[key].splice(idx, 1);
-            } else {
-                progress.checklists[key].push(index);
-            }
+        const progress = getUserProgress(user.username);
+        const completedModules = progress.completed || [];
+        const totalModules = 4;
+        const completedCount = Math.min(completedModules.filter(m => m > 0).length, totalModules);
+        const percent = Math.round((completedCount / totalModules) * 100);
 
-            setUserProgress(user.username, progress);
+        document.getElementById('progressBar').style.width = percent + '%';
+        document.getElementById('progressText').textContent = `Прогресс: ${completedCount} из ${totalModules} модулей (${percent}%)`;
 
-            // Re-render
-            if (key === 'm1') initChecklist('checklist-1', checklist1, 'm1');
-            if (key === 'm4') initChecklist('checklist-4', checklist4, 'm4');
-
-            const score = progress.checklists[key] ? progress.checklists[key].length : 0;
-            const total = key === 'm1' ? 10 : 5;
-            showToast(`Отмечено: ${score}/${total}`);
+        if (completedCount >= 3) {
+            document.getElementById('botBtn').style.display = 'inline-flex';
         }
 
-        // ==================== PDF MATERIALS ====================
-        function initMaterials() {
-            const db = getDB();
-            const user = db.currentUser;
-            if (!user) return;
+        const grid = document.getElementById('modulesGrid');
+        grid.innerHTML = modules.map((mod, idx) => {
+            const isCompleted = completedModules.includes(mod.id);
+            const statusClass = isCompleted ? 'completed' : '';
+            const statusBadge = isCompleted ? 'completed' : 'available';
+            const statusText = isCompleted ? '✓ Пройден' : mod.id === 0 ? 'Начни здесь' : `Модуль ${mod.id}`;
+            
+            return `
+                <div class="module-card ${statusClass}" onclick="${mod.page ? `showPage('${mod.page}')` : ''}">
+                    <div class="module-number">${mod.id === 0 ? '→' : mod.id === 5 ? '★' : mod.id === 6 ? '?' : mod.id}</div>
+                    <div class="module-card-title">${mod.title}</div>
+                    <div class="module-card-desc">${mod.desc}</div>
+                    <span class="module-status ${statusBadge}">${statusText}</span>
+                </div>
+            `;
+        }).join('');
+    }
 
-            const progress = getUserProgress(user.username);
-            const completedModules = progress.completed || [];
+    function completeModule(moduleId) {
+        const db = getDB();
+        const user = db.currentUser;
+        if (!user) return;
 
-            const list = document.getElementById('pdfList');
-            list.innerHTML = pdfFiles.map((file, idx) => {
-                const isUnlocked = file.module === 0 || completedModules.includes(file.module);
-                return `
-                    <div class="pdf-item ${isUnlocked ? '' : ''}" onclick="${isUnlocked ? `openPdfViewer('${file.name}')` : `showToast('Файл откроется после прохождения Модуля ${file.module}')`}">
-                        <div class="pdf-icon">${file.type === 'table' ? '📊' : file.type === 'checklist' ? '✅' : '📄'}</div>
-                        <div class="pdf-info">
-                            <div class="pdf-name">${file.name}</div>
-                            <div class="pdf-desc">${file.desc}</div>
-                        </div>
-                        <div class="pdf-arrow">${isUnlocked ? '→' : '🔒'}</div>
-                    </div>
-                `;
-            }).join('');
+        const progress = getUserProgress(user.username);
+        if (!progress.completed) progress.completed = [];
+        if (!progress.completed.includes(moduleId)) {
+            progress.completed.push(moduleId);
+        }
+        setUserProgress(user.username, progress);
+
+        if (moduleId >= 1 && moduleId <= 3) {
+            document.getElementById('botBtn').style.display = 'inline-flex';
         }
 
-        function openPdfViewer(filename) {
-            const file = pdfFiles.find(f => f.name === filename);
-            if (!file) return;
+        showToast(`Модуль отмечен как пройден! ✅`);
+    }
 
-            const content = document.getElementById('pdfViewerContent');
-            content.innerHTML = getPdfContent(file);
-            showPage('page-pdf-viewer');
+    function checkBonusUnlock() {
+        const db = getDB();
+        const user = db.currentUser;
+        if (!user) return;
+        const progress = getUserProgress(user.username);
+        const completed = progress.completed || [];
+        if (completed.includes(1) && completed.includes(2) && completed.includes(3)) {
+            showToast('🎁 Бонус разблокирован! Демо AIRA доступно!');
+        }
+    }
+
+    // ==================== CHECKLISTS ====================
+    function initChecklist(containerId, items, key) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        const db = getDB();
+        const user = db.currentUser;
+        const progress = user ? getUserProgress(user.username) : {};
+        const checked = (progress.checklists && progress.checklists[key]) || [];
+
+        container.innerHTML = items.map((item, i) => `
+            <div class="checklist-item" onclick="toggleChecklist('${key}', ${i}, '${containerId}')">
+                <div class="checklist-checkbox ${checked.includes(i) ? 'checked' : ''}"></div>
+                <div class="checklist-text"><strong>${i + 1}.</strong> ${item}</div>
+            </div>
+        `).join('') + `<div class="checklist-result" id="checklist-result-${key}"></div>`;
+
+        updateChecklistResult(key, items.length, checked.length);
+    }
+
+    function toggleChecklist(key, index, containerId) {
+        const db = getDB();
+        const user = db.currentUser;
+        if (!user) return;
+
+        const progress = getUserProgress(user.username);
+        if (!progress.checklists) progress.checklists = {};
+        if (!progress.checklists[key]) progress.checklists[key] = [];
+
+        const idx = progress.checklists[key].indexOf(index);
+        if (idx > -1) {
+            progress.checklists[key].splice(idx, 1);
+        } else {
+            progress.checklists[key].push(index);
         }
 
-        function getPdfContent(file) {
-            const contents = {
-                'Скрипты_загрузка.docx': `
-                    <h2 class="pdf-viewer-title">📊 Скрипты_загрузка.docx</h2>
-                    <p style="margin-bottom:16px; color:var(--text-light);">Таблица для сбора базы знаний. Заполни минимум 20 строк.</p>
-                    <div class="table-responsive">
-                        <table class="pdf-table">
-                            <thead><tr><th>A. Вопрос клиента</th><th>B. Твой ответ</th><th>C. Возражение</th><th>D. Ответ на возражение</th></tr></thead>
-                            <tbody>
-                                <tr><td>Сколько стоит консультация?</td><td>5000 ₽ за час. Обычно хватает 2-3 встреч.</td><td>Дорого</td><td>Есть диагностика за 1500 ₽ – определим, нужны ли платные встречи.</td></tr>
-                                <tr><td>1.</td><td>1.</td><td>1.</td><td>1.</td></tr>
-                                <tr><td>2.</td><td>2.</td><td>2.</td><td>2.</td></tr>
-                                <tr><td>3.</td><td>3.</td><td>3.</td><td>3.</td></tr>
-                                <tr><td>4.</td><td>4.</td><td>4.</td><td>4.</td></tr>
-                                <tr><td>5.</td><td>5.</td><td>5.</td><td>5.</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p style="margin-top:16px; font-size:14px; color:var(--text-light);">Первые 5 строк – как в примере. Остальные – из твоих реальных диалогов.</p>
-                `,
-                'Пример_базы_коуч.pdf': `
-                    <h2 class="pdf-viewer-title">📄 Пример_базы_коуч.pdf</h2>
-                    <p style="margin-bottom:16px; color:var(--text-light);">Образец заполнения для коуча</p>
-                    <div class="table-responsive">
-                        <table class="pdf-table">
-                            <thead><tr><th>Вопрос клиента</th><th>Твой ответ</th><th>Возражение</th><th>Ответ на возражение</th></tr></thead>
-                            <tbody>
-                                <tr><td>Сколько стоит твой коучинг?</td><td>150 000 ₽ за 3 месяца. Включает 12 сессий и поддержку в Telegram.</td><td>Дорого</td><td>Понимаю. Но средний рост дохода моих клиентов – 300-500 тыс. за это же время. Инвестиция окупается в первый месяц.</td></tr>
-                                <tr><td>А можно попробовать одну сессию?</td><td>Да, есть диагностическая сессия за 15 000 ₽. На ней разберём одну задачу.</td><td>Думаю</td><td>Без проблем. Возьмите время до завтра. Я пришлю кейс клиента, который тоже сомневался, а потом заработал +200к.</td></tr>
-                                <tr><td>Чем вы отличаетесь?</td><td>Я не даю теорию. Только пошаговый план под ваш бизнес.</td><td>Уже был у коуча</td><td>Тогда диагностика бесплатна, если после неё вы не скажете: "Это лучшее, что я пробовал".</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                `,
-                'Чек-лист_10_признаков.pdf': `
-                    <h2 class="pdf-viewer-title">✅ Чек-лист_10_признаков.pdf</h2>
-                    <p style="margin-bottom:16px;">10 признаков, что твоя база знаний огонь</p>
-                    <div class="checklist" id="pdfChecklist"></div>
-                    <div style="margin-top:20px; padding:16px; background:var(--cream); border-radius:var(--radius-sm);">
-                        <strong>Результат:</strong><br>
-                        8-10 ✅ → отлично, ты готов<br>
-                        5-7 ✅ → дособери диалоги<br>
-                        Меньше 5 → закажи готовую базу у Кристины за 30к
-                    </div>
-                `,
-                'Лидмагнит_конструктор.xlsx': `
-                    <h2 class="pdf-viewer-title">📊 Лидмагнит_конструктор.xlsx</h2>
-                    <p style="margin-bottom:16px;">5 офферов для лид-магнита. Просто подставь свою тему.</p>
-                    <div class="table-responsive">
-                        <table class="pdf-table">
-                            <thead><tr><th>Оффер</th><th>Формула</th><th>Пример для психолога</th></tr></thead>
-                            <tbody>
-                                <tr><td>3 техники за 2 минуты</td><td>[Цифра] + [действие] + [время] → вопрос</td><td>«3 техники снять тревогу за 2 минуты. Какую попробуешь первой?»</td></tr>
-                                <tr><td>5 ошибок, которые убивают [результат]</td><td>«5 ошибок в [тема]» → вопрос с примером</td><td>«5 фраз, которые убивают доверие клиента за секунду. Напиши одну свою»</td></tr>
-                                <tr><td>Чек-лист «Как [решить] без [сложность]»</td><td>Чек-лист → «Какой пункт самый неочевидный?»</td><td>«Чек-лист: как перестать тревожиться без таблеток»</td></tr>
-                                <tr><td>Диагностика «[Боль] на разрыв»</td><td>Бесплатный тест → «Напишите ДА»</td><td>«Диагностика: насколько тревога мешает жить. Напишите ДА»</td></tr>
-                                <tr><td>PDF «[Результат] за [время]»</td><td>Дать ссылку → «Что возьмёте в работу завтра?»</td><td>«PDF: как за 15 минут убрать страх выступлений»</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                `,
-                '3_ошибки_чеклист.pdf': `
-                    <h2 class="pdf-viewer-title">📄 3_ошибки_чеклист.pdf</h2>
-                    <p style="margin-bottom:16px;">3 смертельные ошибки в лид-магните</p>
-                    <div class="table-responsive">
-                        <table class="pdf-table">
-                            <thead><tr><th>Ошибка</th><th>Как исправить</th></tr></thead>
-                            <tbody>
-                                <tr><td>❌ Полезный мусор</td><td>Дай одну конкретную технику + сразу вопрос</td></tr>
-                                <tr><td>❌ Слепая анкета</td><td>Сначала ценность, потом вопрос без контакта. Телефон – только после «Хочу диагностику»</td></tr>
-                                <tr><td>❌ Безликий автомат</td><td>После выдачи лид-магнита спроси: «Что мешает применить это прямо сегодня?»</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p style="margin-top:16px; font-size:14px;">Распечатай и повесь над монитором.</p>
-                `,
-                'Раздевающий_вопрос.pdf': `
-                    <h2 class="pdf-viewer-title">📄 Раздевающий_вопрос.pdf</h2>
-                    <p style="margin-bottom:16px;">Скрипт из 7 шагов + пример диалога</p>
-                    <div class="highlight-box">
-                        <strong>Шаг 1.</strong> Установка контекста<br>
-                        «Привет! Я [твоё имя]. Чтобы понять, могу ли я тебе помочь, задам несколько вопросов. Хорошо?»
-                    </div>
-                    <div class="highlight-box">
-                        <strong>Шаг 2.</strong> «Раздевающий вопрос»<br>
-                        «На шкале от 1 до 10 – насколько [проблема] мешает вам [последствие]?»
-                    </div>
-                    <div class="highlight-box">
-                        <strong>Шаг 3.</strong> Распаковка<br>
-                        «Расскажите подробнее, в каких ситуациях это проявляется сильнее всего?»
-                    </div>
-                    <div class="highlight-box">
-                        <strong>Шаг 4.</strong> Углубление<br>
-                        «Как долго это продолжается? Что уже пробовали делать?»
-                    </div>
-                    <div class="highlight-box">
-                        <strong>Шаг 5.</strong> Признание боли<br>
-                        «Звучит exhausting. Представьте, что через месяц ничего не изменится...»
-                    </div>
-                    <div class="highlight-box">
-                        <strong>Шаг 6.</strong> Предложение диагностики<br>
-                        «У меня есть диагностика на 15-20 минут. Стоит [сумма]. Назначим?»
-                    </div>
-                    <div class="highlight-box">
-                        <strong>Шаг 7.</strong> Апсейл<br>
-                        «После диагностики многие выбирают полную работу. Но сначала давайте проведём её.»
-                    </div>
-                `,
-                'Готовая_таблица_для_бота.xlsx': `
-                    <h2 class="pdf-viewer-title">📊 Готовая_таблица_для_бота.xlsx</h2>
-                    <p style="margin-bottom:16px;">Шаблон для Typebot / Make. Скопируй в Google Sheets.</p>
-                    <div class="table-responsive">
-                        <table class="pdf-table">
-                            <thead><tr><th>Сообщение бота</th><th>Варианты ответа</th><th>Следующий шаг</th></tr></thead>
-                            <tbody>
-                                <tr><td>Привет! Я помогу с [тема]. Какая у тебя боль?</td><td>(свободный ввод)</td><td>→ шаг 2</td></tr>
-                                <tr><td>На шкале от 1 до 10, насколько это мешает?</td><td>1-10</td><td>→ шаг 3 (если &lt;5 → прощание, если &gt;5 → распаковка)</td></tr>
-                                <tr><td>Расскажи подробнее...</td><td>(свободный ввод)</td><td>→ предложение диагностики</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p style="margin-top:16px; font-size:14px; color:var(--text-light);">Для Typebot импортируй этот лист как «база знаний».</p>
-                `,
-                'CRM_инструкция.pdf': `
-                    <h2 class="pdf-viewer-title">📄 CRM_инструкция.pdf</h2>
-                    <p style="margin-bottom:16px;">Как за 2 минуты настроить CRM в Telegram</p>
-                    <h4 style="margin-top:20px;">Для ManyChat:</h4>
-                    <ol>
-                        <li>Зайди в «Лид-формы» → «Уведомления»</li>
-                        <li>Добавь вебхук: https://api.telegram.org/bot&lt;ТОКЕН&gt;/sendMessage</li>
-                        <li>chat_id = твой Telegram ID (узнать у @userinfobot)</li>
-                        <li>text = «Новый лид: {имя} {телефон} Ответы: {ответы}»</li>
-                    </ol>
-                    <h4 style="margin-top:20px;">Для Typebot:</h4>
-                    <ol>
-                        <li>«Настройки бота» → «Webhooks»</li>
-                        <li>URL: https://api.telegram.org/bot&lt;ТОКЕН&gt;/sendMessage?chat_id=&lt;ID&gt;&amp;text=Новый лид:{{state}}</li>
-                    </ol>
-                    <h4 style="margin-top:20px;">Для Botmother:</h4>
-                    <p>Аналогично – раздел «Исходящие вебхуки».</p>
-                    <div class="highlight-box">
-                        <strong>Проверка:</strong> напиши боту любое сообщение – оно должно прийти в твой Telegram от @AgentFlowCRMBot
-                    </div>
-                `,
-                'Контакты_шаблон.xlsx': `
-                    <h2 class="pdf-viewer-title">📊 Контакты_шаблон.xlsx</h2>
-                    <p style="margin-bottom:16px;">Таблица для ручной CRM</p>
-                    <div class="table-responsive">
-                        <table class="pdf-table">
-                            <thead><tr><th>Дата</th><th>Имя</th><th>Контакт</th><th>Откуда</th><th>Боль</th><th>Статус</th><th>След. касание</th></tr></thead>
-                            <tbody>
-                                <tr><td>10.05</td><td>Анна</td><td>@anna_psy</td><td>Бот в канале</td><td>Тревога</td><td>Тёплый</td><td>13.05</td></tr>
-                                <tr><td>11.05</td><td>Михаил</td><td>+7XXX</td><td>Реклама</td><td>Нет клиентов</td><td>Диагностика</td><td>12.05</td></tr>
-                                <tr><td>12.05</td><td>Ольга</td><td>@olga_coach</td><td>Реферал</td><td>Страх выступлений</td><td>Холодный</td><td>15.05</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p style="margin-top:16px; font-size:14px;">Статусы: холодный, тёплый, назначена диагностика, клиент, отказ, не дозвонился.</p>
-                    <p style="margin-top:8px; font-size:14px;"><strong>Правило:</strong> раз в 3 дня проходи по строке «тёплый» и пиши.</p>
-                `,
-                '5_фишек_AI_агента.pdf': `
-                    <h2 class="pdf-viewer-title">📄 5_фишек_AI_агента.pdf</h2>
-                    <p style="margin-bottom:16px;">Сравнение обычного бота и AI-агента</p>
-                    <div class="table-responsive">
-                        <table class="pdf-table">
-                            <thead><tr><th>Обычный бот</th><th>AI-агент AgentFlow</th></tr></thead>
-                            <tbody>
-                                <tr><td>Работает только по жёсткому скрипту</td><td>Понимает свободную речь</td></tr>
-                                <tr><td>Не запоминает контекст</td><td>Помнит всю историю диалога</td></tr>
-                                <tr><td>Только текст и кнопки</td><td>Голосовые, видео, опросы, файлы</td></tr>
-                                <tr><td>Ты настраиваешь каждую ветку</td><td>Обучается на твоей базе знаний</td></tr>
-                                <tr><td>Бесплатные версии ограничены</td><td>Полная CRM, сайт, интеграции</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="gold-box" style="margin-top:16px;">
-                        <strong>Результат:</strong> AI-агент закрывает в 3-5 раз больше лидов, чем обычный бот-меню.
-                    </div>
-                `
-            };
+        setUserProgress(user.username, progress);
 
-            return contents[file.name] || `<h2 class="pdf-viewer-title">${file.name}</h2><p>Содержимое файла будет доступно здесь.</p>`;
+        const items = key === 'm1' ? checklist1 : checklist4;
+        const checked = progress.checklists[key] || [];
+        const total = items.length;
+        const checkedCount = checked.length;
+
+        // Re-render checklist
+        const container = document.getElementById(containerId);
+        container.innerHTML = items.map((item, i) => `
+            <div class="checklist-item" onclick="toggleChecklist('${key}', ${i}, '${containerId}')">
+                <div class="checklist-checkbox ${checked.includes(i) ? 'checked' : ''}"></div>
+                <div class="checklist-text"><strong>${i + 1}.</strong> ${item}</div>
+            </div>
+        `).join('') + `<div class="checklist-result" id="checklist-result-${key}"></div>`;
+
+        updateChecklistResult(key, total, checkedCount);
+    }
+
+    function updateChecklistResult(key, total, checked) {
+        const el = document.getElementById(`checklist-result-${key}`);
+        if (!el) return;
+
+        let scoreClass, label, recommendation;
+
+        if (checked >= 8) {
+            scoreClass = 'excellent';
+            label = '🎉 Отлично! Ты готов!';
+            recommendation = 'Твоя база знаний — огонь! Можешь переходить к следующему модулю.';
+        } else if (checked >= 5) {
+            scoreClass = 'good';
+            label = '👍 Хороший результат, но можно лучше';
+            recommendation = 'Дособери диалоги и возражения, чтобы усилить базу знаний. Каждая запись приближает тебя к работающему боту!';
+        } else {
+            scoreClass = 'work';
+            label = '💪 Есть над чем поработать';
+            recommendation = 'Продолжай собирать диалоги, возражения и истории успеха. Не останавливайся — каждая запись делает твоего бота умнее!';
         }
 
-        // ==================== HOMEWORK ====================
-        function initHomework() {
-            const db = getDB();
-            const user = db.currentUser;
-            if (!user) return;
+        el.innerHTML = `
+            <div class="checklist-score ${scoreClass}">${checked} / ${total}</div>
+            <div class="checklist-label">${label}</div>
+            <div class="checklist-recommendation">${recommendation}</div>
+        `;
+    }
 
-            const progress = getUserProgress(user.username);
-            if (!progress.homework) progress.homework = {};
+    // ==================== PDF MATERIALS ====================
+    function initMaterials() {
+        const db = getDB();
+        const user = db.currentUser;
+        if (!user) return;
 
-            const container = document.getElementById('homeworkContainer');
-            container.innerHTML = homeworkData.map(hw => {
+        const progress = getUserProgress(user.username);
+        const completedModules = progress.completed || [];
+
+        const list = document.getElementById('pdfList');
+        list.innerHTML = pdfFiles.map((file, idx) => {
+            const isUnlocked = file.module === 0 || completedModules.includes(file.module);
+            return `
+                <div class="pdf-item" onclick="${isUnlocked ? `openPdfViewer('${file.name}')` : `showToast('Файл откроется после прохождения Модуля ${file.module}')`}">
+                    <div class="pdf-icon">${file.type === 'table' ? '📊' : file.type === 'checklist' ? '✅' : '📄'}</div>
+                    <div class="pdf-info">
+                        <div class="pdf-name">${file.name}</div>
+                        <div class="pdf-desc">${file.desc}</div>
+                    </div>
+                    <div class="pdf-arrow">${isUnlocked ? '→' : '🔒'}</div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function openPdfViewer(filename) {
+        const file = pdfFiles.find(f => f.name === filename);
+        if (!file) return;
+
+        const content = document.getElementById('pdfViewerContent');
+        content.innerHTML = getPdfContent(file);
+        showPage('page-pdf-viewer');
+    }
+
+    function getPdfContent(file) {
+        const contents = {
+            'Пример_базы_коуч.pdf': `
+                <h2 class="pdf-viewer-title">📄 Пример_базы_коуч.pdf</h2>
+                <p style="margin-bottom:16px; color:var(--text-light);">Образец заполнения для коуча</p>
+                <div style="overflow-x:auto">
+                    <table class="pdf-table">
+                        <thead><tr><th>Вопрос клиента</th><th>Твой ответ</th><th>Возражение</th><th>Ответ на возражение</th></tr></thead>
+                        <tbody>
+                            <tr><td>Сколько стоит твой коучинг?</td><td>150 000 ₽ за 3 месяца. Включает 12 сессий и поддержку в Telegram.</td><td>Дорого</td><td>Понимаю. Но средний рост дохода моих клиентов – 300-500 тыс. за это же время. Инвестиция окупается в первый месяц.</td></tr>
+                            <tr><td>А можно попробовать одну сессию?</td><td>Да, есть диагностическая сессия за 15 000 ₽. На ней разберём одну задачу.</td><td>Думаю</td><td>Без проблем. Возьмите время до завтра. Я пришлю кейс клиента, который тоже сомневался, а потом заработал +200к.</td></tr>
+                            <tr><td>Чем вы отличаетесь?</td><td>Я не даю теорию. Только пошаговый план под ваш бизнес.</td><td>Уже был у коуча</td><td>Тогда диагностика бесплатна, если после неё вы не скажете: "Это лучшее, что я пробовал".</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            `,
+            'Чек-лист_10_признаков.pdf': `
+                <h2 class="pdf-viewer-title">✅ Чек-лист_10_признаков.pdf</h2>
+                <p style="margin-bottom:16px;">10 признаков, что твоя база знаний огонь</p>
+                <div class="checklist" id="pdfChecklist"></div>
+                <div style="margin-top:20px; padding:16px; background:var(--cream); border-radius:var(--radius-sm);">
+                    <strong>Результат:</strong><br>
+                    8-10 ✅ → отлично, ты готов<br>
+                    5-7 ✅ → дособери диалоги<br>
+                    Меньше 5 → продолжай собирать диалоги и возражения
+                </div>
+            `,
+            'Лидмагнит_конструктор.xlsx': `
+                <h2 class="pdf-viewer-title">📊 Лидмагнит_конструктор.xlsx</h2>
+                <p style="margin-bottom:16px;">5 офферов для лид-магнита. Просто подставь свою тему.</p>
+                <div style="overflow-x:auto">
+                    <table class="pdf-table">
+                        <thead><tr><th>Оффер</th><th>Формула</th><th>Пример для психолога</th></tr></thead>
+                        <tbody>
+                            <tr><td>3 техники за 2 минуты</td><td>[Цифра] + [действие] + [время] → вопрос</td><td>«3 техники снять тревогу за 2 минуты. Какую попробуешь первой?»</td></tr>
+                            <tr><td>5 ошибок, которые убивают [результат]</td><td>«5 ошибок в [тема]» → вопрос с примером</td><td>«5 фраз, которые убивают доверие клиента за секунду. Напиши одну свою»</td></tr>
+                            <tr><td>Чек-лист «Как [решить] без [сложность]»</td><td>Чек-лист → «Какой пункт самый неочевидный?»</td><td>«Чек-лист: как перестать тревожиться без таблеток»</td></tr>
+                            <tr><td>Диагностика «[Боль] на разрыв»</td><td>Бесплатный мини-тест → «Напишите ДА»</td><td>«Диагностика: насколько тревога мешает жить. Напишите ДА»</td></tr>
+                            <tr><td>PDF «[Результат] за [время]»</td><td>Дать ссылку → «Что возьмёте в работу завтра?»</td><td>«PDF: как за 15 минут убрать страх выступлений»</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            `,
+            '3_ошибки_чеклист.pdf': `
+                <h2 class="pdf-viewer-title">📄 3_ошибки_чеклист.pdf</h2>
+                <p style="margin-bottom:16px;">3 смертельные ошибки в лид-магните</p>
+                <div style="overflow-x:auto">
+                    <table class="pdf-table">
+                        <thead><tr><th>Ошибка</th><th>Как исправить</th></tr></thead>
+                        <tbody>
+                            <tr><td>❌ Полезный мусор</td><td>Дай одну конкретную технику + сразу вопрос</td></tr>
+                            <tr><td>❌ Слепая анкета</td><td>Сначала ценность, потом вопрос без контакта. Телефон – только после «Хочу диагностику»</td></tr>
+                            <tr><td>❌ Безликий автомат</td><td>После выдачи лид-магнита спроси: «Что мешает применить это прямо сегодня?»</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top:16px; font-size:14px;">Распечатай и повесь над монитором.</p>
+            `,
+            'Раздевающий_вопрос.pdf': `
+                <h2 class="pdf-viewer-title">📄 Раздевающий_вопрос.pdf</h2>
+                <p style="margin-bottom:16px;">Скрипт из 7 шагов + пример диалога</p>
+                <div class="highlight-box">
+                    <strong>Шаг 1.</strong> Установка контекста<br>
+                    «Привет! Я [твоё имя]. Чтобы понять, могу ли я тебе помочь, задам несколько вопросов. Хорошо?»
+                </div>
+                <div class="highlight-box">
+                    <strong>Шаг 2.</strong> «Раздевающий вопрос»<br>
+                    «На шкале от 1 до 10 – насколько [проблема] мешает вам [последствие]?»
+                </div>
+                <div class="highlight-box">
+                    <strong>Шаг 3.</strong> Распаковка<br>
+                    «Расскажите подробнее, в каких ситуациях это проявляется сильнее всего?»
+                </div>
+                <div class="highlight-box">
+                    <strong>Шаг 4.</strong> Углубление<br>
+                    «Как долго это продолжается? Что уже пробовали делать?»
+                </div>
+                <div class="highlight-box">
+                    <strong>Шаг 5.</strong> Признание боли<br>
+                    «Звучит exhausting. Представьте, что через месяц ничего не изменится...»
+                </div>
+                <div class="highlight-box">
+                    <strong>Шаг 6.</strong> Предложение диагностики<br>
+                    «У меня есть диагностика на 15-20 минут. Стоит [сумма]. Назначим?»
+                </div>
+                <div class="highlight-box">
+                    <strong>Шаг 7.</strong> Апсейл<br>
+                    «После диагностики многие выбирают полную работу. Но сначала давайте проведём её.»
+                </div>
+            `,
+            'Готовая_таблица_для_бота.xlsx': `
+                <h2 class="pdf-viewer-title">📊 Готовая_таблица_для_бота.xlsx</h2>
+                <p style="margin-bottom:16px;">Шаблон для Typebot / Make. Скопируй в Google Sheets.</p>
+                <div style="overflow-x:auto">
+                    <table class="pdf-table">
+                        <thead><tr><th>Сообщение бота</th><th>Варианты ответа</th><th>Следующий шаг</th></tr></thead>
+                        <tbody>
+                            <tr><td>Привет! Я помогу с [тема]. Какая у тебя боль?</td><td>(свободный ввод)</td><td>→ шаг 2</td></tr>
+                            <tr><td>На шкале от 1 до 10, насколько это мешает?</td><td>1-10</td><td>→ шаг 3 (если &lt;5 → прощание, если &gt;5 → распаковка)</td></tr>
+                            <tr><td>Расскажи подробнее...</td><td>(свободный ввод)</td><td>→ предложение диагностики</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top:16px; font-size:14px; color:var(--text-light);">Для Typebot импортируй этот лист как «база знаний».</p>
+            `,
+            'CRM_инструкция.pdf': `
+                <h2 class="pdf-viewer-title">📄 CRM_инструкция.pdf</h2>
+                <p style="margin-bottom:16px;">Как за 2 минуты настроить CRM в Telegram</p>
+                <h4 style="margin-top:20px;">Для ManyChat:</h4>
+                <ol>
+                    <li>Зайди в «Лид-формы» → «Уведомления»</li>
+                    <li>Добавь вебхук: https://api.telegram.org/bot&lt;ТОКЕН&gt;/sendMessage</li>
+                    <li>chat_id = твой Telegram ID (узнать у @userinfobot)</li>
+                </ol>
+                <h4 style="margin-top:20px;">Для Typebot:</h4>
+                <ol>
+                    <li>«Настройки бота» → «Webhooks»</li>
+                    <li>URL: https://api.telegram.org/bot&lt;ТОКЕН&gt;/sendMessage?chat_id=&lt;ID&gt;&amp;text=Новый лид:{{state}}</li>
+                </ol>
+                <div class="highlight-box">
+                    <strong>Проверка:</strong> напиши боту любое сообщение – оно должно прийти в твой Telegram.
+                </div>
+            `,
+            'Контакты_шаблон.xlsx': `
+                <h2 class="pdf-viewer-title">📊 Контакты_шаблон.xlsx</h2>
+                <p style="margin-bottom:16px;">Таблица для ручной CRM</p>
+                <div style="overflow-x:auto">
+                    <table class="pdf-table">
+                        <thead><tr><th>Дата</th><th>Имя</th><th>Контакт</th><th>Откуда</th><th>Боль</th><th>Статус</th><th>След. касание</th></tr></thead>
+                        <tbody>
+                            <tr><td>10.05</td><td>Анна</td><td>@anna_psy</td><td>Бот в канале</td><td>Тревога</td><td>Тёплый</td><td>13.05</td></tr>
+                            <tr><td>11.05</td><td>Михаил</td><td>+7XXX</td><td>Реклама</td><td>Нет клиентов</td><td>Диагностика</td><td>12.05</td></tr>
+                            <tr><td>12.05</td><td>Ольга</td><td>@olga_coach</td><td>Реферал</td><td>Страх выступлений</td><td>Холодный</td><td>15.05</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top:16px; font-size:14px;">Статусы: холодный, тёплый, назначена диагностика, клиент, отказ, не дозвонился.</p>
+                <p style="margin-top:8px; font-size:14px;"><strong>Правило:</strong> раз в 3 дня проходи по строке «тёплый» и пиши.</p>
+            `,
+            '5_фишек_AI_агента.pdf': `
+                <h2 class="pdf-viewer-title">📄 5_фишек_AI_агента.pdf</h2>
+                <p style="margin-bottom:16px;">Сравнение обычного бота и AI-агента</p>
+                <div style="overflow-x:auto">
+                    <table class="pdf-table">
+                        <thead><tr><th>Обычный бот</th><th>AI-агент AIRA</th></tr></thead>
+                        <tbody>
+                            <tr><td>Работает только по жёсткому скрипту</td><td>Понимает свободную речь</td></tr>
+                            <tr><td>Не запоминает контекст</td><td>Помнит всю историю диалога</td></tr>
+                            <tr><td>Только текст и кнопки</td><td>Голосовые, видео, опросы, файлы</td></tr>
+                            <tr><td>Ты настраиваешь каждую ветку</td><td>Обучается на твоей базе знаний</td></tr>
+                            <tr><td>Бесплатные версии ограничены</td><td>Полная CRM, сайт, интеграции</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="gold-box" style="margin-top:16px;">
+                    <strong>Результат:</strong> AI-агент закрывает в 3-5 раз больше лидов, чем обычный бот-меню.
+                </div>
+            `
+        };
+
+        return contents[file.name] || `<h2 class="pdf-viewer-title">${file.name}</h2><p>Содержимое файла будет доступно здесь.</p>`;
+    }
+
+    // ==================== HOMEWORK ====================
+    function initHomework() {
+        const db = getDB();
+        const user = db.currentUser;
+        if (!user) return;
+
+        const progress = getUserProgress(user.username);
+        if (!progress.homework) progress.homework = {};
+
+        const container = document.getElementById('homeworkContainer');
+        container.innerHTML = homeworkData.map(hw => {
+            if (hw.isDraft) {
                 return `
                     <div class="hw-section">
                         <div class="hw-title">📝 ${hw.title}</div>
-                        ${hw.tasks.map(task => {
-                            const saved = progress.homework[task.id] || {};
-                            const rating = saved.rating || 0;
-                            const text = saved.text || '';
-                            return `
-                                <div class="hw-item">
-                                    <div class="hw-item-header">
-                                        <div class="hw-item-title">${task.text}</div>
-                                        <div class="hw-rating">
-                                            <button class="hw-btn plus ${rating === 1 ? 'active' : ''}" onclick="setHWRating('${task.id}', 1)">+</button>
-                                            <button class="hw-btn minus ${rating === -1 ? 'active' : ''}" onclick="setHWRating('${task.id}', -1)">−</button>
-                                        </div>
-                                    </div>
-                                    <textarea class="hw-textarea" placeholder="Заметки, ответ, результат..." onblur="saveHWText('${task.id}', this.value)">${text}</textarea>
-                                    <div class="hw-score ${rating > 0 ? 'positive' : rating < 0 ? 'negative' : ''}" id="hw-score-${task.id}">
-                                        ${rating === 1 ? '✅ Выполнено' : rating === -1 ? '❌ Не выполнено' : '⏳ Ожидает'}
-                                    </div>
-                                </div>
-                            `;
-                        }).join('')}
+                        <p class="hw-subtitle">Таблица-черновик для тренировки. Записывай свои ответы, возражения и идеи прямо в ячейки. Данные сохраняются автоматически.</p>
+                        <div class="draft-table-container">
+                            <table class="draft-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:30px;">№</th>
+                                        ${hw.columns.map(col => `<th>${col}</th>`).join('')}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${Array.from({ length: hw.rows }, (_, i) => `
+                                        <tr>
+                                            <td class="draft-row-num">${i + 1}</td>
+                                            ${hw.columns.map((_, j) => {
+                                                const cellKey = `hw1_r${i}_c${j}`;
+                                                const saved = progress.homework[cellKey] || '';
+                                                return `<td><textarea class="draft-cell" placeholder="Напиши здесь..." onblur="saveHWCell('${cellKey}', this.value)">${saved}</textarea></td>`;
+                                            }).join('')}
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-actions">
+                            <button class="btn btn-outline btn-sm" onclick="clearDraftTable()">🗑 Очистить таблицу</button>
+                            <span style="font-size:13px; color:var(--text-light); align-self:center;">Данные сохраняются автоматически при вводе</span>
+                        </div>
                     </div>
                 `;
-            }).join('');
-        }
-
-        function setHWRating(taskId, rating) {
-            const db = getDB();
-            const user = db.currentUser;
-            if (!user) return;
-
-            const progress = getUserProgress(user.username);
-            if (!progress.homework) progress.homework = {};
-            if (!progress.homework[taskId]) progress.homework[taskId] = {};
-
-            progress.homework[taskId].rating = rating;
-            setUserProgress(user.username, progress);
-
-            // Update UI
-            const scoreEl = document.getElementById(`hw-score-${taskId}`);
-            if (scoreEl) {
-                scoreEl.className = `hw-score ${rating > 0 ? 'positive' : rating < 0 ? 'negative' : ''}`;
-                scoreEl.textContent = rating === 1 ? '✅ Выполнено' : rating === -1 ? '❌ Не выполнено' : '⏳ Ожидает';
             }
 
-            // Update buttons
-            const item = scoreEl.closest('.hw-item');
-            if (item) {
-                item.querySelector('.hw-btn.plus').classList.toggle('active', rating === 1);
-                item.querySelector('.hw-btn.minus').classList.toggle('active', rating === -1);
-            }
-        }
-
-        function saveHWText(taskId, text) {
-            const db = getDB();
-            const user = db.currentUser;
-            if (!user) return;
-
-            const progress = getUserProgress(user.username);
-            if (!progress.homework) progress.homework = {};
-            if (!progress.homework[taskId]) progress.homework[taskId] = {};
-
-            progress.homework[taskId].text = text;
-            setUserProgress(user.username, progress);
-            showToast('Сохранено ✅');
-        }
-
-        // ==================== BOT ====================
-        function sendBotMessage() {
-            const input = document.getElementById('botInput');
-            const text = input.value.trim();
-            if (!text) return;
-
-            const db = getDB();
-            const user = db.currentUser;
-            const progress = user ? getUserProgress(user.username) : {};
-            
-            // Check dialog limit
-            const today = new Date().toDateString();
-            if (!progress.botLastReset || progress.botLastReset !== today) {
-                progress.botDialogs = 0;
-                progress.botLastReset = today;
-            }
-
-            if (progress.botDialogs >= 10) {
-                showToast('Лимит диалогов на сегодня исчерпан (10/10)');
-                return;
-            }
-
-            progress.botDialogs++;
-            if (user) setUserProgress(user.username, progress);
-
-            document.getElementById('botCounter').textContent = 10 - progress.botDialogs;
-
-            const messages = document.getElementById('botMessages');
-            
-            // Add user message
-            const userMsg = document.createElement('div');
-            userMsg.className = 'bot-msg user';
-            userMsg.textContent = text;
-            messages.appendChild(userMsg);
-
-            input.value = '';
-
-            // Show typing
-            const typing = document.createElement('div');
-            typing.className = 'bot-typing';
-            typing.innerHTML = '<span></span><span></span><span></span>';
-            messages.appendChild(typing);
-            messages.scrollTop = messages.scrollHeight;
-
-            // Bot response
-            setTimeout(() => {
-                typing.remove();
-                
-                const lowerText = text.toLowerCase();
-                let response = 'Интересный вопрос! Давайте разберёмся вместе. Для получения полной консультации оставьте заявку в разделе «Что дальше?» курса. 🎯';
-                
-                for (const [key, val] of Object.entries(botResponses)) {
-                    if (lowerText.includes(key)) {
-                        response = val;
-                        break;
-                    }
-                }
-
-                const botMsg = document.createElement('div');
-                botMsg.className = 'bot-msg bot';
-                botMsg.innerHTML = response.replace(/\n/g, '<br>');
-                messages.appendChild(botMsg);
-                messages.scrollTop = messages.scrollHeight;
-            }, 1200);
-        }
-
-        function botReply(text) {
-            document.getElementById('botInput').value = text;
-            sendBotMessage();
-        }
-
-        // ==================== APPLICATION ====================
-        function submitApplication() {
-            const name = document.getElementById('appName').value.trim();
-            const telegram = document.getElementById('appTelegram').value.trim();
-            const phone = document.getElementById('appPhone').value.trim();
-            const niche = document.getElementById('appNiche').value;
-            const message = document.getElementById('appMessage').value.trim();
-
-            if (!name || !telegram) {
-                showToast('Заполните имя и Telegram');
-                return;
-            }
-
-            const db = getDB();
-            if (!db.applications) db.applications = [];
-            db.applications.push({
-                name, telegram, phone, niche, message,
-                date: new Date().toISOString(),
-                fromUser: db.currentUser ? db.currentUser.username : 'unknown'
-            });
-            saveDB(db);
-
-            document.getElementById('appFormContent').style.display = 'none';
-            document.getElementById('appFormSuccess').style.display = 'block';
-            showToast('Заявка отправлена! ✅');
-        }
-
-        // ==================== MODAL ====================
-        function showModal(content) {
-            document.getElementById('modalContent').innerHTML = `
-                <button class="modal-close" onclick="closeModal()">✕</button>
-                ${content}
+            return `
+                <div class="hw-section">
+                    <div class="hw-title">📝 ${hw.title}</div>
+                    ${hw.tasks.map(task => {
+                        const saved = progress.homework[task.id] || {};
+                        const rating = saved.rating || 0;
+                        const text = saved.text || '';
+                        return `
+                            <div class="hw-item">
+                                <div class="hw-item-header">
+                                    <div class="hw-item-title">${task.text}</div>
+                                    <div class="hw-rating">
+                                        <button class="hw-btn plus ${rating === 1 ? 'active' : ''}" onclick="setHWRating('${task.id}', 1)">+</button>
+                                        <button class="hw-btn minus ${rating === -1 ? 'active' : ''}" onclick="setHWRating('${task.id}', -1)">−</button>
+                                    </div>
+                                </div>
+                                <textarea class="hw-textarea" placeholder="Заметки, ответ, результат..." onblur="saveHWText('${task.id}', this.value)">${text}</textarea>
+                                <div class="hw-score ${rating > 0 ? 'positive' : rating < 0 ? 'negative' : 'neutral'}" id="hw-score-${task.id}">
+                                    ${rating === 1 ? '✅ Выполнено' : rating === -1 ? '❌ Не выполнено' : '⏳ Ожидает'}
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
             `;
-            document.getElementById('modalOverlay').classList.add('active');
+        }).join('');
+    }
+
+    function saveHWCell(key, val) {
+        const db = getDB();
+        const user = db.currentUser;
+        if (!user) return;
+
+        const progress = getUserProgress(user.username);
+        if (!progress.homework) progress.homework = {};
+
+        progress.homework[key] = val;
+        setUserProgress(user.username, progress);
+    }
+
+    function clearDraftTable() {
+        if (!confirm('Очистить все записи в таблице-черновике?')) return;
+        const db = getDB();
+        const user = db.currentUser;
+        if (!user) return;
+
+        const progress = getUserProgress(user.username);
+        if (progress.homework) {
+            Object.keys(progress.homework).forEach(k => {
+                if (k.startsWith('hw1_r')) delete progress.homework[k];
+            });
+        }
+        saveDB(db);
+        initHomework();
+        showToast('Таблица очищена');
+    }
+
+    function setHWRating(taskId, rating) {
+        const db = getDB();
+        const user = db.currentUser;
+        if (!user) return;
+
+        const progress = getUserProgress(user.username);
+        if (!progress.homework) progress.homework = {};
+        if (!progress.homework[taskId]) progress.homework[taskId] = {};
+
+        progress.homework[taskId].rating = rating;
+        setUserProgress(user.username, progress);
+
+        const scoreEl = document.getElementById(`hw-score-${taskId}`);
+        if (scoreEl) {
+            scoreEl.className = `hw-score ${rating > 0 ? 'positive' : rating < 0 ? 'negative' : 'neutral'}`;
+            scoreEl.textContent = rating === 1 ? '✅ Выполнено' : rating === -1 ? '❌ Не выполнено' : '⏳ Ожидает';
         }
 
-        function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('active');
+        const item = scoreEl ? scoreEl.closest('.hw-item') : null;
+        if (item) {
+            item.querySelector('.hw-btn.plus').classList.toggle('active', rating === 1);
+            item.querySelector('.hw-btn.minus').classList.toggle('active', rating === -1);
+        }
+    }
+
+    function saveHWText(taskId, text) {
+        const db = getDB();
+        const user = db.currentUser;
+        if (!user) return;
+
+        const progress = getUserProgress(user.username);
+        if (!progress.homework) progress.homework = {};
+        if (!progress.homework[taskId]) progress.homework[taskId] = {};
+
+        progress.homework[taskId].text = text;
+        setUserProgress(user.username, progress);
+        showToast('Сохранено ✅');
+    }
+
+    // ==================== APPLICATION ====================
+    let selectedContact = 'tg';
+
+    function selectContact(type, el) {
+        selectedContact = type;
+        document.querySelectorAll('.contact-option').forEach(o => o.classList.remove('active'));
+        el.classList.add('active');
+        document.getElementById('tgField').style.display = type === 'tg' ? 'block' : 'none';
+        document.getElementById('vkField').style.display = type === 'vk' ? 'block' : 'none';
+    }
+
+    async function submitApplication() {
+        const name = document.getElementById('appName').value.trim();
+        const tg = document.getElementById('appTelegram').value.trim();
+        const vk = document.getElementById('appVK').value.trim();
+        const phone = document.getElementById('appPhone').value.trim();
+        const niche = document.getElementById('appNiche').value;
+        const msg = document.getElementById('appMessage').value.trim();
+        const privacy = document.getElementById('privacyCheck').checked;
+
+        if (!name) {
+            showToast('Укажите ваше имя');
+            return;
         }
 
-        // ==================== TOAST ====================
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastMessage').textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
+        if (selectedContact === 'tg' && !tg) {
+            showToast('Укажите Telegram');
+            return;
         }
 
-        // ==================== CHERRY PARTICLES ====================
-        function createCherryParticles() {
-            const container = document.getElementById('cherryParticles');
-            const emojis = ['🍒', '🌸', '✨'];
-            
-            for (let i = 0; i < 8; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'cherry-particle';
-                particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.animationDuration = (15 + Math.random() * 20) + 's';
-                particle.style.animationDelay = (Math.random() * 15) + 's';
-                particle.style.fontSize = (16 + Math.random() * 16) + 'px';
-                container.appendChild(particle);
-            }
+        if (selectedContact === 'vk' && !vk) {
+            showToast('Укажите ВКонтакте');
+            return;
         }
 
-        // ==================== INIT ====================
-        document.addEventListener('DOMContentLoaded', () => {
-            createCherryParticles();
+        if (!privacy) {
+            showToast('Примите политику конфиденциальности');
+            return;
+        }
 
-            // Check if user is logged in
-            const db = getDB();
-            if (db.currentUser) {
-                if (db.currentUser.isAdmin) {
-                    document.getElementById('adminBtn').style.display = 'inline-flex';
-                    document.getElementById('botBtn').style.display = 'inline-flex';
-                    showPage('page-dashboard');
-                } else {
-                    const progress = getUserProgress(db.currentUser.username);
-                    if (progress.completed && progress.completed.length >= 3) {
-                        document.getElementById('botBtn').style.display = 'inline-flex';
+        const contact = selectedContact === 'tg' ? tg : vk;
+        const contactLabel = selectedContact === 'tg' ? 'Telegram' : 'VK';
+
+        // Save to admin panel
+        const db = getDB();
+        if (!db.applications) db.applications = [];
+        db.applications.push({
+            name,
+            contact,
+            contactType: contactLabel,
+            phone,
+            niche,
+            message: msg,
+            date: new Date().toISOString(),
+            fromUser: db.currentUser ? db.currentUser.username : 'unknown'
+        });
+        saveDB(db);
+
+        // Send to Telegram
+        const text = `📝 *Новая заявка с курса AI TRIGGER*\n\n👤 Имя: ${name}\n📱 ${contactLabel}: ${contact}${phone ? `\n📞 Телефон: ${phone}` : ''}${niche ? `\n💼 Ниша: ${niche}` : ''}${msg ? `\n💬 Сообщение: ${msg}` : ''}`;
+
+        try {
+            await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TG_CHAT_ID,
+                    text: text,
+                    parse_mode: 'Markdown'
+                })
+            });
+        } catch (e) {
+            console.log('Telegram send error:', e);
+        }
+
+        document.getElementById('appFormContent').style.display = 'none';
+        document.getElementById('appFormSuccess').style.display = 'block';
+        showToast('Заявка отправлена! ✅');
+    }
+
+    function showPrivacyModal() {
+        showModal(`
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <h2 class="modal-title">📋 Политика конфиденциальности</h2>
+            <div style="font-size:14px; color:var(--text-light); line-height:1.7;">
+                <p><strong>1. Общие положения</strong></p>
+                <p>Настоящая политика конфиденциальности определяет порядок обработки персональных данных пользователей курса «Новые Горизонты Инфобизнеса».</p>
+                <p><strong>2. Собираемые данные</strong></p>
+                <p>Мы собираем: имя, контакт (Telegram или ВКонтакте), телефон (по желанию), нишу деятельности и сообщение.</p>
+                <p><strong>3. Цели обработки</strong></p>
+                <p>Данные используются исключительно для связи по вашей заявке на «Систему под ключ».</p>
+                <p><strong>4. Хранение данных</strong></p>
+                <p>Данные хранятся в защищённом виде и не передаются третьим лицам.</p>
+                <p><strong>5. Согласие</strong></p>
+                <p>Отправляя заявку, вы даёте согласие на обработку персональных данных.</p>
+                <p style="margin-top:16px;"><strong>Кристина — Академия «Новые Горизонты Инфобизнеса»</strong></p>
+            </div>
+        `);
+    }
+
+    // ==================== BOT AIRA ====================
+    function findBestAnswer(input) {
+        const lower = input.toLowerCase().trim();
+        const cleaned = lower.replace(/[?!,.]/g, '');
+        
+        let bestMatch = null;
+        let bestScore = 0;
+
+        for (const item of AIRA_KB) {
+            for (const q of item.q) {
+                const ql = q.toLowerCase();
+                
+                // Exact match
+                if (cleaned === ql) {
+                    return { ...item, score: 100 };
+                }
+                
+                // Contains match
+                if (cleaned.includes(ql) || ql.includes(cleaned)) {
+                    const score = ql.length / cleaned.length + (cleaned.includes(ql) ? 0.5 : 0);
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestMatch = item;
                     }
-                    showPage('page-dashboard');
+                }
+                
+                // Word overlap
+                const words = cleaned.split(' ').filter(w => w.length > 2);
+                const qWords = ql.split(' ').filter(w => w.length > 2);
+                let overlap = 0;
+                for (const w of words) {
+                    for (const qw of qWords) {
+                        if (w.includes(qw) || qw.includes(w)) overlap++;
+                    }
+                }
+                const wordScore = overlap / Math.max(words.length, qWords.length);
+                if (wordScore > bestScore && wordScore >= 0.4) {
+                    bestScore = wordScore;
+                    bestMatch = item;
                 }
             }
+        }
 
-            // Close modal on overlay click
-            document.getElementById('modalOverlay').addEventListener('click', (e) => {
-                if (e.target === e.currentTarget) closeModal();
-            });
+        if (bestMatch && bestScore >= 0.3) {
+            return { ...bestMatch, score: bestScore };
+        }
+
+        return null;
+    }
+
+    async function getAIResponse(input) {
+        // First check knowledge base
+        const kb = findBestAnswer(input);
+        if (kb) return kb;
+
+        // Try Cloudflare AI if configured
+        if (CF_ACCOUNT_ID && CF_API_TOKEN) {
+            try {
+                const systemPrompt = `Ты AIRA — AI-агент Кристины, техно-маркетолога и коуча. Ты помогаешь коучам, психологам и наставникам автоматизировать продажи через Telegram.
+
+КРИСТИНА: Fullstack-разработчик, архитектор автономных систем продаж, коуч по проработке страхов продаж. Основательница Академии "Новые Горизонты Инфобизнеса". Сайт: https://chatbotsmarketolog-dotcom.github.io/ Telegram: @marketologdizayner
+
+СИСТЕМА ПОД КЛЮЧ за 250 000 ₽ включает:
+- Сайт на чистом коде (загрузка 0.3 сек)
+- AI-агент AIRA 24/7 без лимитов
+- CRM-панель в Telegram
+- Интеграции с платёжками
+- Настройка за 14 дней
+- Бонус: 5 сессий проработки страхов продаж
+
+Отвечай кратко, по делу, дружелюбно. Используй эмодзи. Если не знаешь — предложи оставить заявку.`;
+
+                const resp = await fetch(`https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/ai/run/@cf/meta/llama-3-8b-instruct`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${CF_API_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        messages: [
+                            { role: 'system', content: systemPrompt },
+                            { role: 'user', content: input }
+                        ],
+                        max_tokens: 500
+                    })
+                });
+                const data = await resp.json();
+                if (data.result && data.result.response) {
+                    return {
+                        text: data.result.response,
+                        quick: ['Оставить заявку', 'Сколько стоит?', 'О Кристине']
+                    };
+                }
+            } catch (e) {
+                console.log('CF AI error:', e);
+            }
+        }
+
+        return null;
+    }
+
+    function sendBotMessage() {
+        const input = document.getElementById('botInput');
+        const text = input.value.trim();
+        if (!text) return;
+
+        const db = getDB();
+        const user = db.currentUser;
+        const progress = user ? getUserProgress(user.username) : {};
+
+        // Check dialog limit
+        const today = new Date().toDateString();
+        if (!progress.botLastReset || progress.botLastReset !== today) {
+            progress.botDialogs = 0;
+            progress.botLastReset = today;
+        }
+
+        if (progress.botDialogs >= 10) {
+            showToast('Лимит диалогов на сегодня исчерпан (10/10)');
+            return;
+        }
+
+        progress.botDialogs++;
+        if (user) setUserProgress(user.username, progress);
+
+        document.getElementById('botCounter').textContent = 10 - progress.botDialogs;
+
+        const messages = document.getElementById('botMessages');
+
+        // Add user message
+        const userMsg = document.createElement('div');
+        userMsg.className = 'bot-msg user';
+        userMsg.textContent = text;
+        messages.appendChild(userMsg);
+
+        input.value = '';
+
+        // Show typing
+        const typing = document.createElement('div');
+        typing.className = 'bot-typing';
+        typing.innerHTML = '<span></span><span></span><span></span>';
+        messages.appendChild(typing);
+        messages.scrollTop = messages.scrollHeight;
+
+        // Bot response
+        setTimeout(async () => {
+            typing.remove();
+
+            const result = await getAIResponse(text);
+            const botMsg = document.createElement('div');
+            botMsg.className = 'bot-msg bot';
+
+            if (result) {
+                const responseText = result.text || result.a;
+                botMsg.innerHTML = responseText.replace(/\n/g, '<br>');
+
+                if (result.quick) {
+                    botMsg.innerHTML += `<div class="bot-quick-replies">${result.quick.map(q => `<button class="bot-quick-reply" onclick="botReply('${q}')">${q}</button>`).join('')}</div>`;
+                }
+            } else {
+                botMsg.innerHTML = 'Интересный вопрос! 🤔 Для детальной консультации оставьте заявку — Кристина разберёт вашу ситуацию лично.<div class="bot-quick-replies"><button class="bot-quick-reply" onclick="botReply(\'Оставить заявку\')">Оставить заявку</button><button class="bot-quick-reply" onclick="botReply(\'Сколько стоит?\')">Сколько стоит?</button><button class="bot-quick-reply" onclick="botReply(\'О Кристине\')">О Кристине</button></div>';
+            }
+
+            messages.appendChild(botMsg);
+            messages.scrollTop = messages.scrollHeight;
+        }, 800);
+    }
+
+    function botReply(text) {
+        document.getElementById('botInput').value = text;
+        sendBotMessage();
+    }
+
+    // ==================== MODAL ====================
+    function showModal(content) {
+        document.getElementById('modalContent').innerHTML = `
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            ${content}
+        `;
+        document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    function closeModal() {
+        document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    // ==================== TOAST ====================
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toastMessage').textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // ==================== CHERRY PARTICLES ====================
+    function createCherryParticles() {
+        const container = document.getElementById('cherryParticles');
+        const emojis = ['🍒', '🌸', '✨'];
+        
+        for (let i = 0; i < 8; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'cherry-particle';
+            particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = (15 + Math.random() * 20) + 's';
+            particle.style.animationDelay = (Math.random() * 15) + 's';
+            particle.style.fontSize = (16 + Math.random() * 16) + 'px';
+            container.appendChild(particle);
+        }
+    }
+
+    // ==================== INIT ====================
+    document.addEventListener('DOMContentLoaded', () => {
+        createCherryParticles();
+
+        const db = getDB();
+        if (db.currentUser) {
+            if (db.currentUser.isAdmin) {
+                document.getElementById('adminBtn').style.display = 'inline-flex';
+                document.getElementById('botBtn').style.display = 'inline-flex';
+                showPage('page-dashboard');
+            } else {
+                const progress = getUserProgress(db.currentUser.username);
+                if (progress.completed && progress.completed.length >= 3) {
+                    document.getElementById('botBtn').style.display = 'inline-flex';
+                }
+                showPage('page-dashboard');
+            }
+        }
+
+        // Close modal on overlay click
+        document.getElementById('modalOverlay').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal();
         });
+    });
     </script>
 </body>
 </html>
+
