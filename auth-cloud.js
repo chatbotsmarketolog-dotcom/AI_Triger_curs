@@ -2,7 +2,7 @@
 // Подменяет логин и регистрацию на облачные, не трогая index.html
 (function() {
     // 🔑 ВСТАВЬ СЮДА URL СВОЕГО WORKER
-    const WORKER_URL = 'https://course-api.твой-ник.workers.dev';
+    const WORKER_URL = 'https://course-auth.chatbotsmarketolog.workers.dev';
     const ADMIN_SECRET = 'super-secret-kristina'; // Тот же, что в воркере
 
     // Ждём полной загрузки страницы
