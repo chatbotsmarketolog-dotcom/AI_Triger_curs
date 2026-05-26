@@ -293,6 +293,23 @@
             border-color: var(--gold);
         }
 
+        /* Cloud Status Indicator */
+        .cloud-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-light);
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50px;
+        }
+        .cloud-status.connected { color: #2D8B4E; }
+        .cloud-status.disconnected { color: #C41E3A; }
+        .cloud-dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; display: inline-block; }
+        .cloud-status.connected .cloud-dot { background: #2D8B4E; }
+        .cloud-status.disconnected .cloud-dot { background: #C41E3A; }
+
         .admin-content {
             padding: 32px 24px;
             max-width: 1200px;
@@ -524,6 +541,26 @@
             background: var(--gold);
             color: var(--cherry-dark);
         }
+
+        /* Sync button styles */
+        .btn-sync {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--cherry);
+            background: transparent;
+            color: var(--cherry);
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .btn-sync:hover { background: var(--cherry); color: white; }
+        .btn-sync.synced { border-color: #2D8B4E; color: #2D8B4E; }
+        .btn-sync.synced:hover { background: #2D8B4E; color: white; }
 
         .app-item {
             padding: 16px;
@@ -795,6 +832,11 @@
                     <div style="font-size:11px; opacity:0.7;">Новые Горизонты</div>
                 </div>
             </div>
+            <!-- Cloud Status Indicator -->
+            <div id="cloudStatus" class="cloud-status">
+                <span class="cloud-dot"></span>
+                <span>Проверка подключения...</span>
+            </div>
             <div class="admin-nav">
                 <button id="tab-students" class="active" onclick="switchTab('students')">👥 Ученики</button>
                 <button id="tab-apps" onclick="switchTab('apps')">📝 Заявки</button>
@@ -825,6 +867,10 @@
                         </div>
                         <button class="btn btn-primary" onclick="registerStudent()">Создать аккаунт</button>
                     </div>
+                    <!-- Sync All Button -->
+                    <button class="btn btn-outline" onclick="syncAllToCloud()" style="margin-top:12px; width:100%;">
+                        ☁️ Синхронизировать всех учеников с облаком
+                    </button>
                 </div>
 
                 <div class="admin-card">
@@ -880,9 +926,13 @@
     </div>
 
     <script>
+        // ==================== CONFIG ====================
         const ADMIN_LOGIN = 'admin';
         const ADMIN_PASS = 'zaqqaz';
+        const WORKER_URL = 'https://aira-bot.chatbotsmarketolog.workers.dev'; // ✅ ТВОЙ РЕАЛЬНЫЙ URL
+        const ADMIN_SECRET = 'super-secret-kristina'; // 🔥 ДОЛЖЕН СОВПАДАТЬ С ТЕМ, ЧТО В WORKER
 
+        // ==================== DB HELPERS ====================
         function getDB() {
             const db = localStorage.getItem('courseDB');
             return db ? JSON.parse(db) : { students: {}, applications: [] };
@@ -892,6 +942,7 @@
             localStorage.setItem('courseDB', JSON.stringify(db));
         }
 
+        // ==================== UI HELPERS ====================
         function showToast(msg) {
             const t = document.getElementById('toast');
             document.getElementById('toastMessage').textContent = msg;
@@ -918,6 +969,7 @@
                 sessionStorage.setItem('adminAuth', 'true');
                 showPage('page-dashboard');
                 initDashboard();
+                checkCloudConnection(); // ✅ Проверка облака при входе
                 showToast('Добро пожаловать, Кристина! 👑');
             } else {
                 err.style.display = 'block';
@@ -940,7 +992,91 @@
             if (tab === 'stats') initStats();
         }
 
-        function registerStudent() {
+        // ==================== CLOUD SYNC FUNCTIONS ====================
+        
+        async function checkCloudConnection() {
+            const statusEl = document.getElementById('cloudStatus');
+            try {
+                const res = await fetch(WORKER_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'ping' })
+                });
+                if (res.ok) {
+                    statusEl.className = 'cloud-status connected';
+                    statusEl.innerHTML = '<span class="cloud-dot"></span><span>☁️ Облако подключено</span>';
+                    return true;
+                }
+            } catch (e) {}
+            statusEl.className = 'cloud-status disconnected';
+            statusEl.innerHTML = '<span class="cloud-dot"></span><span>💻 Локальное хранилище</span>';
+            return false;
+        }
+
+        async function syncStudentToCloud(name, password) {
+            try {
+                const res = await fetch(WORKER_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        action: 'register', 
+                        username: name, 
+                        password: password, 
+                        adminSecret: ADMIN_SECRET 
+                    })
+                });
+                return await res.json();
+            } catch (e) {
+                return { success: false, error: e.message };
+            }
+        }
+
+        async function syncAllToCloud() {
+            const db = getDB();
+            const students = Object.entries(db.students);
+            if (students.length === 0) {
+                showToast('Нет учеников для синхронизации');
+                return;
+            }
+            
+            showToast(`Синхронизация ${students.length} учеников...`);
+            let success = 0, failed = 0;
+            
+            for (const [name, data] of students) {
+                const result = await syncStudentToCloud(name, data.password);
+                if (result.success) {
+                    // Обновляем статус синхронизации в локальной базе
+                    db.students[name].syncedToCloud = true;
+                    success++;
+                } else {
+                    failed++;
+                }
+            }
+            saveDB(db);
+            showToast(`✅ Синхронизация: ${success} успешно, ${failed} ошибок`);
+            initDashboard(); // Перерисовать таблицу с новыми статусами
+        }
+
+        async function syncStudent(name) {
+            const db = getDB();
+            const student = db.students[name];
+            if (!student) return;
+            
+            showToast(`Синхронизация ${name}...`);
+            const result = await syncStudentToCloud(name, student.password);
+            
+            if (result.success) {
+                student.syncedToCloud = true;
+                saveDB(db);
+                showToast(`✅ ${name} синхронизирован`);
+            } else {
+                showToast(`❌ Ошибка: ${result.error || 'Не удалось'}`);
+            }
+            initDashboard();
+        }
+
+        // ==================== STUDENT MANAGEMENT ====================
+        async function registerStudent() {
             const name = document.getElementById('newStudentName').value.trim();
             const pass = document.getElementById('newStudentPass').value.trim();
 
@@ -955,18 +1091,31 @@
                 return;
             }
 
+            // 1. Сохраняем локально (как раньше)
             db.students[name] = {
                 password: pass,
                 createdAt: new Date().toISOString(),
-                progress: { completed: [], checklists: {}, homework: {}, botDialogs: 0, botLastReset: null }
+                progress: { completed: [], checklists: {}, homework: {}, botDialogs: 0, botLastReset: null },
+                syncedToCloud: false // По умолчанию не синхронизирован
             };
             saveDB(db);
+
+            // 2. Пытаемся отправить в облако
+            const cloudResult = await syncStudentToCloud(name, pass);
+            if (cloudResult.success) {
+                db.students[name].syncedToCloud = true;
+                saveDB(db);
+                showToast('✅ Создано и синхронизировано с облаком!');
+            } else {
+                showToast('⚠️ Создано локально (облако недоступно)');
+            }
 
             document.getElementById('newStudentName').value = '';
             document.getElementById('newStudentPass').value = '';
 
             // Show credentials modal
             showModal(`
+                <button class="modal-close" onclick="closeModal()">✕</button>
                 <h2 class="modal-title">✅ Аккаунт создан!</h2>
                 <p class="modal-text">Передай эти данные ученику:</p>
                 <div class="modal-creds">
@@ -1037,6 +1186,7 @@
                                     <th>Дата регистрации</th>
                                     <th>Прогресс</th>
                                     <th>Статус</th>
+                                    <th>Облако</th>
                                     <th>Действия</th>
                                 </tr>
                             </thead>
@@ -1050,6 +1200,7 @@
                                     const date = new Date(data.createdAt).toLocaleDateString('ru-RU');
                                     const status = moduleProgress === 0 ? 'new' : moduleProgress < totalModules ? 'active' : 'done';
                                     const statusText = status === 'new' ? 'Новый' : status === 'active' ? 'Учится' : 'Завершил';
+                                    const synced = data.syncedToCloud; // ✅ Статус синхронизации
 
                                     return `
                                         <tr>
@@ -1073,6 +1224,14 @@
                                             </td>
                                             <td>
                                                 <span class="badge badge-${status}">${status === 'new' ? '🆕' : status === 'active' ? '📚' : '🎉'} ${statusText}</span>
+                                            </td>
+                                            <td>
+                                                <!-- Кнопка синхронизации для каждого ученика -->
+                                                <button class="btn-sync ${synced ? 'synced' : ''}" 
+                                                        onclick="syncStudent('${name}')" 
+                                                        title="${synced ? 'Синхронизировано' : 'Нажать для синхронизации'}">
+                                                    ${synced ? '☁️' : '💻'}
+                                                </button>
                                             </td>
                                             <td>
                                                 <div style="display:flex; gap:6px;">
@@ -1242,6 +1401,7 @@
             if (sessionStorage.getItem('adminAuth') === 'true') {
                 showPage('page-dashboard');
                 initDashboard();
+                checkCloudConnection();
             }
 
             document.getElementById('modalOverlay').addEventListener('click', (e) => {
@@ -1251,4 +1411,3 @@
     </script>
 </body>
 </html>
-
