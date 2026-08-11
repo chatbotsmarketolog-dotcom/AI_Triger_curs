@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Новые Горизонты Инфобизнеса — Академия Кристины</title>
     <style>
-        @import url('https://cdn.fontsource.com/fonts/inter.css');
+        @import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/400.css');
+        @import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/600.css');
+        @import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/700.css');
+        @import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/800.css');
+        @import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/900.css');
         :root {
             --cherry: #C41E3A; --cherry-light: #E8435D; --cherry-dark: #8B1528;
             --gold: #D4AF37; --gold-light: #F0D670; --gold-dark: #A88B2C;
@@ -22,7 +26,8 @@
         @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
         @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
-        @keyframes cherryFloat { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: .6; } 90% { opacity: .6; } 100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
+        @keyframes cherryFloat { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: .45; } 90% { opacity: .45; } 100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
+        @keyframes bounce { 0%,80%,100% { transform: translateY(0); } 40% { transform: translateY(-6px); } }
         .cherry-particle { position: fixed; pointer-events: none; z-index: 0; font-size: 24px; animation: cherryFloat linear infinite; opacity: 0; }
         .header { background: linear-gradient(135deg, var(--cherry-dark) 0%, var(--cherry) 50%, var(--cherry-light) 100%); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(196,30,58,0.3); position: sticky; top: 0; z-index: 100; }
         .header-logo { color: var(--gold-light); font-weight: 800; font-size: 18px; display: flex; align-items: center; gap: 8px; }
@@ -30,22 +35,24 @@
         .header-nav button { background: rgba(255,255,255,0.15); border: 1px solid rgba(212,175,55,0.4); color: var(--gold-light); padding: 8px 16px; border-radius: var(--radius-sm); cursor: pointer; font-size: 14px; font-weight: 600; transition: all .3s; font-family: inherit; }
         .header-nav button:hover { background: rgba(255,255,255,0.25); border-color: var(--gold); }
         .header-nav button.gold { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--cherry-dark); border: none; }
+        /* ========== LANDING — БЛЕДНЫЙ ОТТЕНОК ========== */
         .landing { min-height: 100vh; display: flex; flex-direction: column; position: relative; overflow: hidden; }
-        .landing-bg { position: absolute; inset: 0; background: linear-gradient(160deg, #1a0a0e 0%, #2d0f15 20%, #3d1520 40%, #4a1a25 60%, #2d0f15 80%, #1a0a0e 100%); z-index: 0; }
-        .landing-bg::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 20%, rgba(196,30,58,0.4) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(212,175,55,0.3) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, rgba(196,30,58,0.15) 0%, transparent 70%); }
+        .landing-bg { position: absolute; inset: 0; background: linear-gradient(160deg, #FFFDFA 0%, #FDF4F1 25%, #FAEBE9 50%, #FDF5E6 75%, #FFFDFA 100%); z-index: 0; }
+        .landing-bg::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 20%, rgba(232,67,93,0.10) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(212,175,55,0.16) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, rgba(196,30,58,0.05) 0%, transparent 70%); }
         .landing-content { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; text-align: center; }
-        .landing-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); color: var(--gold-light); padding: 8px 20px; border-radius: 50px; font-size: 13px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 24px; animation: float 3s ease-in-out infinite; }
-        .landing-title { font-size: clamp(32px, 6vw, 64px); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 16px; max-width: 800px; }
-        .landing-title .gold { background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 3s linear infinite; }
-        .landing-subtitle { font-size: clamp(16px, 2.5vw, 22px); color: rgba(255,255,255,0.8); max-width: 600px; margin-bottom: 32px; line-height: 1.6; }
-        .landing-author { display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(212,175,55,0.2); padding: 16px 24px; border-radius: var(--radius); margin-bottom: 40px; }
+        .landing-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.16); border: 1px solid rgba(168,139,44,0.4); color: var(--gold-dark); padding: 8px 20px; border-radius: 50px; font-size: 13px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 24px; animation: float 3s ease-in-out infinite; }
+        .landing-title { font-size: clamp(32px, 6vw, 64px); font-weight: 900; color: var(--cherry-dark); line-height: 1.1; margin-bottom: 16px; max-width: 800px; }
+        .landing-title .gold { background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold-dark)); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 3s linear infinite; }
+        .landing-subtitle { font-size: clamp(16px, 2.5vw, 22px); color: #7A6262; max-width: 600px; margin-bottom: 32px; line-height: 1.6; }
+        .landing-author { display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); border: 1px solid rgba(212,175,55,0.4); box-shadow: 0 8px 24px rgba(196,30,58,0.08); padding: 16px 24px; border-radius: var(--radius); margin-bottom: 40px; }
         .author-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--cherry), var(--gold)); display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; font-weight: 800; }
-        .author-info { text-align: left; } .author-name { color: var(--gold-light); font-weight: 700; font-size: 18px; } .author-role { color: rgba(255,255,255,0.6); font-size: 14px; }
-        .landing-cta { display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--cherry-dark); padding: 18px 48px; border-radius: 50px; font-size: 18px; font-weight: 800; border: none; cursor: pointer; transition: all .3s; box-shadow: 0 8px 32px rgba(212,175,55,0.4); animation: pulse 2s ease-in-out infinite; }
+        .author-info { text-align: left; } .author-name { color: var(--cherry); font-weight: 700; font-size: 18px; } .author-role { color: var(--text-light); font-size: 14px; }
+        .landing-cta { display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--cherry-dark); padding: 18px 48px; border-radius: 50px; font-size: 18px; font-weight: 800; border: none; cursor: pointer; transition: all .3s; box-shadow: 0 8px 32px rgba(212,175,55,0.35); animation: pulse 2s ease-in-out infinite; }
         .landing-cta:hover { transform: scale(1.05); box-shadow: 0 12px 40px rgba(212,175,55,0.5); }
         .landing-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 800px; margin-top: 48px; width: 100%; }
-        .landing-feature { background: rgba(255,255,255,0.06); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: var(--radius); text-align: center; }
-        .landing-feature-icon { font-size: 32px; margin-bottom: 8px; } .landing-feature-text { color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500; }
+        .landing-feature { background: rgba(255,255,255,0.82); backdrop-filter: blur(10px); border: 1px solid rgba(196,30,58,0.10); box-shadow: 0 4px 16px rgba(196,30,58,0.06); padding: 20px; border-radius: var(--radius); text-align: center; transition: transform .3s; }
+        .landing-feature:hover { transform: translateY(-4px); }
+        .landing-feature-icon { font-size: 32px; margin-bottom: 8px; } .landing-feature-text { color: #6B5454; font-size: 14px; font-weight: 600; }
         .login-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; background: linear-gradient(160deg, var(--cream) 0%, var(--cream-dark) 100%); position: relative; }
         .login-card { background: var(--white); border-radius: 24px; padding: 48px; max-width: 440px; width: 100%; box-shadow: var(--shadow); border: 1px solid rgba(212,175,55,0.2); position: relative; overflow: hidden; }
         .login-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--cherry), var(--gold), var(--cherry)); }
@@ -54,7 +61,7 @@
         .form-group { margin-bottom: 20px; } .form-label { display: block; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; font-size: 14px; }
         .form-input { width: 100%; padding: 14px 16px; border: 2px solid #E8E0D8; border-radius: var(--radius-sm); font-size: 16px; font-family: inherit; transition: all .3s; background: var(--cream); }
         .form-input:focus { outline: none; border-color: var(--cherry); box-shadow: 0 0 0 4px rgba(196,30,58,0.1); } .form-input::placeholder { color: #B8B0A8; }
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius-sm); font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer; transition: all .3s; border: none; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius-sm); font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer; transition: all .3s; border: none; text-decoration: none; }
         .btn-primary { background: linear-gradient(135deg, var(--cherry), var(--cherry-light)); color: white; width: 100%; box-shadow: 0 4px 16px rgba(196,30,58,0.3); }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,30,58,0.4); }
         .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--cherry-dark); box-shadow: 0 4px 16px rgba(212,175,55,0.3); }
@@ -86,15 +93,20 @@
         .module-content ul, .module-content ol { margin: 12px 0 16px 20px; } .module-content li { margin-bottom: 6px; color: var(--text-dark); }
         .highlight-box { background: linear-gradient(135deg, #FFF8F0, #FFF0F0); border-left: 4px solid var(--cherry); padding: 16px 20px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 20px 0; }
         .gold-box { background: linear-gradient(135deg, #FFFBF0, #FFF8E6); border-left: 4px solid var(--gold); padding: 16px 20px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 20px 0; }
-        .toc-list { list-style: none; padding: 0; } .toc-list li { padding: 10px 0; border-bottom: 1px solid var(--cream-dark); display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--text-dark); } .toc-list li:last-child { border-bottom: none; }
+        .toc-list { list-style: none; padding: 0; margin-left: 0 !important; } .toc-list li { padding: 10px 0; border-bottom: 1px solid var(--cream-dark); display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--text-dark); } .toc-list li:last-child { border-bottom: none; }
         .toc-num { width: 28px; height: 28px; background: var(--cream); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: var(--cherry); flex-shrink: 0; } .toc-num.gold { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--cherry-dark); }
-        .price-highlight { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--cherry-dark); padding: 12px 24px; border-radius: 50px; font-size: 20px; font-weight: 800; margin: 16px 0; }
-        .road-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
-        .road-card { padding: 24px; border-radius: var(--radius); border: 2px solid; }
-        .road-card.path1 { border-color: #C8C0B8; background: var(--cream); } .road-card.path2 { border-color: var(--gold); background: linear-gradient(135deg, #FFFBF0, #FFF8E6); }
-        .road-card-title { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
-        .road-card.path1 .road-card-title { color: var(--text-light); } .road-card.path2 .road-card-title { color: var(--gold-dark); }
         .module-nav-buttons { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+        /* ========== ФИНАЛ: РЕЗУЛЬТАТЫ + ОТЗЫВ ========== */
+        .final-status { background: #FFF8F0; border: 1px solid rgba(212,175,55,0.4); border-radius: var(--radius-sm); padding: 12px 16px; font-size: 14px; margin-bottom: 20px; color: var(--text-dark); }
+        .final-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0 8px; }
+        .final-stat { background: var(--cream); border: 1px solid var(--cream-dark); border-radius: var(--radius-sm); padding: 16px; text-align: center; }
+        .final-stat-value { font-size: 26px; font-weight: 900; color: var(--cherry); }
+        .final-stat-label { font-size: 13px; color: var(--text-light); font-weight: 600; }
+        .continue-options { display: flex; gap: 10px; flex-wrap: wrap; }
+        .continue-option { padding: 12px 18px; border: 2px solid #E8E0D8; border-radius: 50px; cursor: pointer; font-size: 14px; font-weight: 600; background: var(--white); color: var(--text-light); transition: all .3s; }
+        .continue-option.active { border-color: var(--cherry); background: rgba(196,30,58,0.06); color: var(--cherry); }
+        .continue-option:hover { border-color: var(--cherry-light); }
+        .yandex-box { text-align: center; }
         .checklist { margin: 20px 0; } .checklist-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px; background: var(--cream); border-radius: var(--radius-sm); margin-bottom: 8px; cursor: pointer; transition: background .2s; } .checklist-item:hover { background: var(--cream-dark); }
         .checklist-checkbox { width: 20px; height: 20px; border: 2px solid var(--cherry); border-radius: 4px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: all .3s; background: var(--white); } .checklist-checkbox.checked { background: var(--cherry); border-color: var(--cherry); } .checklist-checkbox.checked::after { content: '✓'; color: white; font-size: 12px; font-weight: 800; }
         .checklist-text { font-size: 14px; color: var(--text-dark); }
@@ -136,7 +148,6 @@
         .pdf-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
         .pdf-table th { background: linear-gradient(135deg, var(--cherry), var(--cherry-light)); color: white; padding: 12px 16px; text-align: left; font-weight: 700; }
         .pdf-table td { padding: 12px 16px; border-bottom: 1px solid var(--cream-dark); color: var(--text-dark); } .pdf-table tr:hover td { background: var(--cream); }
-        .pdf-table { overflow-x: auto; }
         .bot-container { padding: 32px 24px; max-width: 540px; margin: 0 auto; }
         .bot-window { background: var(--white); border-radius: 20px; box-shadow: 0 12px 40px rgba(0,0,0,0.1); overflow: hidden; border: 2px solid var(--cream-dark); }
         .bot-header { background: linear-gradient(135deg, var(--cherry), var(--cherry-light)); padding: 16px 20px; display: flex; align-items: center; gap: 12px; }
@@ -155,20 +166,11 @@
         .bot-typing { display: flex; gap: 4px; padding: 12px 16px; background: var(--white); border-radius: 16px; align-self: flex-start; border-bottom-left-radius: 4px; }
         .bot-typing span { width: 8px; height: 8px; background: #C8C0B8; border-radius: 50%; animation: bounce 1.4s ease-in-out infinite; }
         .bot-typing span:nth-child(2) { animation-delay: .2s; } .bot-typing span:nth-child(3) { animation-delay: .4s; }
-        .app-form-container { padding: 32px 24px; max-width: 700px; margin: 0 auto; }
-        .app-form { background: var(--white); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); } .app-form-title { font-size: 24px; font-weight: 800; color: var(--text-dark); margin-bottom: 24px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; } .form-full { grid-column: 1 / -1; }
         .form-textarea { width: 100%; min-height: 100px; padding: 14px 16px; border: 2px solid #E8E0D8; border-radius: var(--radius-sm); font-family: inherit; font-size: 16px; resize: vertical; background: var(--cream); }
         .form-textarea:focus { outline: none; border-color: var(--cherry); }
-        .form-success { text-align: center; padding: 40px; } .form-success-icon { font-size: 64px; margin-bottom: 16px; }
-        .contact-select { display: flex; gap: 12px; margin-bottom: 16px; }
-        .contact-option { flex: 1; padding: 14px; border: 2px solid #E8E0D8; border-radius: var(--radius-sm); text-align: center; cursor: pointer; transition: all .3s; font-size: 14px; font-weight: 600; background: var(--white); color: var(--text-light); }
-        .contact-option.active { border-color: var(--cherry); background: rgba(196,30,58,0.05); color: var(--cherry); } .contact-option:hover { border-color: var(--cherry-light); }
-        .privacy-checkbox { display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: var(--cream); border-radius: var(--radius-sm); margin: 20px 0; border: 1px solid var(--cream-dark); }
-        .privacy-checkbox input[type="checkbox"] { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--cherry); cursor: pointer; flex-shrink: 0; }
-        .privacy-checkbox label { font-size: 13px; color: var(--text-light); cursor: pointer; line-height: 1.6; } .privacy-checkbox label a { color: var(--cherry); font-weight: 600; text-decoration: underline; }
+        .form-success { text-align: center; padding: 40px 16px; } .form-success-icon { font-size: 64px; margin-bottom: 16px; }
         .admin-panel { padding: 32px 24px; max-width: 1200px; margin: 0 auto; } .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; } .admin-title { font-size: 28px; font-weight: 900; color: var(--text-dark); }
-        .admin-tabs { display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 2px solid var(--cream-dark); padding-bottom: 0; }
+        .admin-tabs { display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 2px solid var(--cream-dark); padding-bottom: 0; flex-wrap: wrap; }
         .admin-tab { padding: 12px 24px; font-size: 15px; font-weight: 700; color: var(--text-light); cursor: pointer; border: none; background: none; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all .3s; font-family: inherit; }
         .admin-tab.active { color: var(--cherry); border-bottom-color: var(--cherry); } .admin-tab:hover { color: var(--cherry-light); }
         .admin-section { display: none; } .admin-section.active { display: block; }
@@ -179,6 +181,7 @@
         .student-badge.active { background: #E8F8EE; color: #2D8B4E; } .student-badge.inactive { background: #F0ECE8; color: var(--text-light); }
         .btn-danger { background: var(--cherry); color: white; border: none; cursor: pointer; } .btn-danger:hover { background: var(--cherry-dark); }
         .register-form { display: flex; gap: 12px; flex-wrap: wrap; } .register-form .form-input { flex: 1; min-width: 200px; }
+        .review-admin-item { margin-bottom: 16px; padding: 16px; background: var(--cream); border-radius: var(--radius-sm); border-left: 3px solid var(--gold); }
         .toast { position: fixed; bottom: 24px; right: 24px; background: var(--white); padding: 16px 24px; border-radius: var(--radius-sm); box-shadow: 0 8px 32px rgba(0,0,0,0.15); z-index: 2000; display: none; animation: slideIn .3s ease; border-left: 4px solid var(--gold); max-width: 360px; }
         .toast.show { display: block; } .toast-message { font-size: 14px; font-weight: 600; color: var(--text-dark); }
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; } .modal-overlay.active { display: flex; }
@@ -187,12 +190,12 @@
         .footer { background: linear-gradient(135deg, var(--cherry-dark), var(--cherry)); color: rgba(255,255,255,0.8); padding: 32px 24px; text-align: center; margin-top: 48px; }
         .footer a { color: var(--gold-light); text-decoration: none; font-weight: 600; } .footer a:hover { text-decoration: underline; }
         @media (max-width: 768px) {
-            .form-row { grid-template-columns: 1fr; } .modules-grid { grid-template-columns: 1fr; } .road-grid { grid-template-columns: 1fr; }
+            .modules-grid { grid-template-columns: 1fr; }
             .header { padding: 10px 16px; flex-wrap: wrap; gap: 8px; } .header-nav { flex-wrap: wrap; gap: 8px; } .header-nav button { padding: 6px 12px; font-size: 12px; }
-            .login-card { padding: 32px 24px; } .module-content, .pdf-viewer-content, .app-form { padding: 24px; }
-            .hw-item-header { flex-direction: column; align-items: flex-start; } .student-item { grid-template-columns: 1fr; gap: 8px; } .pdf-item { padding: 12px 16px; } .pdf-name { font-size: 13px; } .landing-author { flex-direction: column; text-align: center; } .author-info { text-align: center; } .bot-container { padding: 16px 12px; } .bot-window { border-radius: 16px; } .app-form { padding: 24px 16px; } .toast { left: 16px; right: 16px; max-width: none; }
+            .login-card { padding: 32px 24px; } .module-content, .pdf-viewer-content { padding: 24px; }
+            .hw-item-header { flex-direction: column; align-items: flex-start; } .student-item { grid-template-columns: 1fr; gap: 8px; } .pdf-item { padding: 12px 16px; } .pdf-name { font-size: 13px; } .landing-author { flex-direction: column; text-align: center; } .author-info { text-align: center; } .bot-container { padding: 16px 12px; } .bot-window { border-radius: 16px; } .toast { left: 16px; right: 16px; max-width: none; }
         }
-        @media (max-width: 480px) { .landing-title { font-size: 28px; } .landing-subtitle { font-size: 16px; } .dashboard { padding: 20px 16px; } .module-page { padding: 20px 16px; } .pdf-section { padding: 20px 16px; } .bot-container { padding: 12px 8px; } .pdf-actions { flex-direction: column; } .pdf-view-btn { font-size: 10px; padding: 4px 8px; } }
+        @media (max-width: 480px) { .landing-title { font-size: 28px; } .landing-subtitle { font-size: 16px; } .dashboard { padding: 20px 16px; } .module-page { padding: 20px 16px; } .pdf-section { padding: 20px 16px; } .bot-container { padding: 12px 8px; } .pdf-actions { flex-direction: column; } .pdf-view-btn { font-size: 10px; padding: 4px 8px; } .final-stats { grid-template-columns: 1fr; } }
         ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--cream); } ::-webkit-scrollbar-thumb { background: var(--cherry-light); border-radius: 4px; }
     </style>
 </head>
@@ -207,19 +210,19 @@
             <div class="landing-bg"></div>
             <div class="landing-content">
                 <div class="landing-badge">🍒 Академия «Новые Горизонты Инфобизнеса»</div>
-                <h1 class="landing-title">Как заставить <span class="gold">Telegram</span> продавать за&nbsp;тебя</h1>
-                <p class="landing-subtitle">Курс для коучей, наставников и психологов — без кода, без конструкторов, без страха</p>
+                <h1 class="landing-title">Как заставить <span class="gold">Telegram</span> работать за&nbsp;тебя</h1>
+                <p class="landing-subtitle">Обучение для коучей, наставников и психологов — без кода, без конструкторов, без страха. Только практика и результат.</p>
                 <div class="landing-author">
                     <div class="author-avatar">К</div>
                     <div class="author-info">
                         <div class="author-name">Кристина</div>
-                        <div class="author-role">Техно-маркетолог и коуч по проработке страхов продаж</div>
+                        <div class="author-role">Техно-маркетолог и наставник Академии</div>
                     </div>
                 </div>
                 <button class="landing-cta" onclick="showPage('page-login')">Начать обучение →</button>
                 <div class="landing-features">
                     <div class="landing-feature"><div class="landing-feature-icon">🤖</div><div class="landing-feature-text">Соберёшь работающего бота</div></div>
-                    <div class="landing-feature"><div class="landing-feature-icon">💰</div><div class="landing-feature-text">Готовый скрипт продаж</div></div>
+                    <div class="landing-feature"><div class="landing-feature-icon">💬</div><div class="landing-feature-text">Готовые скрипты диалогов</div></div>
                     <div class="landing-feature"><div class="landing-feature-icon">📊</div><div class="landing-feature-text">CRM-панель в Telegram</div></div>
                     <div class="landing-feature"><div class="landing-feature-icon">🎁</div><div class="landing-feature-text">3 дня AI-агента в подарок</div></div>
                 </div>
@@ -239,7 +242,7 @@
                 <div class="form-group"><label class="form-label">Логин</label><input id="loginUsername" type="text" class="form-input" placeholder="Ваше имя"></div>
                 <div class="form-group"><label class="form-label">Пароль</label><input id="loginPassword" type="password" class="form-input" placeholder="Пароль"></div>
                 <button class="btn btn-primary" onclick="handleLogin()">Войти в курс</button>
-                <p style="text-align:center;margin-top:20px;font-size:13px;color:var(--text-light)">Нет доступа? Обратитесь к <a href="https://t.me/marketologdizayner" target="_blank" style="color:var(--cherry);font-weight:600">@marketologdizayner</a></p>
+                <p style="text-align:center;margin-top:20px;font-size:13px;color:var(--text-light)">Нет доступа? Обратитесь к <a href="https://t.me/art_akrill" target="_blank" style="color:var(--cherry);font-weight:600">@art_akrill</a></p>
             </div>
         </div>
     </div>
@@ -264,11 +267,11 @@
                 <div class="progress-bar-container"><div id="progressBar" class="progress-bar-fill" style="width:0%"></div></div>
                 <div class="progress-text" id="progressText">Прогресс: 0 из 4 модулей</div>
             </div>
-            <div class="intro-banner"><h2>👋 Добро пожаловать в один из модулей обучения</h2><p>Академии «Новые Горизонты Инфобизнеса» — Как заставить Telegram продавать за тебя. Каждый модуль — текст + задание. Выполняй по порядку. Файлы открываются по ссылкам.</p></div>
+            <div class="intro-banner"><h2>👋 Добро пожаловать в обучение</h2><p>Академия «Новые Горизонты Инфобизнеса» — как заставить Telegram работать за тебя. Каждый модуль — текст + задание. Выполняй по порядку. Файлы открываются по ссылкам.</p></div>
             <div class="modules-grid" id="modulesGrid"></div>
             <div class="dashboard-actions"><button class="btn btn-outline" onclick="showPage('page-materials')">📁 PDF Материалы</button><button class="btn btn-outline" onclick="showPage('page-homework')">📝 Домашнее задание</button></div>
         </div>
-        <div class="footer"><p>© Кристина, архитектор «Системы под ключ». Основательница Академии «Новые Горизонты Инфобизнеса»</p><p style="margin-top:8px">Telegram: <a href="https://t.me/marketologdizayner" target="_blank">@marketologdizayner</a> | <a href="https://t.me/fullstack_razrabotka" target="_blank">@fullstack_razrabotka</a></p></div>
+        <div class="footer"><p>© Кристина — основательница Академии «Новые Горизонты Инфобизнеса». Техно-маркетолог и наставник.</p><p style="margin-top:8px">Telegram: <a href="https://t.me/art_akrill" target="_blank">@art_akrill</a> | <a href="https://t.me/fullstack_razrabotkaf" target="_blank">@fullstack_razrabotkaf</a> | <a href="https://yandex.by/profile/127652280359" target="_blank">⭐ Отзывы на Яндекс</a></p></div>
     </div>
 
     <!-- MODULE 0 -->
@@ -276,12 +279,12 @@
         <header class="header"><div class="header-logo">🍒 Новые Горизонты</div><div class="header-nav"><button onclick="showPage('page-dashboard')">← К модулям</button></div></header>
         <div class="module-page"><button class="btn-back" onclick="goBack()">← Назад</button>
             <div class="module-page-header"><h1 class="module-page-title">Введение — От автора</h1></div>
-            <div class="module-content"><h3>Привет. Я Кристина.</h3><p>Техно-маркетолог (Fullstack-разработчик), архитектор автономных систем продаж и коуч по проработке страхов продаж. А также основательница Академии «Новые Горизонты Инфобизнеса».</p>
-            <p>Я не делаю красивые сайты «под ключ». Я проектирую системы, которые приносят деньги без твоего участия.</p>
-            <div class="highlight-box"><strong>⚠️ Предупреждение:</strong> Это не про «теплоту и лампу». Это про код, скрипты и наглую автоматизацию.</div>
-            <h3>После курса ты:</h3><ul><li>Соберёшь работающего бота (даже если никогда не программировал)</li><li>Получишь готовый скрипт «Раздевающий вопрос» — он доводит до оплаты диагностики</li><li>Настроишь CRM-панель в Telegram, чтобы не терять лидов</li><li>Протестируешь моего AI-агента AIRA (бонус на 3 дня)</li></ul>
-            <h3>Как проходить курс:</h3><p>Каждый модуль — это текст + задание. Выполняй по порядку. Файлы скачивай по ссылкам. В конце каждого модуля — чек-лист для самопроверки.</p>
-            <div class="gold-box"><strong>Оглавление курса:</strong><ul class="toc-list"><li><span class="toc-num gold">→</span> Введение – От автора (ты здесь)</li><li><span class="toc-num">1</span> Твоя база знаний</li><li><span class="toc-num">2</span> Три смертельные ошибки в лид-магните</li><li><span class="toc-num">3</span> Шаблон скрипта «Раздевающий вопрос»</li><li><span class="toc-num">4</span> CRM в кармане</li><li><span class="toc-num gold">★</span> Бонус – Демо AI-агента AIRA на 3 дня</li><li><span class="toc-num">?</span> Что дальше? — Твой выбор</li></ul></div>
+            <div class="module-content"><h3>Привет. Я Кристина.</h3><p>Техно-маркетолог (Fullstack-разработчик), архитектор автономных систем и наставник. А также основательница Академии «Новые Горизонты Инфобизнеса».</p>
+            <p>Я учу собирать системы, которые работают без твоего участия: боты, скрипты диалогов и CRM прямо в Telegram.</p>
+            <div class="highlight-box"><strong>⚠️ Важно:</strong> Это не про «теплоту и лампу». Это про практику, скрипты и реальную автоматизацию.</div>
+            <h3>После курса ты:</h3><ul><li>Соберёшь работающего бота (даже если никогда не программировал)</li><li>Получишь готовый скрипт «Раздевающий вопрос» для глубоких диалогов с клиентами</li><li>Настроишь CRM-панель в Telegram, чтобы не терять контакты</li><li>Протестируешь моего AI-агента AIRA (бонус на 3 дня)</li></ul>
+            <h3>Как проходить курс:</h3><p>Каждый модуль — это текст + задание. Выполняй по порядку. Файлы открывай по ссылкам. В конце каждого модуля — чек-лист для самопроверки.</p>
+            <div class="gold-box"><strong>Оглавление курса:</strong><ul class="toc-list"><li><span class="toc-num gold">→</span> Введение – От автора (ты здесь)</li><li><span class="toc-num">1</span> Твоя база знаний</li><li><span class="toc-num">2</span> Три смертельные ошибки в лид-магните</li><li><span class="toc-num">3</span> Шаблон скрипта «Раздевающий вопрос»</li><li><span class="toc-num">4</span> CRM в кармане</li><li><span class="toc-num gold">★</span> Бонус – Демо AI-агента AIRA на 3 дня</li><li><span class="toc-num gold">🎓</span> Завершение курса — отзыв и результаты</li></ul></div>
             <p style="margin-top:24px;font-weight:700;font-size:18px">Поехали! 🚀</p></div>
             <div class="module-nav-buttons"><button class="btn btn-gold" onclick="completeModule(0);navigateTo('page-module-1')">Перейти к Модулю 1 →</button></div></div></div>
 
@@ -289,7 +292,7 @@
     <div id="page-module-1" class="page">
         <header class="header"><div class="header-logo">🍒 Новые Горизонты</div><div class="header-nav"><button onclick="showPage('page-dashboard')">← К модулям</button></div></header>
         <div class="module-page"><button class="btn-back" onclick="goBack()">← Назад</button>
-            <div class="module-page-header"><h1 class="module-page-title">Модуль 1. Твоя база знаний</h1><p style="color:var(--text-light)">Откуда бот возьмёт наглость продавать</p></div>
+            <div class="module-page-header"><h1 class="module-page-title">Модуль 1. Твоя база знаний</h1><p style="color:var(--text-light)">Откуда бот возьмёт уверенность общаться с клиентами</p></div>
             <div class="module-content"><h3>Теория</h3><p>Большинство ботов — тупое меню с кнопками: «1 — Услуги, 2 — Цены, 3 — Связаться». Никто не нажимает. Потому что это скучно.</p>
             <p>Твой бот должен <strong>говорить как ты</strong>. Отвечать на возражения так же убедительно, шутить там, где шутишь ты, задавать те же вопросы, что задаёшь вживую.</p>
             <div class="highlight-box"><strong>Для этого нужна база знаний</strong> — файл, в который ты соберёшь:<br>• Реальные диалоги с клиентами<br>• Возражения и твои ответы<br>• Частые вопросы про цену, формат, сроки<br>• Истории успеха</div>
@@ -311,7 +314,7 @@
             <div class="module-page-header"><h1 class="module-page-title">Модуль 2. Три смертельные ошибки в лид-магните</h1><p style="color:var(--text-light)">Как бот всё сливает</p></div>
             <div class="module-content"><h3>Теория</h3><p>Ты даёшь бесплатный PDF. Клиент качает, доволен — и молчит. Потому что получил ценность и ушёл.</p>
             <h3>Ошибка №1: «Полезный мусор»</h3><div class="highlight-box"><strong>Как правильно:</strong> дай одну конкретную технику и сразу спроси: «Что из этого ты попробуешь первым?»</div>
-            <h3>Ошибка №2: «Слепая анкета»</h3><div class="highlight-box"><strong>Как правильно:</strong> сначала ценность, затем вопрос без контакта. Телефон — только после «Хочу диагностику».</div>
+            <h3>Ошибка №2: «Слепая анкета»</h3><div class="highlight-box"><strong>Как правильно:</strong> сначала ценность, затем вопрос без контакта. Телефон — только после согласия на диалог.</div>
             <h3>Ошибка №3: «Безликий автомат»</h3><div class="highlight-box"><strong>Как правильно:</strong> после выдачи лид-магнита спроси: «Что мешает применить это прямо сегодня?»</div>
             <h3>Задание модуля 2</h3><div class="gold-box"><button class="btn btn-gold btn-sm" onclick="navigateTo('page-homework')">👉 Перейти к ДЗ — Исправить бота</button></div>
             <h4>Пример:</h4><div style="overflow-x:auto"><table class="pdf-table"><thead><tr><th>Оффер</th><th>Формула</th></tr></thead><tbody><tr><td>«3 техники снять тревогу за 2 минуты»</td><td>Боль + крючок + вопрос</td></tr><tr><td>«5 фраз, которые убивают доверие»</td><td>Список + просьба привести пример</td></tr></tbody></table></div>
@@ -322,11 +325,11 @@
     <div id="page-module-3" class="page">
         <header class="header"><div class="header-logo">🍒 Новые Горизонты</div><div class="header-nav"><button onclick="showPage('page-dashboard')">← К модулям</button></div></header>
         <div class="module-page"><button class="btn-back" onclick="goBack()">← Назад</button>
-            <div class="module-page-header"><h1 class="module-page-title">Модуль 3. Шаблон скрипта «Раздевающий вопрос»</h1><p style="color:var(--text-light)">Бот сам доводит до диагностики</p></div>
+            <div class="module-page-header"><h1 class="module-page-title">Модуль 3. Шаблон скрипта «Раздевающий вопрос»</h1><p style="color:var(--text-light)">Бот сам ведёт глубокий диалог</p></div>
             <div class="module-content"><h3>Теория</h3><p>Хватит тупого «Чем помочь?» Клиент ответит: «Ничем, просто смотрю» – и всё.</p>
-            <div class="highlight-box"><strong>«Раздевающий вопрос»</strong> — снимает защиту, заставляет признать боль, подводит к диагностике.</div>
+            <div class="highlight-box"><strong>«Раздевающий вопрос»</strong> — снимает защиту, помогает человеку признать боль и раскрыться в диалоге.</div>
             <div class="gold-box" style="text-align:center;font-size:18px"><strong>«На шкале от 1 до 10, насколько [проблема] мешает вам [последствие]?»</strong></div>
-            <h4>Пример для психолога:</h4><p><strong>Бот:</strong> «На шкале от 1 до 10 – насколько тревога мешает засыпать?»</p><p><strong>Клиент:</strong> «7» → <strong>Бот:</strong> «Расскажите подробнее...» → Клиент распаковывается → Продажа.</p>
+            <h4>Пример для психолога:</h4><p><strong>Бот:</strong> «На шкале от 1 до 10 – насколько тревога мешает засыпать?»</p><p><strong>Клиент:</strong> «7» → <strong>Бот:</strong> «Расскажите подробнее...» → Клиент распаковывается → доверие растёт.</p>
             <h3>Задание модуля 3</h3><div class="gold-box"><button class="btn btn-gold btn-sm" onclick="navigateTo('page-homework')">👉 Перейти к ДЗ — Адаптировать скрипт</button></div>
             <div class="gold-box"><button class="btn btn-gold btn-sm" onclick="navigateToPdf('Раздевающий_вопрос.pdf')">👉 Открыть «Раздевающий_вопрос.pdf»</button></div>
             <div class="gold-box"><button class="btn btn-gold btn-sm" onclick="navigateToPdf('Готовая_таблица_для_бота.xlsx')">👉 Открыть «Готовая_таблица_для_бота.xlsx»</button></div>
@@ -355,34 +358,47 @@
             <h3>Что умеет AIRA:</h3><ul><li>Понимает сложные вопросы</li><li>Использует твою базу знаний</li><li>Может отправить голосовое</li><li>Переключает на живого эксперта</li><li>Не тупит на возражениях</li></ul>
             <div class="gold-box" style="text-align:center"><button class="btn btn-gold" onclick="navigateTo('page-bot')">👉 Открыть демо-бота AIRA</button><p style="margin-top:12px;font-size:14px">Лимит: 10 диалогов в день, 3 дня.</p></div>
             <div class="gold-box"><button class="btn btn-gold btn-sm" onclick="navigateToPdf('5_фишек_AI_агента.pdf')">👉 Открыть «5 фишек AI-агента»</button></div></div>
-            <div class="module-nav-buttons"><button class="btn btn-outline" onclick="navigateTo('page-module-4')">← Модуль 4</button><button class="btn btn-gold" onclick="navigateTo('page-final')">Что дальше? →</button></div></div></div>
+            <div class="module-nav-buttons"><button class="btn btn-outline" onclick="navigateTo('page-module-4')">← Модуль 4</button><button class="btn btn-gold" onclick="navigateTo('page-final')">Завершение курса →</button></div></div></div>
 
-    <!-- FINAL -->
+    <!-- FINAL: РЕЗУЛЬТАТЫ + ОТЗЫВ + ЯНДЕКС -->
     <div id="page-final" class="page">
         <header class="header"><div class="header-logo">🍒 Новые Горизонты</div><div class="header-nav"><button onclick="showPage('page-dashboard')">← К модулям</button></div></header>
         <div class="module-page"><button class="btn-back" onclick="goBack()">← Назад</button>
-            <div class="module-page-header"><h1 class="module-page-title">Что дальше? Твой выбор</h1></div>
-            <div class="module-content"><h3>Ты прошёл курс! 🎉</h3><p>Ты получил: базу знаний, скрипты лид-магнитов, «Раздевающий вопрос», настройку CRM, 3 дня демо AIRA.</p>
-            <div class="road-grid"><div class="road-card path1"><div class="road-card-title">🚶 Дорога 1. Остаться с «самоделкой»</div><p style="font-size:14px;color:var(--text-light)">Доход 200–300 тыс., дальше — потолок.</p></div>
-            <div class="road-card path2"><div class="road-card-title">🚀 Дорога 2. «Система под ключ»</div><ul style="font-size:14px"><li>Сайт на чистом коде (0.3 сек)</li><li>AI-агент AIRA 24/7</li><li>CRM в Telegram</li><li>Интеграции</li><li>Настройка 14 дней</li></ul><div class="price-highlight">250 000 ₽</div><p style="font-size:13px;color:var(--gold-dark)">Окупаемость 1–2 месяца. 🎁 5 сессий проработки страхов.</p></div></div>
-            <div class="highlight-box"><strong>⚠️ У меня 5 слотов в месяц.</strong> Цена 250 000 ₽. Без торга.</div></div>
-            <div class="module-nav-buttons"><button class="btn btn-outline" onclick="navigateTo('page-bonus')">← Бонус</button><button class="btn btn-gold" onclick="navigateTo('page-application')">Оставить заявку →</button></div></div></div>
-
-    <!-- APPLICATION FORM -->
-    <div id="page-application" class="page">
-        <header class="header"><div class="header-logo">🍒 Новые Горизонты</div><div class="header-nav"><button onclick="showPage('page-dashboard')">← К модулям</button></div></header>
-        <div class="app-form-container"><button class="btn-back" onclick="navigateTo('page-final')">← Назад</button>
-            <div class="app-form"><h2 class="app-form-title">📝 Заявка на «Систему под ключ»</h2><div id="appFormContent">
-                <div class="form-group"><label class="form-label">Ваше имя</label><input id="appName" type="text" class="form-input" placeholder="Как вас зовут?"></div>
-                <div class="form-group"><label class="form-label">Как с вами связаться?</label><div class="contact-select"><div class="contact-option active" onclick="selectContact('tg',this)">📱 Telegram</div><div class="contact-option" onclick="selectContact('vk',this)">💬 ВКонтакте</div></div></div>
-                <div class="form-group" id="tgField"><label class="form-label">Telegram</label><input id="appTelegram" type="text" class="form-input" placeholder="@ваш_username"></div>
-                <div class="form-group" id="vkField" style="display:none"><label class="form-label">ВКонтакте</label><input id="appVK" type="text" class="form-input" placeholder="vk.com/ваш_id"></div>
-                <div class="form-group"><label class="form-label">Телефон <span style="color:var(--text-light);font-weight:400">(по желанию)</span></label><input id="appPhone" type="tel" class="form-input" placeholder="+7 (___) ___-__-__"></div>
-                <div class="form-group"><label class="form-label">Ваша ниша</label><select id="appNiche" class="form-input"><option value="">Выберите...</option><option value="coach">Коуч</option><option value="psychologist">Психолог</option><option value="mentor">Наставник</option><option value="other">Другое</option></select></div>
-                <div class="form-group"><label class="form-label">Что хотите автоматизировать?</label><textarea id="appMessage" class="form-textarea" placeholder="Расскажите кратко..."></textarea></div>
-                <div class="privacy-checkbox"><input type="checkbox" id="privacyCheck"><label for="privacyCheck">Я даю согласие на обработку персональных данных в соответствии с <a href="#" onclick="showPrivacyModal();return false">политикой конфиденциальности</a>.</label></div>
-                <button class="btn btn-gold" style="width:100%" onclick="submitApplication()">Отправить заявку</button>
-            </div><div id="appFormSuccess" class="form-success" style="display:none"><div class="form-success-icon">✅</div><h2 style="color:var(--text-dark);margin-bottom:12px">Заявка отправлена!</h2><p style="color:var(--text-light)">Кристина свяжется с вами в течение 24 часов.</p><button class="btn btn-outline" style="margin-top:20px" onclick="showPage('page-final')">Вернуться</button></div></div></div></div>
+            <div class="module-page-header"><h1 class="module-page-title">🎉 Поздравляем! Курс пройден</h1><p style="color:var(--text-light)">Последний блок — твои результаты и отзыв о курсе</p></div>
+            <div class="module-content">
+                <div id="finalNotifyStatus" class="final-status">⏳ Отправляем отчёт о прогрессе Кристине...</div>
+                <h3>📊 Твои результаты</h3>
+                <div class="final-stats">
+                    <div class="final-stat"><div class="final-stat-value" id="fsModules">0/4</div><div class="final-stat-label">модуля пройдено</div></div>
+                    <div class="final-stat"><div class="final-stat-value" id="fsChecklists">0/15</div><div class="final-stat-label">пунктов чек-листов</div></div>
+                    <div class="final-stat"><div class="final-stat-value" id="fsHomework">0/9</div><div class="final-stat-label">заданий выполнено</div></div>
+                </div>
+                <h3>🌟 Оставь отзыв о курсе</h3>
+                <p>Расскажи, чем курс тебе помог и хочешь ли ты идти дальше — это очень помогает Академии расти.</p>
+                <div id="reviewFormContent">
+                    <div class="form-group"><label class="form-label">Ваше имя</label><input id="reviewName" type="text" class="form-input" placeholder="Как вас зовут?"></div>
+                    <div class="form-group"><label class="form-label">Чем курс вам помог?</label><textarea id="reviewText" class="form-textarea" placeholder="Поделитесь впечатлениями: что получилось, какие результаты, что понравилось..."></textarea></div>
+                    <div class="form-group"><label class="form-label">Хотите ли продолжить обучение на следующем потоке?</label>
+                        <div class="continue-options">
+                            <div class="continue-option" onclick="selectContinue(this,'Да, обязательно! 🚀')">✅ Да, обязательно!</div>
+                            <div class="continue-option" onclick="selectContinue(this,'Думаю 🤔')">🤔 Думаю</div>
+                            <div class="continue-option" onclick="selectContinue(this,'Пока останусь с результатом курса')">⏸ Пока внедряю</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="submitReview()">Отправить отзыв 🍒</button>
+                </div>
+                <div id="reviewSuccess" class="form-success" style="display:none">
+                    <div class="form-success-icon">💖</div>
+                    <h2 style="color:var(--text-dark);margin-bottom:12px">Спасибо за отзыв!</h2>
+                    <p style="color:var(--text-light)">Твои слова вдохновляют Академию. Будем рады, если ты также оценишь курс на Яндекс Отзовиках ⭐</p>
+                </div>
+                <div class="gold-box yandex-box">
+                    <h3 style="margin-top:0">⭐ Оцените курс на Яндекс</h3>
+                    <p style="font-size:14px;color:var(--text-light)">Нам будет очень приятно, если вы поделитесь впечатлениями на Яндекс Отзовиках.</p>
+                    <a class="btn btn-gold" href="https://yandex.by/profile/127652280359" target="_blank" rel="noopener">Оставить отзыв на Яндекс Отзовиках →</a>
+                </div>
+            </div>
+            <div class="module-nav-buttons"><button class="btn btn-outline" onclick="navigateTo('page-bonus')">← Бонус</button><button class="btn btn-gold" onclick="showPage('page-dashboard')">📚 К модулям</button></div></div></div>
 
     <!-- PDF MATERIALS -->
     <div id="page-materials" class="page">
@@ -404,7 +420,7 @@
         <header class="header"><div class="header-logo">🍒 Новые Горизонты</div><div class="header-nav"><button onclick="showPage('page-dashboard')">← К модулям</button></div></header>
         <div class="bot-container"><button class="btn-back" onclick="navigateTo('page-bonus')">← Назад к бонусу</button>
             <div class="bot-window"><div class="bot-header"><div class="bot-avatar">🤖</div><div><div class="bot-name">AIRA — AI-агент Кристины</div><div class="bot-status">Онлайн • Демо 3 дня</div></div></div>
-                <div id="botMessages" class="bot-messages"><div class="bot-msg bot">Привет! Я AIRA — AI-агент Кристины 👋<br><br>Я обучена на реальных продажах коучей, психологов и наставников. Могу помочь разобраться с автоматизацией и «Системой под ключ».<br><br>Что вас интересует?<div class="bot-quick-replies"><button class="bot-quick-reply" onclick="botReply('Расскажи о Кристине')">О Кристине</button><button class="bot-quick-reply" onclick="botReply('Что такое Система под ключ?')">Система под ключ</button><button class="bot-quick-reply" onclick="botReply('Сколько стоит?')">Сколько стоит?</button><button class="bot-quick-reply" onclick="botReply('Хочу оставить заявку')">Оставить заявку</button></div></div></div>
+                <div id="botMessages" class="bot-messages"><div class="bot-msg bot">Привет! Я AIRA — AI-агент Кристины 👋<br><br>Я обучена на материалах курса «Новые Горизонты Инфобизнеса». Помогу разобраться с заданиями, автоматизацией и подскажу, как продолжить обучение.<br><br>Что вас интересует?<div class="bot-quick-replies"><button class="bot-quick-reply" onclick="botReply('Расскажи про курс')">Про курс</button><button class="bot-quick-reply" onclick="botReply('Расскажи о Кристине')">О Кристине</button><button class="bot-quick-reply" onclick="botReply('Как продолжить обучение?')">Продолжить обучение</button><button class="bot-quick-reply" onclick="botReply('Как оставить отзыв?')">Как оставить отзыв?</button></div></div></div>
                 <div class="bot-counter">Осталось диалогов: <span id="botCounter">10</span> из 10 сегодня</div>
                 <div class="bot-input-area"><input id="botInput" type="text" class="bot-input" placeholder="Напишите сообщение..." onkeypress="if(event.key==='Enter')sendBotMessage()"><button class="bot-send" onclick="sendBotMessage()">➤</button></div></div></div></div>
 
@@ -412,17 +428,17 @@
     <div id="page-admin" class="page">
         <header class="header"><div class="header-logo">🍒 Админ-панель</div><div class="header-nav"><button onclick="showPage('page-dashboard')">← К курсу</button><button class="gold" onclick="handleLogout()">Выйти</button></div></header>
         <div class="admin-panel"><div class="admin-header"><h2 class="admin-title">⚙️ Панель администратора</h2></div>
-            <div class="admin-tabs"><button class="admin-tab active" onclick="switchAdminTab('students')">👥 Студенты</button><button class="admin-tab" onclick="switchAdminTab('progress')">📊 Прогресс</button><button class="admin-tab" onclick="switchAdminTab('applications')">📝 Заявки</button></div>
+            <div class="admin-tabs"><button class="admin-tab active" onclick="switchAdminTab('students', this)">👥 Студенты</button><button class="admin-tab" onclick="switchAdminTab('progress', this)">📊 Прогресс</button><button class="admin-tab" onclick="switchAdminTab('reviews', this)">🌟 Отзывы</button></div>
             <div id="admin-students" class="admin-section active"><div class="admin-card"><h3 class="admin-card-title">Зарегистрировать нового студента</h3><div class="register-form"><input id="newStudentName" type="text" class="form-input" placeholder="Имя (логин)"><input id="newStudentPass" type="text" class="form-input" placeholder="Пароль"><button class="btn btn-gold" onclick="registerStudent()">+ Зарегистрировать</button></div></div>
                 <div class="admin-card"><h3 class="admin-card-title">Список студентов</h3><div id="studentList" class="student-list"></div></div></div>
             <div id="admin-progress" class="admin-section"><div class="admin-card"><h3 class="admin-card-title">Прогресс студентов</h3><div id="progressList"></div></div></div>
-            <div id="admin-applications" class="admin-section"><div class="admin-card"><h3 class="admin-card-title">Заявки на «Систему под ключ»</h3><div id="applicationsList"></div></div></div></div></div>
+            <div id="admin-reviews" class="admin-section"><div class="admin-card"><h3 class="admin-card-title">Отзывы о курсе</h3><div id="reviewsList"></div></div></div></div></div>
 
     <script>
     // ==================== CONFIG ====================
     const ADMIN_LOGIN='admin'; const ADMIN_PASS='zaqqaz';
     const TG_BOT_TOKEN='8788227838:AAHxvmXEQ6C2rKfhl0e1cgdl1sn1eUUfAUk'; const TG_CHAT_ID='6300678737';
-    const AUTH_WORKER_URL = 'https://course-auth.chatbotsmarketolog.workers.dev'; 
+    const AUTH_WORKER_URL = 'https://course-auth.chatbotsmarketolog.workers.dev';
     const BOT_WORKER_URL = 'https://aira-bot.chatbotsmarketolog.workers.dev';
 
     let navigationHistory = [];
@@ -442,9 +458,22 @@
         if (pageId === 'page-admin') initAdmin();
         if (pageId === 'page-module-1') initChecklist('checklist-1', checklist1, 'm1');
         if (pageId === 'page-module-4') initChecklist('checklist-4', checklist4, 'm4');
+        if (pageId === 'page-final') handleFinalBlock();
     }
 
     function navigateToPdf(filename) { navigationHistory.push(currentPage); openPdfViewer(filename); }
+
+    // ==================== TELEGRAM ====================
+    function escapeHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    async function sendTelegramMessage(text) {
+        try {
+            const r = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text, parse_mode: 'HTML' })
+            });
+            return r.ok;
+        } catch (e) { return false; }
+    }
 
     // ==================== AUTH (CLOUD) ====================
     async function handleLogin() {
@@ -477,7 +506,7 @@
 
     // ==================== DB HELPERS (LOCAL FOR PROGRESS) ====================
     function getDB() {
-        try { const d = localStorage.getItem('courseDB'); return d ? JSON.parse(d) : { students: {}, applications: [] }; } catch (e) { return { students: {}, applications: [] }; }
+        try { const d = localStorage.getItem('courseDB'); return d ? JSON.parse(d) : { students: {}, applications: [], reviews: [] }; } catch (e) { return { students: {}, applications: [], reviews: [] }; }
     }
     function saveDB(d) { try { localStorage.setItem('courseDB', JSON.stringify(d)); } catch (e) {} }
     function getUserProgress(u) { const db = getDB(); return (db.students[u] && db.students[u].progress) || { completed: [], checklists: {}, homework: {}, botDialogs: 0, botLastReset: null }; }
@@ -497,43 +526,169 @@
         initAdmin();
     }
     function deleteStudent(name) { if (!confirm(`Удалить "${name}"?`)) return; const db = getDB(); delete db.students[name]; saveDB(db); showToast(`"${name}" удалён`); initAdmin(); }
-    function switchAdminTab(tab) { document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active')); document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active')); event.target.classList.add('active'); document.getElementById(`admin-${tab}`).classList.add('active'); }
+    function switchAdminTab(tab, btn) { document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active')); document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active')); btn.classList.add('active'); document.getElementById('admin-' + tab).classList.add('active'); }
+    function collectStats(data) {
+        const pr = data.progress || { completed: [] };
+        const cm = pr.completed || [];
+        const mods = [1,2,3,4].filter(m => cm.includes(m)).length;
+        const m1 = (pr.checklists && pr.checklists.m1) ? pr.checklists.m1.length : 0;
+        const m4 = (pr.checklists && pr.checklists.m4) ? pr.checklists.m4.length : 0;
+        let hwDone = 0, hwTotal = 0;
+        homeworkData.forEach(hw => { (hw.tasks || []).forEach(t => { hwTotal++; const sv = pr.homework && pr.homework[t.id]; if (sv && sv.rating === 1) hwDone++; }); });
+        return { mods, m1, m4, hwDone, hwTotal, finished: cm.includes(6) };
+    }
     function initAdmin() {
         const db = getDB(); const students = Object.entries(db.students);
         const sl = document.getElementById('studentList');
         if (students.length === 0) { sl.innerHTML = '<p style="color:var(--text-light);text-align:center;padding:20px">Пока нет студентов</p>'; }
         else {
             sl.innerHTML = students.map(([name, data]) => {
-                const pr = data.progress || { completed: [] }; const cc = (pr.completed || []).filter(m => m > 0).length;
-                return `<div class="student-item"><div><div class="student-name">${name}</div><div class="student-progress">${new Date(data.createdAt).toLocaleDateString('ru-RU')}</div></div><div style="font-weight:700;color:var(--cherry)">${cc}/4</div><span class="student-badge ${cc>0?'active':'inactive'}">${cc>0?'Активен':'Новый'}</span><button class="btn btn-danger btn-small" onclick="deleteStudent('${name}')">Удалить</button></div>`;
+                const st = collectStats(data);
+                return `<div class="student-item"><div><div class="student-name">${escapeHtml(name)}</div><div class="student-progress">${new Date(data.createdAt).toLocaleDateString('ru-RU')}</div></div><div style="font-weight:700;color:var(--cherry)">${st.mods}/4</div><span class="student-badge ${st.mods>0?'active':'inactive'}">${st.finished?'🎓 Завершил':st.mods>0?'Активен':'Новый'}</span><button class="btn btn-danger btn-sm" onclick="deleteStudent('${name.replace(/'/g,"\\'")}')">Удалить</button></div>`;
             }).join('');
         }
-        const apps = db.applications || [];
-        const al = document.getElementById('applicationsList');
-        if (apps.length === 0) { al.innerHTML = '<p style="color:var(--text-light);text-align:center;padding:20px">Пока нет заявок</p>'; }
-        else { al.innerHTML = apps.map(app => `<div style="margin-bottom:16px;padding:16px;background:var(--cream);border-radius:var(--radius-sm);border-left:3px solid var(--gold)"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><strong>${app.name}</strong><span style="font-size:12px;color:var(--text-light)">${new Date(app.date).toLocaleDateString('ru-RU')}</span></div><div style="font-size:14px;color:var(--text-light)">📱 ${app.contactType}: ${app.contact}${app.phone?`<br>📞 ${app.phone}`:''}</div></div>`).join(''); }
+        const pl = document.getElementById('progressList');
+        if (students.length === 0) { pl.innerHTML = '<p style="color:var(--text-light);text-align:center;padding:20px">Пока нет студентов</p>'; }
+        else {
+            pl.innerHTML = students.map(([name, data]) => {
+                const st = collectStats(data);
+                return `<div style="padding:16px;background:var(--cream);border-radius:var(--radius-sm);margin-bottom:12px"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px"><strong>${escapeHtml(name)}</strong>${st.finished?'<span style="font-size:12px;font-weight:700;color:#2D8B4E">🎓 Курс завершён</span>':''}</div><div style="font-size:13px;color:var(--text-light);line-height:1.8">📚 Модули: <b>${st.mods}/4</b> · ✅ Чек-лист базы знаний: <b>${st.m1}/10</b> · ✅ Чек-лист CRM: <b>${st.m4}/5</b> · 📝 ДЗ: <b>${st.hwDone}/${st.hwTotal}</b></div><div class="progress-bar-container" style="margin:8px 0 0"><div class="progress-bar-fill" style="width:${Math.round(st.mods/4*100)}%"></div></div></div>`;
+            }).join('');
+        }
+        const reviews = db.reviews || [];
+        const rl = document.getElementById('reviewsList');
+        if (reviews.length === 0) { rl.innerHTML = '<p style="color:var(--text-light);text-align:center;padding:20px">Пока нет отзывов</p>'; }
+        else {
+            rl.innerHTML = reviews.map(r => `<div class="review-admin-item"><div style="display:flex;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:6px"><strong>${escapeHtml(r.name)}</strong><span style="font-size:12px;color:var(--text-light)">${new Date(r.date).toLocaleDateString('ru-RU')}</span></div><div style="font-size:14px;color:var(--text-dark);margin-bottom:8px">${escapeHtml(r.text)}</div><div style="font-size:13px;color:var(--gold-dark);font-weight:600">🎓 Следующее обучение: ${escapeHtml(r.wantsNext || '—')}</div></div>`).join('');
+        }
     }
 
     // ==================== DASHBOARD ====================
     function initDashboard() {
         const db = getDB(); const u = localStorage.getItem('courseCloudUser'); if (!u) return;
         document.getElementById('dashboardUserName').textContent = u;
-        const pr = getUserProgress(u); const cm = pr.completed || []; const cc = Math.min(cm.filter(m => m > 0).length, 4); const pct = Math.round((cc / 4) * 100);
+        const pr = getUserProgress(u); const cm = pr.completed || []; const cc = Math.min(cm.filter(m => m > 0 && m < 5).length, 4); const pct = Math.round((cc / 4) * 100);
         document.getElementById('progressBar').style.width = pct + '%';
         document.getElementById('progressText').textContent = `Прогресс: ${cc} из 4 модулей (${pct}%)`;
         if (cc >= 3) document.getElementById('botBtn').style.display = 'inline-flex';
-        const modules = [{ id: 0, title: 'Введение', desc: 'От автора: о чём курс и что получишь', page: 'page-module-0' },{ id: 1, title: 'Модуль 1', desc: 'Твоя база знаний', page: 'page-module-1' },{ id: 2, title: 'Модуль 2', desc: 'Три смертельные ошибки в лид-магните', page: 'page-module-2' },{ id: 3, title: 'Модуль 3', desc: 'Шаблон скрипта «Раздевающий вопрос»', page: 'page-module-3' },{ id: 4, title: 'Модуль 4', desc: 'CRM в кармане', page: 'page-module-4' },{ id: 5, title: 'Бонус', desc: 'Демо AI-агента AIRA на 3 дня', page: 'page-bonus' },{ id: 6, title: 'Что дальше?', desc: 'Твой выбор', page: 'page-final' }];
+        if (u === ADMIN_LOGIN) document.getElementById('adminBtn').style.display = 'inline-flex';
+        const modules = [
+            { id: 0, title: 'Введение', desc: 'От автора: о чём курс и что получишь', page: 'page-module-0' },
+            { id: 1, title: 'Модуль 1', desc: 'Твоя база знаний', page: 'page-module-1' },
+            { id: 2, title: 'Модуль 2', desc: 'Три смертельные ошибки в лид-магните', page: 'page-module-2' },
+            { id: 3, title: 'Модуль 3', desc: 'Шаблон скрипта «Раздевающий вопрос»', page: 'page-module-3' },
+            { id: 4, title: 'Модуль 4', desc: 'CRM в кармане', page: 'page-module-4' },
+            { id: 5, title: 'Бонус', desc: 'Демо AI-агента AIRA на 3 дня', page: 'page-bonus' },
+            { id: 6, title: 'Завершение курса', desc: 'Результаты, отзыв и следующие шаги', page: 'page-final' }
+        ];
         document.getElementById('modulesGrid').innerHTML = modules.map(m => {
-            const ic = cm.includes(m.id); return `<div class="module-card ${ic?'completed':''}" onclick="navigateTo('${m.page}')"><div class="module-number">${m.id===0?'→':m.id===5?'★':m.id===6?'?':m.id}</div><div class="module-card-title">${m.title}</div><div class="module-card-desc">${m.desc}</div><span class="module-status ${ic?'completed':'available'}">${ic?'✓ Пройден':m.id===0?'Начни здесь':`Модуль ${m.id}`}</span></div>`;
+            const ic = cm.includes(m.id);
+            const num = m.id === 0 ? '→' : m.id === 5 ? '★' : m.id === 6 ? '🎓' : m.id;
+            const status = ic ? '✓ Пройден' : (m.id === 0 ? 'Начни здесь' : m.id === 6 ? 'Финал' : `Модуль ${m.id}`);
+            return `<div class="module-card ${ic?'completed':''}" onclick="navigateTo('${m.page}')"><div class="module-number">${num}</div><div class="module-card-title">${m.title}</div><div class="module-card-desc">${m.desc}</div><span class="module-status ${ic?'completed':'available'}">${status}</span></div>`;
         }).join('');
     }
 
     function completeModule(id) {
         const u = localStorage.getItem('courseCloudUser'); if (!u) return;
         const pr = getUserProgress(u); if (!pr.completed) pr.completed = []; if (!pr.completed.includes(id)) pr.completed.push(id);
-        setUserProgress(u, pr); showToast('Модуль отмечен как пройден! ✅');
+        setUserProgress(u, pr); showToast('Модуль отмечен как пройденный! ✅');
     }
     function checkBonusUnlock() { const u = localStorage.getItem('courseCloudUser'); if (!u) return; const pr = getUserProgress(u); if (pr.completed && pr.completed.includes(1) && pr.completed.includes(2) && pr.completed.includes(3)) showToast('🎁 Бонус разблокирован! Демо AIRA доступно!'); }
+
+    // ==================== FINAL BLOCK: ОТЧЁТ + ОТЗЫВ ====================
+    function buildProgressReport(u) {
+        const pr = getUserProgress(u);
+        const cm = pr.completed || [];
+        const modulesDone = [1,2,3,4].filter(m => cm.includes(m)).length;
+        const extraBlocks = [cm.includes(0) ? 'Введение' : '', cm.includes(5) ? 'Бонус AIRA' : '', cm.includes(6) ? 'Финальный блок' : ''].filter(Boolean).join(', ') || '—';
+        const m1 = (pr.checklists && pr.checklists.m1) ? pr.checklists.m1.length : 0;
+        const m4 = (pr.checklists && pr.checklists.m4) ? pr.checklists.m4.length : 0;
+        let hwDone = 0, hwTotal = 0;
+        homeworkData.forEach(hw => { (hw.tasks || []).forEach(t => { hwTotal++; const sv = pr.homework && pr.homework[t.id]; if (sv && sv.rating === 1) hwDone++; }); });
+        let draftCells = 0;
+        if (pr.homework) { Object.keys(pr.homework).forEach(k => { if (k.indexOf('hw1_r') === 0 && String(pr.homework[k]).trim()) draftCells++; }); }
+        const now = new Date();
+        return [
+            '🎓 <b>СТУДЕНТ ПРОШЁЛ ПОСЛЕДНИЙ БЛОК КУРСА!</b>',
+            '',
+            '👤 Студент: <b>' + escapeHtml(u) + '</b>',
+            '📅 Завершено: ' + now.toLocaleDateString('ru-RU') + ' ' + now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
+            '',
+            '📊 <b>ПРОГРЕСС И РЕЗУЛЬТАТЫ:</b>',
+            `• Основные модули: ${modulesDone} из 4`,
+            `• Пройденные блоки: ${escapeHtml(extraBlocks)}`,
+            `• Чек-лист «База знаний»: ${m1}/10`,
+            `• Чек-лист «CRM»: ${m4}/5`,
+            `• Домашние задания: ${hwDone}/${hwTotal} выполнено`,
+            `• Таблица-черновик: ${draftCells} заполненных ячеек`,
+            `• Диалогов с AIRA: ${pr.botDialogs || 0}`
+        ].join('\n');
+    }
+    function renderFinalStats() {
+        const u = localStorage.getItem('courseCloudUser'); if (!u) return;
+        const pr = getUserProgress(u);
+        const cm = pr.completed || [];
+        const mods = [1,2,3,4].filter(m => cm.includes(m)).length;
+        const m1 = (pr.checklists && pr.checklists.m1) ? pr.checklists.m1.length : 0;
+        const m4 = (pr.checklists && pr.checklists.m4) ? pr.checklists.m4.length : 0;
+        let hwDone = 0, hwTotal = 0;
+        homeworkData.forEach(hw => { (hw.tasks || []).forEach(t => { hwTotal++; const sv = pr.homework && pr.homework[t.id]; if (sv && sv.rating === 1) hwDone++; }); });
+        const fsM = document.getElementById('fsModules'); if (fsM) fsM.textContent = `${mods}/4`;
+        const fsC = document.getElementById('fsChecklists'); if (fsC) fsC.textContent = `${m1 + m4}/15`;
+        const fsH = document.getElementById('fsHomework'); if (fsH) fsH.textContent = `${hwDone}/${hwTotal}`;
+    }
+    function handleFinalBlock() {
+        renderFinalStats();
+        const u = localStorage.getItem('courseCloudUser'); if (!u) return;
+        const nameInput = document.getElementById('reviewName');
+        if (nameInput && !nameInput.value) nameInput.value = u;
+        // отмечаем последний блок как пройденный
+        const pr = getUserProgress(u);
+        if (!pr.completed) pr.completed = [];
+        if (!pr.completed.includes(6)) pr.completed.push(6);
+        setUserProgress(u, pr);
+        sendFinalReport(false);
+    }
+    async function sendFinalReport(force) {
+        const u = localStorage.getItem('courseCloudUser'); if (!u) return;
+        const pr = getUserProgress(u);
+        const statusEl = document.getElementById('finalNotifyStatus');
+        if (pr.courseNotified && !force) {
+            if (statusEl) statusEl.innerHTML = '✅ <b>Отчёт о прогрессе отправлен Кристине</b>';
+            return;
+        }
+        if (statusEl) statusEl.innerHTML = '⏳ Отправляем отчёт о прогрессе Кристине...';
+        const ok = await sendTelegramMessage(buildProgressReport(u));
+        if (ok) {
+            const pr2 = getUserProgress(u); pr2.courseNotified = true; setUserProgress(u, pr2);
+            if (statusEl) statusEl.innerHTML = '✅ <b>Отчёт о прогрессе отправлен Кристине</b>';
+            showToast('Курс завершён! Отчёт отправлен 🎓');
+        } else {
+            if (statusEl) statusEl.innerHTML = '⚠️ Не удалось отправить отчёт. <button class="btn btn-outline btn-sm" style="margin-top:8px" onclick="sendFinalReport(true)">🔁 Попробовать снова</button>';
+        }
+    }
+    let selectedContinue = '';
+    function selectContinue(el, val) {
+        selectedContinue = val;
+        document.querySelectorAll('.continue-option').forEach(o => o.classList.remove('active'));
+        el.classList.add('active');
+    }
+    async function submitReview() {
+        const u = localStorage.getItem('courseCloudUser') || '';
+        const name = document.getElementById('reviewName').value.trim() || u || 'Студент';
+        const text = document.getElementById('reviewText').value.trim();
+        if (!text) { showToast('Напишите пару слов о ваших впечатлениях'); return; }
+        const cont = selectedContinue || 'Не выбрано';
+        const db = getDB(); if (!db.reviews) db.reviews = [];
+        db.reviews.push({ name, text, wantsNext: cont, date: new Date().toISOString(), user: u });
+        saveDB(db);
+        const msg = '🌟 <b>Новый отзыв о курсе</b>\n\n👤 Имя: ' + escapeHtml(name) + '\n💬 Отзыв: ' + escapeHtml(text) + '\n🎓 Следующее обучение: ' + escapeHtml(cont);
+        await sendTelegramMessage(msg);
+        document.getElementById('reviewFormContent').style.display = 'none';
+        document.getElementById('reviewSuccess').style.display = 'block';
+        showToast('Отзыв отправлен! Спасибо 💖');
+    }
 
     // ==================== CHECKLISTS ====================
     const checklist1 = ['У меня есть минимум 20 реальных диалогов','Среди них есть 5 возражений с закрывающими ответами','На каждое возражение я записал рабочий ответ','У меня есть 3 истории успеха с цифрами','Я записал ответы на 5 частых вопросов','Мои ответы написаны моим же тоном','Нет фраз «напишите в WhatsApp»','Каждый диалог заканчивается призывом к действию','Есть 3 разных сценария','Всё собрано в одном текстовом файле'];
@@ -587,24 +742,6 @@
     function setHWRating(tid, rating) { const u = localStorage.getItem('courseCloudUser'); if (!u) return; const pr = getUserProgress(u); if (!pr.homework) pr.homework = {}; if (!pr.homework[tid]) pr.homework[tid] = {}; pr.homework[tid].rating = rating; setUserProgress(u, pr); const se = document.getElementById(`hw-score-${tid}`); if (se) { se.className = `hw-score ${rating > 0 ? 'positive' : rating < 0 ? 'negative' : 'neutral'}`; se.textContent = rating === 1 ? '✅ Выполнено' : rating === -1 ? '❌ Не выполнено' : '⏳ Ожидает'; } const item = se ? se.closest('.hw-item') : null; if (item) { item.querySelector('.hw-btn.plus').classList.toggle('active', rating === 1); item.querySelector('.hw-btn.minus').classList.toggle('active', rating === -1); } }
     function saveHWText(tid, text) { const u = localStorage.getItem('courseCloudUser'); if (!u) return; const pr = getUserProgress(u); if (!pr.homework) pr.homework = {}; if (!pr.homework[tid]) pr.homework[tid] = {}; pr.homework[tid].text = text; setUserProgress(u, pr); showToast('Сохранено ✅'); }
 
-    // ==================== APPLICATION ====================
-    let selectedContact = 'tg';
-    function selectContact(type, el) { selectedContact = type; document.querySelectorAll('.contact-option').forEach(o => o.classList.remove('active')); el.classList.add('active'); document.getElementById('tgField').style.display = type === 'tg' ? 'block' : 'none'; document.getElementById('vkField').style.display = type === 'vk' ? 'block' : 'none'; }
-    async function submitApplication() {
-        const name = document.getElementById('appName').value.trim(); const tg = document.getElementById('appTelegram').value.trim(); const vk = document.getElementById('appVK').value.trim(); const phone = document.getElementById('appPhone').value.trim(); const niche = document.getElementById('appNiche').value; const msg = document.getElementById('appMessage').value.trim(); const privacy = document.getElementById('privacyCheck').checked;
-        if (!name) { showToast('Укажите ваше имя'); return; }
-        if (selectedContact === 'tg' && !tg) { showToast('Укажите Telegram'); return; }
-        if (selectedContact === 'vk' && !vk) { showToast('Укажите ВКонтакте'); return; }
-        if (!privacy) { showToast('Примите политику конфиденциальности'); return; }
-        const contact = selectedContact === 'tg' ? tg : vk; const contactLabel = selectedContact === 'tg' ? 'Telegram' : 'VK';
-        const db = getDB(); if (!db.applications) db.applications = [];
-        db.applications.push({ name, contact, contactType: contactLabel, phone, niche, message: msg, date: new Date().toISOString(), fromUser: localStorage.getItem('courseCloudUser') }); saveDB(db);
-        const text = `📝 *Новая заявка с курса AI TRIGGER*\n\n👤 Имя: ${name}\n📱 ${contactLabel}: ${contact}${phone ? `\n📞 Телефон: ${phone}` : ''}${niche ? `\n💼 Ниша: ${niche}` : ''}${msg ? `\n💬 Сообщение: ${msg}` : ''}`;
-        try { await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text, parse_mode: 'Markdown' }) }); } catch (e) {}
-        document.getElementById('appFormContent').style.display = 'none'; document.getElementById('appFormSuccess').style.display = 'block'; showToast('Заявка отправлена! ✅');
-    }
-    function showPrivacyModal() { showModal(`<button class="modal-close" onclick="closeModal()">✕</button><h2 class="modal-title">📋 Политика конфиденциальности</h2><div style="font-size:14px; color:var(--text-light); line-height:1.7;"><p><strong>1. Общие положения</strong></p><p>Настоящая политика конфиденциальности определяет порядок обработки персональных данных пользователей курса «Новые Горизонты Инфобизнеса».</p><p><strong>2. Собираемые данные</strong></p><p>Мы собираем: имя, контакт (Telegram или ВКонтакте), телефон (по желанию), нишу деятельности и сообщение.</p><p><strong>3. Цели обработки</strong></p><p>Данные используются исключительно для связи по вашей заявке на «Систему под ключ».</p><p><strong>4. Хранение данных</strong></p><p>Данные хранятся в защищённом виде и не передаются третьим лицам.</p><p><strong>5. Согласие</strong></p><p>Отправляя заявку, вы даёте согласие на обработку персональных данных.</p><p style="margin-top:16px"><strong>Кристина — Академия «Новые Горизонты Инфобизнеса»</strong></p></div>`); }
-
     // ==================== BOT (SMART AIRA) ====================
     function sendBotMessage() {
         const input = document.getElementById('botInput'); const text = input.value.trim(); if (!text) return;
@@ -618,7 +755,7 @@
         const userMsg = document.createElement('div'); userMsg.className = 'bot-msg user'; userMsg.textContent = text; messages.appendChild(userMsg);
         input.value = '';
         const typing = document.createElement('div'); typing.className = 'bot-typing'; typing.innerHTML = '<span></span><span></span><span></span>'; messages.appendChild(typing); messages.scrollTop = messages.scrollHeight;
-        
+
         setTimeout(async () => {
             typing.remove();
             try {
@@ -628,13 +765,12 @@
                 });
                 const data = await response.json();
                 const botMsg = document.createElement('div'); botMsg.className = 'bot-msg bot';
-                botMsg.innerHTML = (data.response || 'Ошибка соединения. Попробуйте позже.').replace(/\n/g, '<br>');
+                botMsg.innerHTML = escapeHtml(data.response || 'Ошибка соединения. Попробуйте позже.').replace(/\n/g, '<br>');
                 if (data.quickReplies && data.quickReplies.length > 0) {
-                    botMsg.innerHTML += `<div class="bot-quick-replies">${data.quickReplies.map(q => `<button class="bot-quick-reply" onclick="botReply('${q}')">${q}</button>`).join('')}</div>`;
+                    botMsg.innerHTML += `<div class="bot-quick-replies">${data.quickReplies.map(q => `<button class="bot-quick-reply" onclick="botReply('${q.replace(/'/g,"\\'")}')">${escapeHtml(q)}</button>`).join('')}</div>`;
                 }
                 messages.appendChild(botMsg); messages.scrollTop = messages.scrollHeight;
             } catch (e) {
-                typing.remove();
                 const botMsg = document.createElement('div'); botMsg.className = 'bot-msg bot'; botMsg.textContent = 'Ошибка соединения с AI-агентом.'; messages.appendChild(botMsg); messages.scrollTop = messages.scrollHeight;
             }
         }, 800);
@@ -646,8 +782,25 @@
     function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
     function showToast(m) { const t = document.getElementById('toast'); document.getElementById('toastMessage').textContent = m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
 
+    // ==================== CHERRY PARTICLES ====================
+    function createCherryParticles() {
+        const container = document.getElementById('cherryParticles');
+        const emojis = ['🍒', '🌸', '🍒'];
+        for (let i = 0; i < 10; i++) {
+            const p = document.createElement('div');
+            p.className = 'cherry-particle';
+            p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = (14 + Math.random() * 16) + 's';
+            p.style.animationDelay = (Math.random() * 18) + 's';
+            p.style.fontSize = (14 + Math.random() * 16) + 'px';
+            container.appendChild(p);
+        }
+    }
+
     // ==================== INIT ====================
     document.addEventListener('DOMContentLoaded', () => {
+        createCherryParticles();
         const u = localStorage.getItem('courseCloudUser');
         if (u) { showPage('page-dashboard'); } else { showPage('page-landing'); }
         document.getElementById('modalOverlay').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal(); });
