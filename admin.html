@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Админ-панель — Академия «Новые Горизонты Инфобизнеса»</title>
     <style>
-        @import url('https://cdn.fontsource.com/fonts/inter.css');
-        
+        @import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/400.css');
+        @import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/600.css');
+        @import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/700.css');
+        @import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/800.css');
+        @import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.20/900.css');
+
         * {
             margin: 0;
             padding: 0;
@@ -25,8 +29,8 @@
             --text-dark: #2A1A1A;
             --text-light: #5A4A4A;
             --white: #FFFFFF;
-            --shadow: 0 8px 32px rgba(196, 30, 58, 0.12);
-            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.2);
+            --shadow: 0 8px 32px rgba(196, 30, 58, 0.10);
+            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.18);
             --radius: 16px;
             --radius-sm: 8px;
         }
@@ -39,68 +43,59 @@
             min-height: 100vh;
         }
 
-        .page {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .page.active {
-            display: block;
-        }
+        .page { display: none; animation: fadeIn 0.4s ease; }
+        .page.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.03); }
         }
-
         @keyframes shimmer {
             0% { background-position: -200% center; }
             100% { background-position: 200% center; }
         }
 
-        /* Login Page */
+        /* ========== LOGIN — БЛЕДНЫЙ ОТТЕНОК КАК НА ГЛАВНОЙ ========== */
         .login-page {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 24px;
-            background: linear-gradient(160deg, #1a0a0e 0%, #2d0f15 30%, #3d1520 60%, #2d0f15 100%);
+            background: linear-gradient(160deg, #FFFDFA 0%, #FDF4F1 25%, #FAEBE9 50%, #FDF5E6 75%, #FFFDFA 100%);
             position: relative;
         }
-
         .login-page::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at 30% 30%, rgba(196, 30, 58, 0.5) 0%, transparent 60%),
-                        radial-gradient(ellipse at 70% 70%, rgba(212, 175, 55, 0.3) 0%, transparent 60%);
+            background: radial-gradient(ellipse at 30% 30%, rgba(232, 67, 93, 0.10) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 70%, rgba(212, 175, 55, 0.16) 0%, transparent 60%);
         }
 
         .login-card {
             position: relative;
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.4);
             border-radius: 24px;
             padding: 48px 40px;
             max-width: 420px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 60px rgba(196, 30, 58, 0.12);
         }
 
         .login-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(212, 175, 55, 0.15);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            color: var(--gold-light);
+            background: rgba(212, 175, 55, 0.16);
+            border: 1px solid rgba(168, 139, 44, 0.4);
+            color: var(--gold-dark);
             padding: 6px 14px;
             border-radius: 50px;
             font-size: 11px;
@@ -113,12 +108,11 @@
         .login-title {
             font-size: 28px;
             font-weight: 900;
-            color: var(--white);
+            color: var(--cherry-dark);
             margin-bottom: 6px;
         }
-
         .login-title .gold {
-            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold-dark));
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -126,7 +120,7 @@
         }
 
         .login-subtitle {
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--text-light);
             font-size: 14px;
             margin-bottom: 32px;
         }
@@ -141,16 +135,15 @@
             justify-content: center;
             font-size: 24px;
             margin-bottom: 24px;
+            box-shadow: 0 8px 20px rgba(196, 30, 58, 0.2);
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .form-group { margin-bottom: 20px; }
 
         .form-label {
             display: block;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-dark);
             margin-bottom: 8px;
             font-size: 13px;
             letter-spacing: 0.3px;
@@ -159,24 +152,20 @@
         .form-input {
             width: 100%;
             padding: 14px 16px;
-            border: 2px solid rgba(255, 255, 255, 0.15);
+            border: 2px solid var(--cream-dark);
             border-radius: var(--radius-sm);
             font-size: 16px;
             font-family: inherit;
             transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.08);
-            color: var(--white);
+            background: var(--cream);
+            color: var(--text-dark);
         }
-
         .form-input:focus {
             outline: none;
             border-color: var(--gold);
-            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.18);
         }
-
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
+        .form-input::placeholder { color: #B8B0A8; }
 
         .btn {
             display: inline-flex;
@@ -200,7 +189,6 @@
             box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
             animation: pulse 2.5s ease-in-out infinite;
         }
-
         .btn-gold:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 28px rgba(212, 175, 55, 0.5);
@@ -208,22 +196,21 @@
 
         .btn-outline {
             background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.7);
+            border: 1.5px solid rgba(196, 30, 58, 0.45);
+            color: var(--cherry);
             padding: 10px 20px;
             font-size: 14px;
         }
-
         .btn-outline:hover {
-            border-color: var(--gold);
-            color: var(--gold-light);
-            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--cherry);
+            background: var(--cherry);
+            color: #fff;
         }
 
         .login-error {
-            background: rgba(196, 30, 58, 0.2);
+            background: #FFF0F0;
             border: 1px solid var(--cherry-light);
-            color: var(--gold-light);
+            color: var(--cherry-dark);
             padding: 12px 16px;
             border-radius: var(--radius-sm);
             font-size: 14px;
@@ -231,28 +218,31 @@
             display: none;
         }
 
-        /* Admin Panel */
+        /* ========== HEADER — БЛЕДНЫЙ, КАК ГЛАВНАЯ ========== */
         .admin-header {
-            background: linear-gradient(135deg, var(--cherry-dark) 0%, var(--cherry) 100%);
-            padding: 16px 24px;
+            background: linear-gradient(135deg, rgba(255, 253, 250, 0.94) 0%, rgba(253, 244, 241, 0.94) 55%, rgba(253, 245, 230, 0.94) 100%);
+            backdrop-filter: blur(12px);
+            padding: 14px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(196, 30, 58, 0.3);
+            gap: 12px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+            box-shadow: 0 4px 20px rgba(196, 30, 58, 0.08);
             position: sticky;
             top: 0;
             z-index: 100;
+            flex-wrap: wrap;
         }
 
         .admin-logo {
-            color: var(--gold-light);
+            color: var(--cherry-dark);
             font-weight: 800;
             font-size: 16px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-
         .admin-logo-icon {
             width: 36px;
             height: 36px;
@@ -262,17 +252,16 @@
             align-items: center;
             justify-content: center;
             font-size: 18px;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
         }
+        .admin-logo-sub { font-size: 11px; color: var(--text-light); font-weight: 600; }
 
-        .admin-nav {
-            display: flex;
-            gap: 10px;
-        }
+        .admin-nav { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 
         .admin-nav button {
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: var(--gold-light);
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(196, 30, 58, 0.2);
+            color: var(--cherry);
             padding: 8px 18px;
             border-radius: var(--radius-sm);
             cursor: pointer;
@@ -281,27 +270,27 @@
             transition: all 0.3s;
             font-family: inherit;
         }
-
         .admin-nav button:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: var(--gold);
+            border-color: var(--cherry);
+            background: rgba(196, 30, 58, 0.05);
         }
-
         .admin-nav button.active {
             background: linear-gradient(135deg, var(--gold), var(--gold-light));
             color: var(--cherry-dark);
             border-color: var(--gold);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
         }
 
-        /* Cloud Status Indicator */
         .cloud-status {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 12px;
+            font-weight: 600;
             color: var(--text-light);
             padding: 6px 12px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--cream-dark);
             border-radius: 50px;
         }
         .cloud-status.connected { color: #2D8B4E; }
@@ -316,20 +305,15 @@
             margin: 0 auto;
         }
 
-        .admin-section {
-            display: none;
-        }
-
-        .admin-section.active {
-            display: block;
-        }
+        .admin-section { display: none; }
+        .admin-section.active { display: block; }
 
         .admin-card {
             background: var(--white);
             border-radius: var(--radius);
             padding: 32px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 16px rgba(196, 30, 58, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.18);
             margin-bottom: 24px;
         }
 
@@ -349,18 +333,11 @@
             align-items: center;
             justify-content: center;
             font-size: 20px;
+            flex-shrink: 0;
         }
 
-        .admin-card-title {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
-
-        .admin-card-subtitle {
-            font-size: 14px;
-            color: var(--text-light);
-        }
+        .admin-card-title { font-size: 20px; font-weight: 800; color: var(--text-dark); }
+        .admin-card-subtitle { font-size: 14px; color: var(--text-light); }
 
         .form-row {
             display: grid;
@@ -378,12 +355,12 @@
             font-family: inherit;
             transition: all 0.3s;
             background: var(--cream);
+            color: var(--text-dark);
         }
-
         .form-input-light:focus {
             outline: none;
-            border-color: var(--cherry);
-            box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.1);
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.18);
         }
 
         .btn-primary {
@@ -392,18 +369,12 @@
             box-shadow: 0 4px 16px rgba(196, 30, 58, 0.3);
             white-space: nowrap;
         }
-
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(196, 30, 58, 0.4);
         }
 
-        .students-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
+        .students-table { width: 100%; border-collapse: collapse; font-size: 14px; }
         .students-table th {
             background: var(--cream);
             color: var(--text-light);
@@ -415,27 +386,11 @@
             text-transform: uppercase;
             border-bottom: 2px solid var(--cream-dark);
         }
+        .students-table td { padding: 14px 16px; border-bottom: 1px solid var(--cream-dark); vertical-align: middle; }
+        .students-table tr:last-child td { border-bottom: none; }
+        .students-table tr:hover td { background: var(--cream); }
 
-        .students-table td {
-            padding: 14px 16px;
-            border-bottom: 1px solid var(--cream-dark);
-            vertical-align: middle;
-        }
-
-        .students-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .students-table tr:hover td {
-            background: var(--cream);
-        }
-
-        .student-name-cell {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
+        .student-name-cell { display: flex; align-items: center; gap: 12px; }
         .student-avatar {
             width: 36px;
             height: 36px;
@@ -447,63 +402,19 @@
             color: white;
             font-weight: 800;
             font-size: 14px;
+            flex-shrink: 0;
         }
+        .student-name { font-weight: 700; color: var(--text-dark); }
+        .student-date { font-size: 12px; color: var(--text-light); }
 
-        .student-name {
-            font-weight: 700;
-            color: var(--text-dark);
-        }
+        .progress-bar-mini { width: 120px; height: 8px; background: var(--cream-dark); border-radius: 50px; overflow: hidden; }
+        .progress-bar-mini-fill { height: 100%; background: linear-gradient(90deg, var(--cherry), var(--gold)); border-radius: 50px; transition: width 0.5s ease; }
+        .progress-text { font-size: 12px; color: var(--text-light); margin-top: 4px; }
 
-        .student-date {
-            font-size: 12px;
-            color: var(--text-light);
-        }
-
-        .progress-bar-mini {
-            width: 120px;
-            height: 8px;
-            background: var(--cream-dark);
-            border-radius: 50px;
-            overflow: hidden;
-        }
-
-        .progress-bar-mini-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--cherry), var(--gold));
-            border-radius: 50px;
-            transition: width 0.5s ease;
-        }
-
-        .progress-text {
-            font-size: 12px;
-            color: var(--text-light);
-            margin-top: 4px;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .badge-new {
-            background: var(--cream);
-            color: var(--text-light);
-        }
-
-        .badge-active {
-            background: #E8F8EE;
-            color: #2D8B4E;
-        }
-
-        .badge-done {
-            background: #FFF5E6;
-            color: var(--gold-dark);
-        }
+        .badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 50px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+        .badge-new { background: var(--cream); color: var(--text-light); }
+        .badge-active { background: #E8F8EE; color: #2D8B4E; }
+        .badge-done { background: #FFF5E6; color: var(--gold-dark); }
 
         .btn-delete {
             width: 32px;
@@ -517,32 +428,27 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
+            font-size: 14px;
         }
-
-        .btn-delete:hover {
-            background: #FFF0F0;
-            color: var(--cherry);
-        }
+        .btn-delete:hover { background: #FFF0F0; color: var(--cherry); }
 
         .btn-copy {
-            padding: 6px 12px;
-            border-radius: 6px;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
             border: 1px solid var(--gold);
             background: transparent;
             color: var(--gold-dark);
             cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 14px;
             transition: all 0.3s;
             font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+        .btn-copy:hover { background: var(--gold); color: var(--cherry-dark); }
 
-        .btn-copy:hover {
-            background: var(--gold);
-            color: var(--cherry-dark);
-        }
-
-        /* Sync button styles */
         .btn-sync {
             padding: 6px 12px;
             border-radius: 6px;
@@ -550,11 +456,11 @@
             background: transparent;
             color: var(--cherry);
             cursor: pointer;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             transition: all 0.3s;
             font-family: inherit;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 4px;
         }
@@ -562,57 +468,33 @@
         .btn-sync.synced { border-color: #2D8B4E; color: #2D8B4E; }
         .btn-sync.synced:hover { background: #2D8B4E; color: white; }
 
-        .app-item {
+        /* Reviews */
+        .review-item {
             padding: 16px;
             background: var(--cream);
             border-radius: var(--radius-sm);
             margin-bottom: 12px;
             border-left: 3px solid var(--gold);
         }
-
-        .app-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 8px;
-        }
-
-        .app-name {
+        .review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 8px; flex-wrap: wrap; }
+        .review-name { font-weight: 700; color: var(--text-dark); }
+        .review-date { font-size: 12px; color: var(--text-light); }
+        .review-text { font-size: 14px; color: var(--text-dark); margin-bottom: 10px; }
+        .review-next {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
             font-weight: 700;
-            color: var(--text-dark);
+            color: var(--gold-dark);
+            background: rgba(212, 175, 55, 0.14);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 5px 12px;
+            border-radius: 50px;
         }
 
-        .app-date {
-            font-size: 12px;
-            color: var(--text-light);
-        }
-
-        .app-details {
-            font-size: 13px;
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        .app-message {
-            margin-top: 8px;
-            padding: 10px;
-            background: var(--white);
-            border-radius: 6px;
-            font-size: 13px;
-            color: var(--text-dark);
-            font-style: italic;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 48px 24px;
-            color: var(--text-light);
-        }
-
-        .empty-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-        }
+        .empty-state { text-align: center; padding: 48px 24px; color: var(--text-light); }
+        .empty-icon { font-size: 48px; margin-bottom: 16px; }
 
         .toast {
             position: fixed;
@@ -628,90 +510,40 @@
             border-left: 4px solid var(--gold);
             max-width: 360px;
         }
-
-        .toast.show {
-            display: block;
-        }
-
-        .toast-message {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
+        .toast.show { display: block; }
+        .toast-message { font-size: 14px; font-weight: 600; color: var(--text-dark); }
 
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(42, 26, 26, 0.45);
             z-index: 1000;
             display: none;
             align-items: center;
             justify-content: center;
             padding: 24px;
         }
-
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
 
         .modal {
             background: var(--white);
             border-radius: var(--radius);
             max-width: 480px;
             width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
             padding: 32px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
             animation: fadeIn 0.3s ease;
         }
+        .modal-close { float: right; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-light); padding: 4px; }
+        .modal-close:hover { color: var(--cherry); }
+        .modal-title { font-size: 20px; font-weight: 800; color: var(--text-dark); margin-bottom: 16px; }
+        .modal-text { color: var(--text-light); font-size: 14px; margin-bottom: 20px; }
 
-        .modal-close {
-            float: right;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--text-light);
-            padding: 4px;
-        }
-
-        .modal-close:hover {
-            color: var(--cherry);
-        }
-
-        .modal-title {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 16px;
-        }
-
-        .modal-text {
-            color: var(--text-light);
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .modal-creds {
-            background: var(--cream);
-            padding: 16px;
-            border-radius: var(--radius-sm);
-            margin-bottom: 20px;
-        }
-
-        .modal-creds-label {
-            font-size: 12px;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-
-        .modal-creds-value {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--text-dark);
-            font-family: monospace;
-        }
+        .modal-creds { background: var(--cream); padding: 16px; border-radius: var(--radius-sm); margin-bottom: 20px; }
+        .modal-creds-label { font-size: 12px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .modal-creds-value { font-size: 18px; font-weight: 800; color: var(--text-dark); font-family: monospace; }
 
         .stats-grid {
             display: grid;
@@ -719,84 +551,37 @@
             gap: 16px;
             margin-bottom: 24px;
         }
-
         .stat-card {
             background: var(--white);
             border-radius: var(--radius);
             padding: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 2px 8px rgba(196, 30, 58, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.18);
         }
-
-        .stat-number {
-            font-size: 32px;
-            font-weight: 900;
-            color: var(--cherry);
-        }
-
-        .stat-number.gold {
-            color: var(--gold-dark);
-        }
-
-        .stat-label {
-            font-size: 13px;
-            color: var(--text-light);
-            font-weight: 600;
-        }
+        .stat-number { font-size: 32px; font-weight: 900; color: var(--cherry); }
+        .stat-number.gold { color: var(--gold-dark); }
+        .stat-label { font-size: 13px; color: var(--text-light); font-weight: 600; }
 
         @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .students-table {
-                font-size: 12px;
-            }
-
-            .students-table th,
-            .students-table td {
-                padding: 10px 12px;
-            }
-
-            .admin-header {
-                padding: 12px 16px;
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-
-            .admin-nav {
-                flex-wrap: wrap;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .form-row { grid-template-columns: 1fr; }
+            .students-table { font-size: 12px; }
+            .students-table th, .students-table td { padding: 10px 12px; }
+            .admin-header { padding: 12px 16px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .admin-card { padding: 24px 18px; }
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--cream);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--cherry-light);
-            border-radius: 4px;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--cream); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
     </style>
 </head>
 <body>
     <!-- Toast -->
-    <div id="toast" class="toast">
-        <div id="toastMessage" class="toast-message"></div>
-    </div>
+    <div id="toast" class="toast"><div id="toastMessage" class="toast-message"></div></div>
 
     <!-- Modal -->
-    <div id="modalOverlay" class="modal-overlay">
-        <div id="modalContent" class="modal"></div>
-    </div>
+    <div id="modalOverlay" class="modal-overlay"><div id="modalContent" class="modal"></div></div>
 
     <!-- LOGIN PAGE -->
     <div id="page-login" class="page active">
@@ -804,7 +589,7 @@
             <div class="login-card">
                 <div class="login-badge">🔐 Только для администратора</div>
                 <div class="login-icon">🍒</div>
-                <h1 class="login-title">Админ-панель</h1>
+                <h1 class="login-title">Админ-<span class="gold">панель</span></h1>
                 <p class="login-subtitle">Академия «Новые Горизонты Инфобизнеса»</p>
 
                 <div id="loginError" class="login-error">Неверный пароль</div>
@@ -829,17 +614,16 @@
                 <div class="admin-logo-icon">⚙️</div>
                 <div>
                     <div style="font-size:15px;">Админ-панель</div>
-                    <div style="font-size:11px; opacity:0.7;">Новые Горизонты</div>
+                    <div class="admin-logo-sub">Новые Горизонты</div>
                 </div>
             </div>
-            <!-- Cloud Status Indicator -->
             <div id="cloudStatus" class="cloud-status">
                 <span class="cloud-dot"></span>
                 <span>Проверка подключения...</span>
             </div>
             <div class="admin-nav">
                 <button id="tab-students" class="active" onclick="switchTab('students')">👥 Ученики</button>
-                <button id="tab-apps" onclick="switchTab('apps')">📝 Заявки</button>
+                <button id="tab-reviews" onclick="switchTab('reviews')">🌟 Отзывы</button>
                 <button id="tab-stats" onclick="switchTab('stats')">📊 Статистика</button>
                 <button class="btn-outline" onclick="handleLogout()" style="padding:8px 16px; border-radius:8px; font-size:14px;">Выйти</button>
             </div>
@@ -858,17 +642,16 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group" style="margin-bottom:0">
-                            <label class="form-label" style="color:var(--text-dark)">Имя ученика (логин)</label>
+                            <label class="form-label">Имя ученика (логин)</label>
                             <input id="newStudentName" type="text" class="form-input-light" placeholder="Например: Анна">
                         </div>
                         <div class="form-group" style="margin-bottom:0">
-                            <label class="form-label" style="color:var(--text-dark)">Пароль</label>
+                            <label class="form-label">Пароль</label>
                             <input id="newStudentPass" type="text" class="form-input-light" placeholder="Придумай пароль">
                         </div>
                         <button class="btn btn-primary" onclick="registerStudent()">Создать аккаунт</button>
                     </div>
-                    <!-- Sync All Button -->
-                    <button class="btn btn-outline" onclick="syncAllToCloud()" style="margin-top:12px; width:100%;">
+                    <button class="btn btn-outline" onclick="syncAllToCloud()" style="margin-top:16px; width:100%;">
                         ☁️ Синхронизировать всех учеников с облаком
                     </button>
                 </div>
@@ -890,20 +673,20 @@
                 </div>
             </div>
 
-            <!-- APPLICATIONS TAB -->
-            <div id="section-apps" class="admin-section">
+            <!-- REVIEWS TAB -->
+            <div id="section-reviews" class="admin-section">
                 <div class="admin-card">
                     <div class="admin-card-header">
-                        <div class="admin-card-icon">📝</div>
+                        <div class="admin-card-icon">🌟</div>
                         <div>
-                            <div class="admin-card-title">Заявки на AgentFlow</div>
-                            <div class="admin-card-subtitle" id="appsCount">Всего заявок: 0</div>
+                            <div class="admin-card-title">Отзывы о курсе</div>
+                            <div class="admin-card-subtitle" id="reviewsCount">Всего отзывов: 0</div>
                         </div>
                     </div>
-                    <div id="applicationsContainer">
+                    <div id="reviewsContainer">
                         <div class="empty-state">
-                            <div class="empty-icon">📭</div>
-                            <p>Пока нет заявок</p>
+                            <div class="empty-icon">💬</div>
+                            <p>Пока нет отзывов. Ученики оставляют их на финальном блоке курса.</p>
                         </div>
                     </div>
                 </div>
@@ -916,7 +699,8 @@
                     <div class="admin-card-header">
                         <div class="admin-card-icon">📊</div>
                         <div>
-                            <div class="admin-card-title">Прогресс по модулям</div>
+                            <div class="admin-card-title">Прогресс по блокам курса</div>
+                            <div class="admin-card-subtitle">Модули, бонус и финальный блок</div>
                         </div>
                     </div>
                     <div id="progressDetails"></div>
@@ -932,17 +716,38 @@
         const WORKER_URL = 'https://course-auth.chatbotsmarketolog.workers.dev'; // ✅ ТВОЙ РЕАЛЬНЫЙ URL
         const ADMIN_SECRET = 'super-secret-kristina'; // 🔥 ДОЛЖЕН СОВПАДАТЬ С ТЕМ, ЧТО В WORKER
 
-        // ==================== DB HELPERS ====================
+        const BLOCK_NAMES = [
+            'Введение',
+            'Модуль 1: База знаний',
+            'Модуль 2: Лид-магнит',
+            'Модуль 3: Раздевающий вопрос',
+            'Модуль 4: CRM',
+            'Бонус: AIRA',
+            'Завершение курса'
+        ];
+
+        // ==================== HELPERS ====================
+        function escapeHtml(s) {
+            return String(s == null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+        function escAttr(s) { return escapeHtml(s).replace(/'/g, '&#39;'); }
+
         function getDB() {
-            const db = localStorage.getItem('courseDB');
-            return db ? JSON.parse(db) : { students: {}, applications: [] };
+            try {
+                const db = localStorage.getItem('courseDB');
+                const parsed = db ? JSON.parse(db) : {};
+                return { students: parsed.students || {}, applications: parsed.applications || [], reviews: parsed.reviews || [] };
+            } catch (e) {
+                return { students: {}, applications: [], reviews: [] };
+            }
         }
 
         function saveDB(db) {
             localStorage.setItem('courseDB', JSON.stringify(db));
         }
 
-        // ==================== UI HELPERS ====================
         function showToast(msg) {
             const t = document.getElementById('toast');
             document.getElementById('toastMessage').textContent = msg;
@@ -969,7 +774,7 @@
                 sessionStorage.setItem('adminAuth', 'true');
                 showPage('page-dashboard');
                 initDashboard();
-                checkCloudConnection(); // ✅ Проверка облака при входе
+                checkCloudConnection();
                 showToast('Добро пожаловать, Кристина! 👑');
             } else {
                 err.style.display = 'block';
@@ -992,8 +797,7 @@
             if (tab === 'stats') initStats();
         }
 
-        // ==================== CLOUD SYNC FUNCTIONS ====================
-        
+        // ==================== CLOUD SYNC ====================
         async function checkCloudConnection() {
             const statusEl = document.getElementById('cloudStatus');
             try {
@@ -1018,11 +822,11 @@
                 const res = await fetch(WORKER_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        action: 'register', 
-                        username: name, 
-                        password: password, 
-                        adminSecret: ADMIN_SECRET 
+                    body: JSON.stringify({
+                        action: 'register',
+                        username: name,
+                        password: password,
+                        adminSecret: ADMIN_SECRET
                     })
                 });
                 return await res.json();
@@ -1038,14 +842,11 @@
                 showToast('Нет учеников для синхронизации');
                 return;
             }
-            
             showToast(`Синхронизация ${students.length} учеников...`);
             let success = 0, failed = 0;
-            
             for (const [name, data] of students) {
                 const result = await syncStudentToCloud(name, data.password);
                 if (result.success) {
-                    // Обновляем статус синхронизации в локальной базе
                     db.students[name].syncedToCloud = true;
                     success++;
                 } else {
@@ -1054,17 +855,15 @@
             }
             saveDB(db);
             showToast(`✅ Синхронизация: ${success} успешно, ${failed} ошибок`);
-            initDashboard(); // Перерисовать таблицу с новыми статусами
+            initDashboard();
         }
 
         async function syncStudent(name) {
             const db = getDB();
             const student = db.students[name];
             if (!student) return;
-            
             showToast(`Синхронизация ${name}...`);
             const result = await syncStudentToCloud(name, student.password);
-            
             if (result.success) {
                 student.syncedToCloud = true;
                 saveDB(db);
@@ -1080,27 +879,19 @@
             const name = document.getElementById('newStudentName').value.trim();
             const pass = document.getElementById('newStudentPass').value.trim();
 
-            if (!name || !pass) {
-                showToast('Заполни имя и пароль');
-                return;
-            }
+            if (!name || !pass) { showToast('Заполни имя и пароль'); return; }
 
             const db = getDB();
-            if (db.students[name]) {
-                showToast('Такой ученик уже существует');
-                return;
-            }
+            if (db.students[name]) { showToast('Такой ученик уже существует'); return; }
 
-            // 1. Сохраняем локально (как раньше)
             db.students[name] = {
                 password: pass,
                 createdAt: new Date().toISOString(),
                 progress: { completed: [], checklists: {}, homework: {}, botDialogs: 0, botLastReset: null },
-                syncedToCloud: false // По умолчанию не синхронизирован
+                syncedToCloud: false
             };
             saveDB(db);
 
-            // 2. Пытаемся отправить в облако
             const cloudResult = await syncStudentToCloud(name, pass);
             if (cloudResult.success) {
                 db.students[name].syncedToCloud = true;
@@ -1113,20 +904,19 @@
             document.getElementById('newStudentName').value = '';
             document.getElementById('newStudentPass').value = '';
 
-            // Show credentials modal
             showModal(`
                 <button class="modal-close" onclick="closeModal()">✕</button>
                 <h2 class="modal-title">✅ Аккаунт создан!</h2>
                 <p class="modal-text">Передай эти данные ученику:</p>
                 <div class="modal-creds">
                     <div class="modal-creds-label">Логин</div>
-                    <div class="modal-creds-value">${name}</div>
+                    <div class="modal-creds-value">${escapeHtml(name)}</div>
                 </div>
                 <div class="modal-creds">
                     <div class="modal-creds-label">Пароль</div>
-                    <div class="modal-creds-value">${pass}</div>
+                    <div class="modal-creds-value">${escapeHtml(pass)}</div>
                 </div>
-                <button class="btn btn-primary" style="width:100%" onclick="closeModal(); copyCredentials('${name}', '${pass}')">📋 Скопировать данные</button>
+                <button class="btn btn-primary" style="width:100%" onclick="closeModal(); copyCredentials('${escAttr(name)}', '${escAttr(pass)}')">📋 Скопировать данные</button>
             `);
 
             initDashboard();
@@ -1137,7 +927,7 @@
             navigator.clipboard.writeText(text).then(() => {
                 showToast('Скопировано в буфер обмена!');
             }).catch(() => {
-                showToast('Данные показаны выше');
+                showToast('Не удалось скопировать');
             });
         }
 
@@ -1153,10 +943,10 @@
         function resetPassword(name) {
             const newPass = prompt(`Введите новый пароль для "${name}":`);
             if (!newPass) return;
-
             const db = getDB();
             if (db.students[name]) {
                 db.students[name].password = newPass;
+                db.students[name].syncedToCloud = false; // нужно пересинхронизировать
                 saveDB(db);
                 showToast(`Пароль для "${name}" изменён`);
                 initDashboard();
@@ -1176,7 +966,6 @@
                         <p>Пока нет учеников. Создай первый аккаунт выше.</p>
                     </div>`;
             } else {
-                const moduleNames = ['Введение', 'Модуль 1', 'Модуль 2', 'Модуль 3', 'Модуль 4'];
                 document.getElementById('studentsTableContainer').innerHTML = `
                     <div style="overflow-x:auto;">
                         <table class="students-table">
@@ -1194,83 +983,77 @@
                                 ${students.map(([name, data]) => {
                                     const progress = data.progress || { completed: [] };
                                     const completed = progress.completed || [];
-                                    const moduleProgress = completed.filter(m => m > 0).length;
+                                    const moduleProgress = [1,2,3,4].filter(m => completed.includes(m)).length;
                                     const totalModules = 4;
                                     const percent = Math.round((moduleProgress / totalModules) * 100);
                                     const date = new Date(data.createdAt).toLocaleDateString('ru-RU');
-                                    const status = moduleProgress === 0 ? 'new' : moduleProgress < totalModules ? 'active' : 'done';
-                                    const statusText = status === 'new' ? 'Новый' : status === 'active' ? 'Учится' : 'Завершил';
-                                    const synced = data.syncedToCloud; // ✅ Статус синхронизации
+                                    const finished = completed.includes(6); // финальный блок
+                                    const status = finished ? 'done' : (moduleProgress > 0 ? 'active' : 'new');
+                                    const statusText = finished ? 'Завершил курс' : (status === 'active' ? 'Учится' : 'Новый');
+                                    const synced = !!data.syncedToCloud;
+                                    const safe = escAttr(name);
 
                                     return `
                                         <tr>
                                             <td>
                                                 <div class="student-name-cell">
-                                                    <div class="student-avatar">${name.charAt(0).toUpperCase()}</div>
+                                                    <div class="student-avatar">${escapeHtml(name.charAt(0).toUpperCase())}</div>
                                                     <div>
-                                                        <div class="student-name">${name}</div>
+                                                        <div class="student-name">${escapeHtml(name)}</div>
                                                         <div style="font-size:11px; color:var(--text-light);">Пароль: ••••••</div>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>
-                                                <div class="student-date">${date}</div>
-                                            </td>
+                                            <td><div class="student-date">${date}</div></td>
                                             <td>
                                                 <div class="progress-bar-mini">
                                                     <div class="progress-bar-mini-fill" style="width:${percent}%"></div>
                                                 </div>
-                                                <div class="progress-text">${moduleProgress}/${totalModules} модулей (${percent}%)</div>
+                                                <div class="progress-text">${finished ? '🎓 Курс завершён' : `${moduleProgress}/${totalModules} модулей (${percent}%)`}</div>
                                             </td>
                                             <td>
-                                                <span class="badge badge-${status}">${status === 'new' ? '🆕' : status === 'active' ? '📚' : '🎉'} ${statusText}</span>
+                                                <span class="badge badge-${status}">${finished ? '🎓' : status === 'active' ? '📚' : '🆕'} ${statusText}</span>
                                             </td>
                                             <td>
-                                                <!-- Кнопка синхронизации для каждого ученика -->
-                                                <button class="btn-sync ${synced ? 'synced' : ''}" 
-                                                        onclick="syncStudent('${name}')" 
+                                                <button class="btn-sync ${synced ? 'synced' : ''}"
+                                                        onclick="syncStudent('${safe}')"
                                                         title="${synced ? 'Синхронизировано' : 'Нажать для синхронизации'}">
                                                     ${synced ? '☁️' : '💻'}
                                                 </button>
                                             </td>
                                             <td>
                                                 <div style="display:flex; gap:6px;">
-                                                    <button class="btn-copy" onclick="resetPassword('${name}')" title="Сбросить пароль">🔑</button>
-                                                    <button class="btn-copy" onclick="showModulesDetail('${name}')" title="Детали прогресса">📊</button>
-                                                    <button class="btn-delete" onclick="deleteStudent('${name}')" title="Удалить">🗑</button>
+                                                    <button class="btn-copy" onclick="resetPassword('${safe}')" title="Сбросить пароль">🔑</button>
+                                                    <button class="btn-copy" onclick="showModulesDetail('${safe}')" title="Детали прогресса">📊</button>
+                                                    <button class="btn-delete" onclick="deleteStudent('${safe}')" title="Удалить">🗑</button>
                                                 </div>
                                             </td>
-                                        </tr>
-                                    `;
+                                        </tr>`;
                                 }).join('')}
                             </tbody>
                         </table>
                     </div>`;
             }
 
-            // Applications
-            const applications = db.applications || [];
-            document.getElementById('appsCount').textContent = `Всего заявок: ${applications.length}`;
+            // Reviews
+            const reviews = db.reviews || [];
+            document.getElementById('reviewsCount').textContent = `Всего отзывов: ${reviews.length}`;
 
-            if (applications.length === 0) {
-                document.getElementById('applicationsContainer').innerHTML = `
+            if (reviews.length === 0) {
+                document.getElementById('reviewsContainer').innerHTML = `
                     <div class="empty-state">
-                        <div class="empty-icon">📭</div>
-                        <p>Пока нет заявок</p>
+                        <div class="empty-icon">💬</div>
+                        <p>Пока нет отзывов. Ученики оставляют их на финальном блоке курса.</p>
                     </div>`;
             } else {
-                document.getElementById('applicationsContainer').innerHTML = applications.map(app => `
-                    <div class="app-item">
-                        <div class="app-header">
-                            <div class="app-name">${app.name || 'Без имени'}</div>
-                            <div class="app-date">${new Date(app.date).toLocaleDateString('ru-RU')}</div>
+                document.getElementById('reviewsContainer').innerHTML = reviews.map(r => `
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="review-name">${escapeHtml(r.name || 'Без имени')}</div>
+                            <div class="review-date">${new Date(r.date).toLocaleDateString('ru-RU')}</div>
                         </div>
-                        <div class="app-details">
-                            📱 Telegram: <strong>${app.telegram}</strong>
-                            ${app.phone ? ` • 📞 ${app.phone}` : ''}
-                            ${app.niche ? ` • 💼 ${app.niche}` : ''}
-                        </div>
-                        ${app.message ? `<div class="app-message">"${app.message}"</div>` : ''}
+                        <div class="review-text">${escapeHtml(r.text || '')}</div>
+                        <div class="review-next">🎓 Следующее обучение: ${escapeHtml(r.wantsNext || 'Не выбрано')}</div>
                     </div>
                 `).join('');
             }
@@ -1283,24 +1066,29 @@
 
             const progress = data.progress || { completed: [] };
             const completed = progress.completed || [];
-            const moduleNames = ['Введение', 'Модуль 1: База знаний', 'Модуль 2: Лид-магнит', 'Модуль 3: Раздевающий вопрос', 'Модуль 4: CRM'];
             const homework = progress.homework || {};
 
-            const hwStats = Object.values(homework).filter(h => h.rating).reduce((acc, h) => {
+            const hwStats = Object.values(homework).filter(h => h && h.rating).reduce((acc, h) => {
                 if (h.rating === 1) acc.done++;
                 if (h.rating === -1) acc.fail++;
                 return acc;
             }, { done: 0, fail: 0 });
 
-            const hwCount = Object.keys(homework).length;
+            let draftCells = 0;
+            Object.keys(homework).forEach(k => {
+                if (k.indexOf('hw1_r') === 0 && String(homework[k]).trim()) draftCells++;
+            });
+
+            const m1 = (progress.checklists && progress.checklists.m1) ? progress.checklists.m1.length : 0;
+            const m4 = (progress.checklists && progress.checklists.m4) ? progress.checklists.m4.length : 0;
 
             const content = `
                 <button class="modal-close" onclick="closeModal()">✕</button>
-                <h2 class="modal-title">📊 Прогресс: ${name}</h2>
+                <h2 class="modal-title">📊 Прогресс: ${escapeHtml(name)}</h2>
                 <div style="margin-bottom:16px;">
-                    <div style="font-size:13px; color:var(--text-light); margin-bottom:8px;">Модули:</div>
-                    ${moduleNames.map((m, i) => `
-                        <div style="display:flex; align-items:center; gap:8px; padding:6px 0; font-size:14px;">
+                    <div style="font-size:13px; color:var(--text-light); margin-bottom:8px;">Блоки курса:</div>
+                    ${BLOCK_NAMES.map((m, i) => `
+                        <div style="display:flex; align-items:center; gap:8px; padding:5px 0; font-size:14px;">
                             <span style="color:${completed.includes(i) ? '#2D8B4E' : 'var(--text-light)'};">${completed.includes(i) ? '✅' : '⬜'}</span>
                             ${m}
                         </div>
@@ -1308,22 +1096,27 @@
                 </div>
                 <div style="margin-bottom:16px;">
                     <div style="font-size:13px; color:var(--text-light); margin-bottom:8px;">Домашнее задание:</div>
-                    <div style="font-size:14px;">Заполнено: ${hwCount} заданий, ✅ ${hwStats.done}, ❌ ${hwStats.fail}</div>
+                    <div style="font-size:14px;">Отмечено: ✅ ${hwStats.done} выполнено, ❌ ${hwStats.fail} не выполнено</div>
+                    <div style="font-size:14px;">Таблица-черновик: ${draftCells} заполненных ячеек</div>
+                </div>
+                <div style="margin-bottom:16px;">
+                    <div style="font-size:13px; color:var(--text-light); margin-bottom:8px;">Чек-листы:</div>
+                    <div style="font-size:14px;">База знаний: ${m1}/10 пунктов</div>
+                    <div style="font-size:14px;">CRM: ${m4}/5 пунктов</div>
                 </div>
                 <div>
-                    <div style="font-size:13px; color:var(--text-light); margin-bottom:8px;">Чек-листы:</div>
-                    <div style="font-size:14px;">Модуль 1: ${(progress.checklists && progress.checklists.m1) ? progress.checklists.m1.length : 0}/10 пунктов</div>
-                    <div style="font-size:14px;">Модуль 4: ${(progress.checklists && progress.checklists.m4) ? progress.checklists.m4.length : 0}/5 пунктов</div>
+                    <div style="font-size:13px; color:var(--text-light); margin-bottom:8px;">Отчёт о завершении:</div>
+                    <div style="font-size:14px;">${progress.courseNotified ? '📨 Отчёт отправлен в Telegram' : '⏳ Ещё не отправлен'}</div>
+                    <div style="font-size:14px;">🤖 Диалогов с AIRA: ${progress.botDialogs || 0}</div>
                 </div>
             `;
-
             showModal(content);
         }
 
         function initStats() {
             const db = getDB();
             const students = Object.entries(db.students);
-            const applications = db.applications || [];
+            const reviews = db.reviews || [];
 
             let totalModulesCompleted = 0;
             let studentsStarted = 0;
@@ -1331,10 +1124,10 @@
 
             students.forEach(([_, data]) => {
                 const completed = (data.progress && data.progress.completed) || [];
-                const moduleCount = completed.filter(m => m > 0).length;
+                const moduleCount = [1,2,3,4].filter(m => completed.includes(m)).length;
                 totalModulesCompleted += moduleCount;
                 if (moduleCount > 0) studentsStarted++;
-                if (moduleCount >= 4) studentsFinished++;
+                if (completed.includes(6)) studentsFinished++;
             });
 
             document.getElementById('statsGrid').innerHTML = `
@@ -1348,11 +1141,11 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">${studentsFinished}</div>
-                    <div class="stat-label">Завершили курс</div>
+                    <div class="stat-label">🎓 Завершили курс</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number gold">${applications.length}</div>
-                    <div class="stat-label">Заявок на AgentFlow</div>
+                    <div class="stat-number gold">${reviews.length}</div>
+                    <div class="stat-label">🌟 Отзывов о курсе</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">${totalModulesCompleted}</div>
@@ -1360,7 +1153,6 @@
                 </div>
             `;
 
-            // Progress details
             if (students.length === 0) {
                 document.getElementById('progressDetails').innerHTML = `
                     <div class="empty-state">
@@ -1368,21 +1160,19 @@
                         <p>Нет данных для отображения</p>
                     </div>`;
             } else {
-                const moduleNames = ['Введение', 'Модуль 1', 'Модуль 2', 'Модуль 3', 'Модуль 4'];
                 document.getElementById('progressDetails').innerHTML = students.map(([name, data]) => {
                     const completed = (data.progress && data.progress.completed) || [];
                     return `
                         <div style="margin-bottom:16px; padding:12px; background:var(--cream); border-radius:var(--radius-sm);">
-                            <div style="font-weight:700; margin-bottom:8px;">${name}</div>
+                            <div style="font-weight:700; margin-bottom:8px;">${escapeHtml(name)} ${completed.includes(6) ? '🎓' : ''}</div>
                             <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                                ${moduleNames.map((m, i) => `
+                                ${BLOCK_NAMES.map((m, i) => `
                                     <span style="padding:3px 10px; border-radius:50px; font-size:12px; font-weight:600; background:${completed.includes(i) ? 'var(--gold)' : '#E8E0D8'}; color:${completed.includes(i) ? 'var(--cherry-dark)' : 'var(--text-light)'};">
                                         ${completed.includes(i) ? '✓' : '○'} ${m}
                                     </span>
                                 `).join('')}
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                 }).join('');
             }
         }
@@ -1403,7 +1193,6 @@
                 initDashboard();
                 checkCloudConnection();
             }
-
             document.getElementById('modalOverlay').addEventListener('click', (e) => {
                 if (e.target === e.currentTarget) closeModal();
             });
